@@ -1,0 +1,169 @@
+/* Override all navbar styles for Libro de Reclamaciones */
+/* Force white background always */
+.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    z-index: 1000 !important;
+    transition: none !important;
+}
+
+.navbar.scrolled {
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Logo colors - always blue */
+.navbar .logo h1,
+.navbar .logo-text h1 {
+    color: #0f5f8c !important;
+    transition: none !important;
+}
+
+.navbar .logo span,
+.navbar .logo-text span {
+    color: #0f5f8c !important;
+    transition: none !important;
+}
+
+.navbar.scrolled .logo h1,
+.navbar.scrolled .logo-text h1 {
+    color: #0f5f8c !important;
+}
+
+.navbar.scrolled .logo span,
+.navbar.scrolled .logo-text span {
+    color: #0f5f8c !important;
+}
+
+/* Nav menu links - always blue */
+.navbar .nav-menu a,
+.navbar .nav-menu li a {
+    color: #1e3a8a !important;
+    transition: color 0.3s ease !important;
+}
+
+.navbar .nav-menu a:hover,
+.navbar .nav-menu li a:hover {
+    color: #0f5f8c !important;
+}
+
+.navbar.scrolled .nav-menu li a:not(.btn-contact):not(.btn-whatsapp) {
+    color: #1e3a8a !important;
+}
+
+/* Contact button */
+.navbar .btn-contact {
+    background: #0f5f8c !important;
+    color: white !important;
+    border: none !important;
+    transition: background 0.3s ease !important;
+}
+
+.navbar .btn-contact:hover {
+    background: #0a4a6e !important;
+}
+
+.navbar.scrolled .btn-contact {
+    background: #0f5f8c !important;
+    color: white !important;
+}
+
+/* WhatsApp button - exact copy from landing.css */
+.btn-whatsapp {
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent !important;
+    color: #ffffff !important;
+    padding: 0.25rem 0.5rem !important;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.02);
+}
+
+.whatsapp-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.whatsapp-icon-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: #25D366;
+    border-radius: 50%;
+    z-index: 2;
+    color: white;
+}
+
+.whatsapp-icon-circle svg {
+    flex-shrink: 0;
+}
+
+.whatsapp-text {
+    z-index: 2;
+    color: #ffffff;
+}
+
+.navbar.scrolled .whatsapp-text {
+    color: #2d2d2d;
+}
+
+/* Pulse/Breathing Animation - reduced by 50% */
+.whatsapp-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #25D366;
+    opacity: 0;
+    z-index: 0;
+    animation: whatsapp-pulse 2.5s ease-out infinite;
+}
+
+.whatsapp-pulse.delay {
+    animation-delay: 1.25s;
+}
+
+@keyframes whatsapp-pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.34;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.57);
+        opacity: 0;
+    }
+}
+
+/* Navbar scrolled state for WhatsApp button */
+.navbar.scrolled .btn-whatsapp {
+    background-color: transparent !important;
+}
+
+/* Mobile menu toggle */
+.navbar .mobile-menu-toggle span {
+    background-color: #1e3a8a !important;
+}
+
+.navbar.scrolled .mobile-menu-toggle span {
+    background-color: #1e3a8a !important;
+}

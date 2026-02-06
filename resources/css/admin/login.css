@@ -1,0 +1,493 @@
+/*
+|--------------------------------------------------------------------------
+| GISEMIN - Admin Login Page Styles
+|--------------------------------------------------------------------------
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    min-height: 100vh;
+    position: relative;
+}
+
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    background: #f8f9fa;
+    overflow: hidden;
+}
+
+/* Logo superior derecho */
+.header-logo {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 200;
+}
+
+.header-logo-icon {
+    width: 32px;
+    height: auto;
+}
+
+.header-logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0066B3;
+    letter-spacing: 0.5px;
+}
+
+/* Triángulo superior izquierdo con borde celeste */
+.triangle-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Capa 1: Triángulo celeste (el más grande - el borde) */
+.triangle-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 370px 370px 0 0;
+    border-color: #4DC3F7 transparent transparent transparent;
+}
+
+/* Capa 2: Triángulo blanco (mediano) */
+.triangle-top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 360px 360px 0 0;
+    border-color: #f8f9fa transparent transparent transparent;
+    z-index: 1;
+}
+
+/* Capa 3: Triángulo azul oscuro (el más pequeño) */
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 350px 350px 0 0;
+    border-color: #0052A3 transparent transparent transparent;
+    z-index: 2;
+}
+
+.login-container::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: 8%;
+    width: 450px;
+    height: 450px;
+    transform: rotate(0deg);
+    border-left: 450px solid transparent;
+    border-right: 450px solid transparent;
+    border-bottom: 779px solid rgba(0, 102, 179, 0.03);
+    z-index: 0;
+    animation: rotateTriangleReverse 24s linear infinite;
+}
+
+@keyframes rotateTriangleReverse {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.login-form-side {
+    flex: 1;
+    max-width: 100%;
+    width: 100%;
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    position: relative;
+    z-index: 10;
+}
+
+/* Triángulo decorativo girante de fondo - Centro */
+.login-form-side::after {
+    content: '';
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%) rotate(0deg);
+    border-left: 500px solid transparent;
+    border-right: 500px solid transparent;
+    border-bottom: 865px solid rgba(0, 102, 179, 0.03);
+    z-index: -1;
+    animation: rotateTriangle 20s linear infinite;
+}
+
+@keyframes rotateTriangle {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Triángulo inferior derecho con borde celeste */
+.triangle-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+}
+
+/* Capa 1: Triángulo celeste (el más grande - el borde) */
+.triangle-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 470px 470px;
+    border-color: transparent transparent #4DC3F7 transparent;
+}
+
+/* Capa 2: Triángulo blanco (mediano) */
+.triangle-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 460px 460px;
+    border-color: transparent transparent #f8f9fa transparent;
+    z-index: 1;
+}
+
+/* Capa 3: Triángulo azul oscuro (el más pequeño) */
+.login-form-side::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 450px 450px;
+    border-color: transparent transparent #0052A3 transparent;
+    z-index: 2;
+}
+
+/* Triángulo decorativo girante de fondo - Centro */
+.login-form-side::after {
+    content: '';
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%) rotate(0deg);
+    border-left: 500px solid transparent;
+    border-right: 500px solid transparent;
+    border-bottom: 865px solid rgba(0, 102, 179, 0.03);
+    z-index: 0;
+    animation: rotateTriangle 20s linear infinite;
+}
+
+@keyframes rotateTriangle {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.login-image-side {
+    display: none;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 100;
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 3px solid #4DC3F7;
+}
+
+.login-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.logo-icon {
+    width: 70px;
+    height: 70px;
+}
+
+.logo-image {
+    width: 80px;
+    height: auto;
+}
+
+.subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666666;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0066B3;
+    margin-bottom: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: underline;
+    position: relative;
+    z-index: 1;
+    text-decoration-color: #0066B3;
+    text-underline-offset: 8px;
+}
+
+#login-form {
+    display: flex;
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: #666666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px;
+    padding-right: 48px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.input-wrapper input::placeholder {
+    color: #999999;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: #0066B3;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 179, 0.1);
+}
+
+.input-icon {
+    position: absolute;
+    right: 14px;
+    width: 20px;
+    height: 20px;
+    color: #999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+.toggle-password {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #1a1a1a;
+}
+
+.forgot-password-link {
+    background: none;
+    border: none;
+    color: #666666;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 4px;
+    text-align: left;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #1a1a1a;
+    text-decoration: underline;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px 24px;
+    background: #0066B3;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background: #004d8c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 102, 179, 0.3);
+}
+
+.btn-full {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.back-to-site {
+    margin-top: 32px;
+    text-align: center;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #0066B3;
+    border-radius: 6px;
+    color: #0066B3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-back svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-back:hover {
+    background: #0066B3;
+    color: #ffffff;
+    transform: translateX(-4px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .login-image-side {
+        display: none;
+    }
+
+    .login-form-side {
+        max-width: 100%;
+        padding: 40px 35px;
+    }
+
+    .header-logo {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .login-form-side {
+        padding: 24px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .header-logo {
+        top: 15px;
+        right: 15px;
+    }
+
+    .header-logo-text {
+        font-size: 14px;
+    }
+
+    .header-logo-icon {
+        width: 26px;
+        height: 26px;
+    }
+}

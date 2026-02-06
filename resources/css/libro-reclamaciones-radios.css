@@ -1,0 +1,72 @@
+/* Centered Radio Buttons for Reclamo/Queja */
+.centered-radios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px !important;
+}
+
+.centered-radios>label {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #0f5f8c;
+    background: #f0f9ff;
+    padding: 10px 24px;
+    border-radius: 50px;
+    border: 1px solid #bae6fd;
+}
+
+.radio-options-row {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+}
+
+.radio-options-row label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    background: #ffffff;
+    padding: 14px 40px;
+    border-radius: 50px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s;
+    font-weight: 700;
+    font-size: 15px;
+    color: #475569;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.radio-options-row label:hover {
+    border-color: #0f5f8c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(15, 95, 140, 0.1);
+}
+
+.radio-options-row label:has(input:checked) {
+    border-color: #0f5f8c;
+    background: #0f5f8c;
+    /* Blue background for selected */
+    color: white;
+    /* White text for selected */
+    box-shadow: 0 4px 12px rgba(15, 95, 140, 0.3);
+}
+
+.radio-options-row label:has(input:checked) input {
+    accent-color: white;
+}
+
+@media (max-width: 600px) {
+    .radio-options-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .radio-options-row label {
+        width: 100%;
+        justify-content: center;
+    }
+}

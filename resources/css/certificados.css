@@ -1,0 +1,2464 @@
+/* ========================================
+   GISEMIN - Certificados Page
+   Mismo estilo que Landing + Custom Hero
+   ======================================== */
+
+:root {
+    /* Colores Landing */
+    --blue-900: #0A3F63;
+    --blue-800: #0F5F8C;
+    --blue-700: #1A74A8;
+    --blue-600: #2C8EC2;
+    --blue-500: #4FA6D6;
+    --blue-400: #78BEE6;
+    --blue-300: #A6D6F2;
+    --blue-200: #D3ECFA;
+
+    --primary-color: #0F5F8C;
+    --primary-dark: #0A3F63;
+    --primary-light: #2C8EC2;
+    --secondary-color: #4FA6D6;
+    --accent-color: #1A74A8;
+
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #666666;
+    --gray-800: #2d2d2d;
+    --gray-900: #1a1a1a;
+
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--gray-600);
+    background-color: var(--white);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 1.5rem);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+/* ========================================
+   Navbar (Copiado de Landing)
+   ======================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background-color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(0.75rem, 2vw, 1rem) 0;
+    min-height: 80px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-image {
+    width: 40px;
+    /* Reducido de 48px */
+    height: 40px;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    /* Color oscuro por defecto */
+    line-height: 1;
+}
+
+.logo span {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+/* Navbar Scrolled State */
+.navbar.scrolled .logo h1 {
+    color: var(--primary-dark);
+}
+
+.navbar.scrolled .logo span {
+    color: var(--primary-color);
+}
+
+.navbar.scrolled .nav-menu li a {
+    color: var(--gray-600);
+}
+
+.navbar.scrolled .nav-menu li a:hover {
+    color: var(--primary-color);
+}
+
+.navbar.scrolled .nav-toggle span {
+    background: var(--gray-800);
+}
+
+/* Menu */
+.nav-menu {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.nav-menu li a {
+    color: var(--gray-600);
+    /* Enlace oscuro por defecto */
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.nav-menu li a:hover {
+    opacity: 0.8;
+}
+
+/* Botones Navbar */
+.btn-contact {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: var(--radius-md);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    transition: var(--transition);
+}
+
+.btn-contact:hover,
+.btn-contact.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--white);
+}
+
+.navbar.scrolled .btn-contact {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: var(--white) !important;
+}
+
+.navbar.scrolled .btn-contact:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* Toggle Responsive */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: var(--transition);
+}
+
+/* ========================================
+   Hero Section (Reference Image)
+   ======================================== */
+.hero {
+    position: relative;
+    min-height: 40vh;
+    /* Aún más compacto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Fondo BLANCO limpio - Minimalista */
+    background: var(--white);
+    padding-top: 120px;
+    padding-bottom: 40px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    /* Texto oscuro */
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.gradient-text {
+    /* Azul corporativo fuerte */
+    color: var(--primary-color);
+    background: none;
+    -webkit-text-fill-color: initial;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   Search Section
+   ======================================== */
+.search-section {
+    position: relative;
+    margin-top: -60px;
+    z-index: 10;
+    padding-bottom: 80px;
+}
+
+.search-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-card {
+    background: var(--white);
+    padding: 12px;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    outline: none;
+    color: var(--gray-800);
+}
+
+.search-btn {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 16px 32px;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.search-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Resultados */
+.results-area {
+    margin-top: 40px;
+}
+
+.result-card {
+    background: var(--white);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+    box-shadow: none !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+.result-card:hover {
+    border-color: var(--gray-200) !important;
+    background-color: var(--white) !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.btn-drive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 57px;
+    height: 57px;
+    background-color: #ffffff;
+    border: 4px solid #0A3F63;
+    /* Double thickness (4px) */
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.btn-drive:hover {
+    background-color: #f1f5f9;
+    /* Subtle light gray on hover */
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.result-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.result-info {
+    min-width: 250px;
+    /* Keep left content compact */
+}
+
+/* Centered Metadata Container */
+.result-meta-centered {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--gray-600);
+}
+
+.result-name {
+    font-weight: 800;
+    color: var(--gray-900);
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+}
+
+.result-course {
+    font-weight: 700;
+    color: var(--gray-800);
+    font-size: 1.15rem;
+    margin-bottom: 0px;
+}
+
+.meta-item {
+    font-size: 1.1rem;
+    /* Enlarged from 1rem */
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.meta-label {
+    font-weight: 700;
+    /* Bolder */
+    color: #0A3F63;
+    /* Dark Blue */
+    text-transform: uppercase;
+    /* Optional: adds to the "title" feel */
+    font-size: 0.9em;
+    /* Slightly smaller relative to value but uppercase makes it distinct */
+}
+
+.info-label {
+    font-weight: 700;
+    color: #0A3F63;
+    /* Dark Blue to match titles */
+    text-transform: uppercase;
+    font-size: 0.8em;
+    /* Slightly smaller than main text */
+    margin-right: 6px;
+}
+
+.meta-separator {
+    color: var(--gray-400);
+}
+
+.result-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.result-badge.vigente {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.result-badge.expirado {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--gray-200);
+}
+
+.empty-state h3 {
+    color: var(--gray-800);
+}
+
+/* Stats & Info */
+.stats-section,
+.info-section {
+    padding: 80px 0;
+}
+
+.stats-section {
+    background: var(--white);
+}
+
+.info-section {
+    background: var(--gray-50);
+}
+
+.stats-grid,
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.stat-card {
+    text-align: center;
+    padding: 30px;
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.info-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+/* Footer */
+.footer {
+    background: var(--blue-900);
+    padding: 40px 0;
+    color: var(--white);
+}
+
+/* Responsive */
+@media(max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 80%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 80px 40px;
+        transform: translateX(100%);
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+
+    .nav-menu li a {
+        color: var(--gray-800);
+        font-size: 1.2rem;
+    }
+
+    .nav-toggle {
+        display: flex;
+        z-index: 1001;
+    }
+
+    .nav-toggle span {
+        background: var(--white);
+    }
+
+    .nav-toggle.active span {
+        background: var(--gray-800);
+    }
+
+    /* Burger dark inside menu */
+
+    .search-card {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .search-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .result-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Correcciones Finales de Estilo - Iconos y Nav */
+.stat-icon,
+.info-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon svg,
+.info-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.search-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Toggle negro por defecto */
+.nav-toggle span {
+    background: var(--primary-dark) !important;
+}
+
+/* ========================================
+   Iconos - Tamaños Corregidos y Uniformes
+   ======================================== */
+
+/* Icono de búsqueda en el input */
+.search-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--gray-400);
+    flex-shrink: 0;
+}
+
+.search-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Icono dentro del botón buscar */
+.search-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Icono de estado vacío */
+.empty-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    color: var(--gray-300);
+}
+
+.empty-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Iconos de estadísticas */
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    background: var(--primary-color);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+}
+
+.stat-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Iconos de información/pasos */
+.info-icon {
+    width: 56px;
+    height: 56px;
+    margin: 16px auto;
+    background: var(--gray-100);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.info-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Logo icon en footer */
+.footer .logo-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.footer .logo-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Paso numerado en info cards */
+.info-step {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Info card necesita position relative */
+.info-card {
+    position: relative;
+    padding-top: 40px;
+}
+
+/* ========================================
+   Navbar Azul al Inicio + Ocultar al Scroll
+   ======================================== */
+
+/* Estado inicial: Fondo azul */
+.navbar {
+    background: var(--blue-900) !important;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.navbar .logo h1 {
+    color: var(--white) !important;
+}
+
+.navbar .logo span {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar .nav-menu li a {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar .nav-menu li a:hover {
+    color: var(--white) !important;
+}
+
+.navbar .btn-contact {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    color: var(--white) !important;
+}
+
+.navbar .btn-contact:hover,
+.navbar .btn-contact.active {
+    background: rgba(255, 255, 255, 0.25) !important;
+    border-color: var(--white) !important;
+}
+
+.navbar .nav-toggle span {
+    background: var(--white) !important;
+}
+
+/* Navbar oculto al bajar */
+.navbar.nav-hidden {
+    transform: translateY(-100%);
+}
+
+/* ========================================
+   Sección "Cómo Funciona" Mejorada
+   ======================================== */
+
+.info-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+}
+
+.info-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.info-header h2 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+}
+
+.info-header p {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.info-card {
+    position: relative;
+    background: var(--white);
+    padding: 48px 28px 32px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--gray-100);
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.info-step {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(15, 95, 140, 0.3);
+}
+
+.info-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--blue-200) 0%, var(--blue-100, #e8f4fc) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.info-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.info-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 0.95rem;
+    color: var(--gray-500);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ========================================
+   Mejoras Visuales - Result Card & Drive Btn
+   ======================================== */
+
+.result-card {
+    background: var(--white);
+    padding: 24px 32px;
+    border-radius: 16px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.result-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    /* Sombra más suave y premium */
+    border-color: rgba(15, 95, 140, 0.2);
+}
+
+.result-avatar {
+    width: 64px;
+    /* Más grande */
+    height: 64px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(15, 95, 140, 0.2);
+    flex-shrink: 0;
+}
+
+.result-info {
+    flex: 1;
+}
+
+.result-name {
+    font-family: 'Outfit', var(--font-family);
+    /* Si está disponible */
+    font-weight: 700;
+    color: var(--gray-900);
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.result-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px 24px;
+}
+
+.detail-item {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+/* Botón Drive (Reemplaza al Badge) */
+/* Removed duplicate btn-drive styles to prevent conflicts */
+
+/* Mobile responsive adjustments */
+@media(max-width: 768px) {
+    .result-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .btn-drive {
+        align-self: flex-end;
+        margin-top: -60px;
+        /* Hack para situarlo arriba a la derecha en móvil */
+    }
+
+    .result-avatar {
+        width: 56px;
+        height: 56px;
+        font-size: 1.25rem;
+    }
+}
+
+.info-grid::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    right: 15%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gray-200), var(--gray-200), transparent);
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .info-grid::before {
+        display: none;
+    }
+}
+
+/* ========================================
+   Footer Completo (Copiado de Landing)
+   ======================================== */
+
+.footer {
+    background: var(--blue-900);
+    color: var(--white);
+    padding: 80px 0 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--white);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.footer-section ul li a:hover {
+    color: var(--white);
+}
+
+/* Footer Brand */
+.footer-brand {
+    max-width: 280px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.footer-logo img {
+    width: 48px;
+    height: 48px;
+}
+
+.footer-logo h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.footer-logo .logo-text span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-brand>p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Footer Social */
+.footer-social {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.footer-social a:hover {
+    background: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer-social svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Footer Contact */
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact svg {
+    width: 18px;
+    height: 18px;
+    color: var(--secondary-color);
+    flex-shrink: 0;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+}
+
+.footer-links span {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-logo {
+        justify-content: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}
+
+/* Hero description en azul */
+.hero-description {
+    color: var(--primary-color) !important;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+/* ========================================
+   RESPONSIVE COMPLETO - Todos los Dispositivos
+   ======================================== */
+
+/* Tablets (992px) */
+@media (max-width: 992px) {
+    .hero {
+        min-height: 35vh;
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .info-card:last-child {
+        grid-column: span 2;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Móviles grandes (768px) */
+@media (max-width: 768px) {
+
+    /* Navbar Mobile */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 75%;
+        max-width: 300px;
+        background: var(--white);
+        flex-direction: column;
+        padding: 100px 30px 40px;
+        gap: 0;
+        transform: translateX(100%);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+        transition: transform 0.35s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--gray-100);
+    }
+
+    .nav-menu li a {
+        display: block;
+        padding: 16px 0;
+        color: var(--gray-800) !important;
+        font-size: 1.1rem;
+    }
+
+    .nav-menu li a:hover {
+        color: var(--primary-color) !important;
+    }
+
+    .nav-toggle {
+        display: flex !important;
+        z-index: 1001;
+    }
+
+    /* Hero Mobile */
+    .hero {
+        min-height: auto;
+        padding: 100px 20px 50px;
+    }
+
+    .hero h1 {
+        font-size: 1.85rem;
+        margin-bottom: 12px;
+    }
+
+    .hero-description {
+        font-size: 1rem !important;
+    }
+
+    /* Search Mobile */
+    .search-section {
+        margin-top: -30px;
+        padding-bottom: 50px;
+    }
+
+    .search-card {
+        flex-direction: column;
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .search-icon {
+        display: none;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 14px 16px;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .search-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+    }
+
+    /* Stats Mobile */
+    .stats-section {
+        padding: 50px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .stat-card {
+        padding: 20px 15px;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 12px;
+    }
+
+    .stat-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .stat-number {
+        font-size: 1.75rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* Info Mobile */
+    .info-section {
+        padding: 50px 0;
+    }
+
+    .info-header {
+        margin-bottom: 40px;
+    }
+
+    .info-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .info-card {
+        padding: 40px 20px 24px;
+    }
+
+    .info-card:last-child {
+        grid-column: span 1;
+        max-width: 100%;
+    }
+
+    /* Results Mobile */
+    .result-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .result-avatar {
+        margin-bottom: 12px;
+    }
+}
+
+/* Móviles pequeños (480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero {
+        padding: 90px 16px 40px;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px 10px;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .info-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .info-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .info-card h3 {
+        font-size: 1rem;
+    }
+
+    .info-card p {
+        font-size: 0.85rem;
+    }
+
+    /* Footer Mobile */
+    .footer {
+        padding: 50px 0 0;
+    }
+
+    .footer-content {
+        gap: 30px;
+    }
+
+    .footer-section h4 {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+        padding: 20px 0;
+    }
+
+    .footer-bottom p,
+    .footer-links a {
+        font-size: 0.8rem;
+    }
+}
+
+/* Pantallas muy pequeñas (360px) */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.35rem;
+    }
+
+    .search-btn span {
+        display: none;
+    }
+
+    .search-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .stat-number {
+        font-size: 1.25rem;
+    }
+}
+
+/* ========================================
+   Ajustes: Navbar más pequeño + Search más abajo
+   ======================================== */
+
+/* Navbar 15% más compacto */
+.navbar .container {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.nav-wrapper {
+    min-height: 68px !important;
+    /* Reducido de 80px */
+    padding: 8px 0 !important;
+}
+
+.logo-image {
+    width: 36px !important;
+    height: 36px !important;
+}
+
+.logo h1 {
+    font-size: 1.35rem !important;
+}
+
+.logo span {
+    font-size: 0.7rem !important;
+}
+
+.nav-menu {
+    gap: 24px !important;
+}
+
+.nav-menu li a {
+    font-size: 0.9rem !important;
+}
+
+/* Hero con más espacio para el texto */
+.hero {
+    padding-bottom: 80px !important;
+    /* Más espacio abajo */
+}
+
+/* Search section más abajo */
+.search-section {
+    margin-top: 20px !important;
+    /* Ya no sube sobre el hero */
+}
+
+/* Eliminar línea/borde arriba del buscador */
+.search-card {
+    border: none !important;
+    border-top: none !important;
+}
+
+.search-section {
+    border-top: none !important;
+}
+
+.search-wrapper {
+    border: none !important;
+}
+
+/* Navbar siempre visible - deshabilitar hide */
+.navbar.nav-hidden {
+    transform: none !important;
+}
+
+/* Más separación título-navbar (+13%) */
+.hero {
+    padding-top: 140px !important;
+    /* Aumentado de ~120px */
+}
+
+/* Separación título-navbar a 170px */
+.hero {
+    padding-top: 170px !important;
+}
+
+/* Eliminar cualquier línea/borde entre hero y search */
+.hero {
+    border: none !important;
+    border-bottom: none !important;
+}
+
+.hero-bg {
+    display: none !important;
+}
+
+.search-section {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.search-wrapper::before,
+.search-wrapper::after {
+    display: none !important;
+}
+
+/* Eliminar sombra superior del buscador */
+.search-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    /* Solo hacia abajo */
+}
+
+/* Eliminar sombra completamente del buscador */
+.search-card {
+    box-shadow: none !important;
+}
+
+/* Devolver borde sutil al buscador + eliminar línea superior */
+.search-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid var(--gray-200) !important;
+}
+
+/* Eliminar la línea/separación entre hero y search */
+.hero::after {
+    display: none !important;
+}
+
+.search-section::before {
+    display: none !important;
+}
+
+/* Fondo blanco limpio para search section */
+.search-section {
+    background: var(--white) !important;
+}
+
+/* ==================================================
+   ELIMINACIÓN TOTAL DE LÍNEAS DIVISORIAS FANTASMA
+   ================================================== */
+
+/* Forzar eliminación de bordes en el contenedor del Hero */
+.hero,
+.hero::after,
+.hero::before {
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    /* Por si hubiera un gradiente lineal */
+}
+
+/* Forzar eliminación de bordes en la sección de búsqueda */
+.search-section,
+.search-section::after,
+.search-section::before {
+    border: none !important;
+    border-top: none !important;
+    box-shadow: none !important;
+    margin-top: 0 !important;
+    /* Pegar las secciones para evitar huecos */
+    padding-top: 20px !important;
+}
+
+/* Fondo blanco puro para cubrir cualquier línea detrás */
+.hero,
+.search-section {
+    background-color: var(--white) !important;
+}
+
+/* Asegurar que el contenedor interno no tenga bordes */
+.search-wrapper {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Eliminar cualquier hr que pudiera haberse colado en el HTML */
+hr {
+    display: none !important;
+}
+
+/* Ajuste de separaciones finales */
+.hero {
+    padding-top: 192px !important;
+    /* Solicitado expresamente */
+    padding-bottom: 90px !important;
+    background: var(--white) !important;
+    border: none !important;
+    box-shadow: none !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Superposición para eliminar líneas fantasma y ajustar espacio buscador-texto */
+.search-section {
+    position: relative !important;
+    z-index: 20 !important;
+    margin-top: -40px !important;
+    /* Solapamiento de seguridad */
+    padding-top: 10px !important;
+    background-color: var(--white) !important;
+    border: none !important;
+}
+
+/* Limpieza final de pseudoelementos */
+.hero::after,
+.hero::before,
+.search-section::after,
+.search-section::before {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+}
+
+/* =================================================================
+   FONDO DECORATIVO DE TRIÁNGULOS (Estilo Login)
+   ================================================================= */
+
+/* Contenedor fijo al fondo para que no afecte el layout */
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Detrás de todo */
+    overflow: hidden;
+    pointer-events: none;
+    /* No interfiere con clics */
+    background: var(--white);
+    /* Fondo base */
+}
+
+/* --- Triángulo Superior Izquierdo --- */
+.triangle-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Capa 1: Borde Celeste (Más Grande) */
+.triangle-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 400px 400px 0 0;
+    /* Un poco más grandes para desktop */
+    border-color: var(--blue-300) transparent transparent transparent;
+    /* --blue-300 es un celeste suave */
+    opacity: 0.6;
+}
+
+/* Capa 2: Blanco (Para crear efecto borde) */
+.triangle-top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 390px 390px 0 0;
+    border-color: var(--white) transparent transparent transparent;
+    z-index: 1;
+}
+
+/* Capa 3: Triángulo Azul Oscuro (El más pequeño interno) */
+.background-shapes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 380px 380px 0 0;
+    border-color: var(--blue-800) transparent transparent transparent;
+    z-index: 2;
+    opacity: 0.1;
+    /* Muy sutil */
+}
+
+/* --- Triángulo Inferior Derecho --- */
+.triangle-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+}
+
+/* Capa 1: Borde Celeste */
+.triangle-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 500px 500px;
+    border-color: transparent transparent var(--blue-300) transparent;
+    opacity: 0.4;
+}
+
+/* Capa 2: Blanco */
+.triangle-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 490px 490px;
+    border-color: transparent transparent var(--white) transparent;
+    z-index: 1;
+}
+
+/* Capa 3: Azul Oscuro Interno */
+.background-shapes::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 480px 480px;
+    border-color: transparent transparent var(--blue-900) transparent;
+    z-index: 2;
+    opacity: 0.05;
+}
+
+/* --- Animaciones de Rotación (Triángulos gigantes sutiles) --- */
+
+/* Triángulo Flotante 1 */
+.bg-floating-1 {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 0;
+    height: 0;
+    border-left: 300px solid transparent;
+    border-right: 300px solid transparent;
+    border-bottom: 500px solid rgba(15, 95, 140, 0.02);
+    /* var(--primary-color) muy transparente */
+    animation: rotateTriangleSlow 40s linear infinite;
+    transform-origin: center;
+}
+
+/* Triángulo Flotante 2 */
+.bg-floating-2 {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    width: 0;
+    height: 0;
+    border-left: 400px solid transparent;
+    border-right: 400px solid transparent;
+    border-bottom: 700px solid rgba(79, 166, 214, 0.03);
+    /* var(--secondary-color) muy transparente */
+    animation: rotateTriangleReverse 50s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateTriangleSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateTriangleReverse {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .triangle-top::before,
+    .triangle-top::after,
+    .background-shapes::before {
+        border-width: 150px 150px 0 0;
+        /* Mucho más pequeños en móvil */
+    }
+
+    .triangle-bottom::before,
+    .triangle-bottom::after,
+    .background-shapes::after {
+        border-width: 0 0 150px 150px;
+    }
+}
+
+/* =================================================================
+   FIX VISIBILIDAD TRIÁNGULOS & EFECTO GLASS
+   ================================================================= */
+
+/* 1. Hero transparente para mostrar los triángulos del body */
+.hero {
+    background-color: transparent !important;
+    background: transparent !important;
+}
+
+/* 2. Search Section con efecto vidrio para que se intuyan los triángulos detrás */
+.search-section {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    /* Semi-transparente */
+    backdrop-filter: blur(10px);
+    /* Efecto blur premium */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* 3. Aumentar un poco la visibilidad de los triángulos */
+.triangle-top::before {
+    border-color: var(--blue-200) transparent transparent transparent !important;
+    opacity: 0.8 !important;
+}
+
+.triangle-bottom::before {
+    border-color: transparent transparent var(--blue-200) transparent !important;
+    opacity: 0.6 !important;
+}
+
+/* Triángulos flotantes un poco más visibles */
+.bg-floating-1 {
+    border-bottom-color: rgba(15, 95, 140, 0.05) !important;
+    /* Más opacidad */
+}
+
+.bg-floating-2 {
+    border-bottom-color: rgba(79, 166, 214, 0.08) !important;
+}
+
+/* El fondo del body debe ser blanco base para que los triángulos contrasten */
+body {
+    background-color: var(--white);
+}
+
+/* Asegurar que el contenedor wrapper no tenga fondo blanco tapando */
+.wrapper,
+#app {
+    background: transparent !important;
+}
+
+/* =================================================================
+   FONDO ANIMADO DE TRIÁNGULOS (Portado de Admin Login)
+   ================================================================= */
+
+/* Contenedor de animación que no interfiera con el contenido */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    /* Crucial para poder hacer click en el contenido */
+    overflow: hidden;
+}
+
+/* Triángulo superior izquierdo con borde celeste */
+.triangle-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Capa 1: Triángulo celeste (el más grande - el borde) */
+.triangle-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 370px 370px 0 0;
+    border-color: #4DC3F7 transparent transparent transparent;
+}
+
+/* Capa 2: Triángulo BLANCO (mediano) - Adaptado para fondo blanco de certificados */
+.triangle-top::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 360px 360px 0 0;
+    border-color: #ffffff transparent transparent transparent;
+    /* Cambiado a blanco */
+    z-index: 1;
+}
+
+/* Capa 3: Triángulo azul oscuro (el más pequeño - esquina) */
+.animated-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 350px 350px 0 0;
+    border-color: #0052A3 transparent transparent transparent;
+    z-index: 2;
+}
+
+/* TRIÁNGULO ANIMADO REVERSO SUPERIOR DERECHO GIGANTE */
+.animated-background::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: 8%;
+    width: 450px;
+    height: 450px;
+    transform: rotate(0deg);
+    border-left: 450px solid transparent;
+    border-right: 450px solid transparent;
+    border-bottom: 779px solid rgba(0, 102, 179, 0.03);
+    /* Muy sutil */
+    z-index: 0;
+    animation: rotateTriangleReverse 24s linear infinite;
+}
+
+@keyframes rotateTriangleReverse {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* TRIÁNGULO DECORATIVO GIRATORIO CENTRAL */
+.triangle-center-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.triangle-center-spinner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+    border-left: 500px solid transparent;
+    border-right: 500px solid transparent;
+    border-bottom: 865px solid rgba(0, 102, 179, 0.03);
+    animation: rotateTriangle 20s linear infinite;
+}
+
+@keyframes rotateTriangle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Triángulo inferior derecho con borde celeste */
+.triangle-bottom {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+}
+
+/* Capa 1: Triángulo celeste (borde) */
+.triangle-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 470px 470px;
+    border-color: transparent transparent #4DC3F7 transparent;
+}
+
+/* Capa 2: Triángulo BLANCO (máscara) */
+.triangle-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 460px 460px;
+    border-color: transparent transparent #ffffff transparent;
+    /* Cambiado a blanco */
+    z-index: 1;
+}
+
+/* Capa 3: Triángulo azul oscuro (esquina inferior) */
+.triangle-bottom-inner {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 450px 450px;
+    border-color: transparent transparent #0052A3 transparent;
+    z-index: 2;
+}
+
+/* Media Query para ajustar en móviles y no tapar contenido */
+@media (max-width: 768px) {
+
+    .triangle-top::before,
+    .triangle-top::after,
+    .animated-background::before {
+        border-width: 150px 150px 0 0;
+        /* Más pequeños */
+        opacity: 0.5;
+    }
+
+    .triangle-bottom::before,
+    .triangle-bottom::after,
+    .triangle-bottom-inner {
+        border-width: 0 0 150px 150px;
+        /* Más pequeños */
+        opacity: 0.5;
+    }
+
+    .animated-background::after {
+        /* Triángulo giratorio gigante */
+        display: none;
+        /* Ocultar animación pesada en móvil */
+    }
+
+    .triangle-center-spinner {
+        display: none;
+    }
+}
+
+/* ELIMINAR ANIMACIONES DE FONDO (Solicitado por el usuario) */
+.animated-background {
+    display: none !important;
+}
+
+.triangle-top,
+.triangle-bottom,
+.triangle-center-spinner {
+    display: none !important;
+}
+
+/* =================================================================
+   FONDO ANIMADO DE TRIÁNGULOS (Versión Clean - Solo movimiento sutil)
+   ================================================================= */
+
+/* Sobrescribir y ocultar triángulos de borde que se agregaron antes */
+.triangle-top,
+.triangle-top::before,
+.triangle-top::after {
+    display: none !important;
+}
+
+.triangle-bottom,
+.triangle-bottom::before,
+.triangle-bottom::after {
+    display: none !important;
+}
+
+.triangle-bottom-inner {
+    display: none !important;
+}
+
+.animated-background::before {
+    display: none !important;
+    /* Ocultar triángulo azul esquina superior */
+}
+
+/* Mantener container para los giratorios */
+.animated-background {
+    background: transparent !important;
+    /* Asegurar transparencia */
+}
+
+/* TRIÁNGULO ANIMADO REVERSO SUPERIOR DERECHO GIGANTE */
+/* (Este ya está definido, pero aseguramos que se vea bien) */
+.animated-background::after {
+    opacity: 0.6;
+    /* Un poco más visible si no hay otros elementos */
+}
+
+/* =================================================================
+   FIX VISIBILIDAD ANIMACIÓN: Flotar encima del contenido
+   ================================================================= */
+
+.animated-background {
+    z-index: 500 !important;
+    /* Traer al frente (encima de hero y search) */
+    pointer-events: none !important;
+    /* Click-through transparente */
+}
+
+/* Aumentar visibilidad y asegurar color */
+.triangle-center-spinner::after {
+    border-bottom-color: rgba(15, 95, 140, 0.12) !important;
+    /* Un poco más visible (12%) */
+}
+
+.animated-background::after {
+    border-bottom-color: rgba(15, 95, 140, 0.12) !important;
+    /* Un poco más visible (12%) */
+}
+
+/* Asegurar que las animaciones corran */
+@keyframes rotateTriangle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateTriangleReverse {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+/* =================================================================
+   REVERSIÓN TOTAL: Eliminación de animación y RESTAURACIÓN DE FONDO BLANCO
+   ================================================================= */
+
+/* 1. Ocultar contenedores de animación por si quedan restos */
+.animated-background,
+.triangle-top,
+.triangle-bottom {
+    display: none !important;
+}
+
+/* 2. RESTAURAR FONDO BLANCO PURO para tapar líneas (CRÍTICO) */
+.hero {
+    background: var(--white) !important;
+    background-color: #ffffff !important;
+    z-index: 1 !important;
+    position: relative !important;
+}
+
+.search-section {
+    background: var(--white) !important;
+    background-color: #ffffff !important;
+    z-index: 20 !important;
+    /* Encima del hero para tapar borde */
+    margin-top: -40px !important;
+    /* Mantener solape */
+}
+
+/* Asegurar que nada interrumpa el blanco */
+body {
+    background: var(--white) !important;
+}
+
+/* =================================================================
+   NUEVOS ESTILOS: TARJETAS DE RESULTADO POR USUARIO (DNI)
+   ================================================================= */
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.user-result-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.user-header {
+    background: #f8fafc;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.user-avatar {
+    width: 64px;
+    height: 64px;
+    background: var(--blue-900);
+    color: var(--white);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(10, 63, 99, 0.2);
+}
+
+.user-main-info {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--blue-900);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.user-dni {
+    font-size: 1rem;
+    color: var(--gray-500);
+    font-weight: 600;
+    margin: 4px 0 0 0;
+}
+
+.user-badge {
+    background: #dcfce7;
+    color: #166534;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.user-certs-list {
+    padding: 0 24px;
+}
+
+.cert-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.cert-item:last-child {
+    border-bottom: none;
+}
+
+.cert-info {
+    flex: 1;
+}
+
+.cert-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.cert-meta {
+    display: flex;
+    gap: 20px;
+    color: var(--gray-800); /* Darker for better contrast */
+    font-size: 0.95rem; /* Slightly larger */
+    font-weight: 700; /* Bold as requested */
+}
+
+.cert-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cert-meta i {
+    color: var(--blue-600);
+    font-size: 0.8em;
+}
+
+.cert-actions {
+    margin-left: 20px;
+}
+
+.btn-cert-view {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--white);
+    border: 2px solid var(--blue-900);
+    padding: 8px 18px;
+    border-radius: 10px;
+    color: var(--blue-900);
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-cert-view:hover {
+    background: var(--blue-900);
+    color: var(--white);
+}
+
+.btn-cert-view img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.no-link {
+    color: var(--gray-400);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* Responsivo para las nuevas tarjetas */
+@media (max-width: 640px) {
+    .user-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .user-badge {
+        margin-top: 10px;
+    }
+
+    .cert-item {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .cert-meta {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .cert-actions {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .btn-cert-view {
+        justify-content: center;
+    }
+}
