@@ -69,9 +69,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             const navbarHeight = navbar.offsetHeight;
-            // Agregar espacio adicional para que la sección se vea mejor
-            const offset = targetId === '#contacto' ? navbarHeight + 40 : navbarHeight;
-            const targetPosition = targetElement.offsetTop - offset;
+            const viewportHeight = window.innerHeight;
+            const sectionHeight = targetElement.offsetHeight;
+
+            // Calculate position to center the section in the space BELOW the navbar
+            const availableHeight = viewportHeight - navbarHeight;
+            let targetPosition;
+
+            if (sectionHeight < availableHeight) {
+                // If section is smaller than view, center it in the remaining space
+                const centerOffset = (availableHeight - sectionHeight) / 2;
+                // Add a small 140px adjustment to move the section higher as requested
+                targetPosition = targetElement.offsetTop - navbarHeight - centerOffset + 140;
+            } else {
+                // If section is taller than view, align to top with navbar offset
+                targetPosition = targetElement.offsetTop - navbarHeight;
+            }
 
             window.scrollTo({
                 top: targetPosition,
