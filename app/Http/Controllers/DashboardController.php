@@ -35,6 +35,6 @@ class DashboardController extends Controller
             $dbStatus['message'] = 'Error de conexión: ' . $e->getMessage();
         }
 
-        return view('dashboard', compact('dbStatus'));
+        return view('admin.dashboard', compact('dbStatus'));
     }
 }
