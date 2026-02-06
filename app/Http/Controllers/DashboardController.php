@@ -35,6 +35,7 @@ class DashboardController extends Controller
             $dbStatus['message'] = 'Error de conexión: ' . $e->getMessage();
         }
 
-        return view('admin.dashboard', compact('dbStatus'));
+        // Redirigir al listado de certificados tras login
+        return redirect()->route('admin.certificados.lista');
     }
 }
