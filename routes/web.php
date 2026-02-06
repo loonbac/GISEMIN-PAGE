@@ -11,53 +11,55 @@ $publicDomain = config('app.public_domain', 'gisemin.com');
 
 /*
 |--------------------------------------------------------------------------
-| Rutas Públicas
+| Rutas Publicas (solo dominio principal)
 |--------------------------------------------------------------------------
 */
 
-// Página principal - Landing
-Route::get('/', function () {
-    $totalCursos = \DB::table('cursos')->count();
-    return view('landing', ['totalCursos' => $totalCursos]);
-})->name('home');
+Route::domain($publicDomain)->group(function () {
+    // Pagina principal - Landing
+    Route::get('/', function () {
+        $totalCursos = \DB::table('cursos')->count();
+        return view('landing', ['totalCursos' => $totalCursos]);
+    })->name('home');
 
-// Verificar certificados - Página pública
-Route::get('/certificados', function () {
-    return view('public.certificados');
-})->name('certificados');
+    // Verificar certificados - Pagina publica
+    Route::get('/certificados', function () {
+        return view('public.certificados');
+    })->name('certificados');
 
-// Formulario de contacto
-Route::post('/contact', function () {
-    // TODO: Implementar lógica de envío de correo
-    return back()->with('success', 'Mensaje enviado correctamente');
-})->name('contact.send');
+    // Formulario de contacto
+    Route::post('/contact', function () {
+        // TODO: Implementar logica de envio de correo
+        return back()->with('success', 'Mensaje enviado correctamente');
+    })->name('contact.send');
 
-// Libro de Reclamaciones
-Route::get('/libro-reclamaciones', function () {
-    return view('public.libro-reclamaciones');
-})->name('libro-reclamaciones');
+    // Libro de Reclamaciones
+    Route::get('/libro-reclamaciones', function () {
+        return view('public.libro-reclamaciones');
+    })->name('libro-reclamaciones');
 
-Route::post('/libro-reclamaciones', [ReclamacionesController::class, 'store'])->name('libro-reclamaciones.store');
+    Route::post('/libro-reclamaciones', [ReclamacionesController::class, 'store'])->name('libro-reclamaciones.store');
 
-/*
-|--------------------------------------------------------------------------
-| API Routes (Públicas)
-|--------------------------------------------------------------------------
-*/
+    /*
+    |--------------------------------------------------------------------------
+    | API Routes (Publicas)
+    |--------------------------------------------------------------------------
+    */
 
-Route::prefix('api')->group(function () {
-    // Búsqueda pública de certificados
-    Route::get('/certificados/buscar', [CertificadosController::class, 'buscar']);
-    Route::get('/certificados/recientes', [CertificadosController::class, 'obtenerRecientes']);
-    
-    // Cursos para autocompletado
-    Route::get('/cursos', [CertificadosController::class, 'obtenerCursos']);
-    Route::post('/cursos', [CertificadosController::class, 'guardarCurso']);
+    Route::prefix('api')->group(function () {
+        // Busqueda publica de certificados
+        Route::get('/certificados/buscar', [CertificadosController::class, 'buscar']);
+        Route::get('/certificados/recientes', [CertificadosController::class, 'obtenerRecientes']);
+
+        // Cursos para autocompletado
+        Route::get('/cursos', [CertificadosController::class, 'obtenerCursos']);
+        Route::post('/cursos', [CertificadosController::class, 'guardarCurso']);
+    });
 });
 
 /*
 |--------------------------------------------------------------------------
-| Rutas Admin (Panel de Administración)
+| Rutas Admin (Panel de Administracion)
 |--------------------------------------------------------------------------
 */
 
@@ -65,62 +67,57 @@ Route::domain($adminDomain)->name('admin.')->group(function () {
     // Login - Acceso al panel
     Route::get('/login', function () {
         return view('admin.login');
-    /*
-    |
-    |
-    |
-    |
-    | Rutas Públicas (solo dominio principal)
-    |
-    |
-    |
-    |
-    */
+    })->name('login');
 
-    Route::domain($publicDomain)->group(function () {
-        // Página principal - Landing
-        Route::get('/', function () {
-            $totalCursos = \DB::table('cursos')->count();
-            return view('landing', ['totalCursos' => $totalCursos]);
-        })->name('home');
+    // Procesar login
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login.submit');
 
-        // Verificar certificados - Página pública
-        Route::get('/certificados', function () {
-            return view('public.certificados');
-        })->name('certificados');
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(['auth.simple', 'is_admin']);
 
-        // Formulario de contacto
-        Route::post('/contact', function () {
-            // TODO: Implementar lógica de envío de correo
-            return back()->with('success', 'Mensaje enviado correctamente');
-        })->name('contact.send');
+    // Rutas protegidas - Requieren autenticacion y rol admin
+    Route::middleware(['auth.simple', 'is_admin'])->group(function () {
+        // Dashboard principal
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::redirect('/dashboard', '/', 302);
 
-        // Libro de Reclamaciones
-        Route::get('/libro-reclamaciones', function () {
-            return view('public.libro-reclamaciones');
-        })->name('libro-reclamaciones');
+        // Gestion de certificados
+        Route::get('/certificados/agregar', [CertificadosController::class, 'create'])->name('certificados.agregar');
+        Route::post('/certificados/agregar', [CertificadosController::class, 'store'])->name('certificados.store');
+        Route::get('/certificados/gestionar', [CertificadosController::class, 'gestionar'])->name('certificados.gestionar');
+        Route::get('/certificados/lista', [CertificadosController::class, 'listarVista'])->name('certificados.lista');
 
-        Route::post('/libro-reclamaciones', [ReclamacionesController::class, 'store'])->name('libro-reclamaciones.store');
+        // Gestion de Reclamaciones
+        Route::get('/reclamaciones', [ReclamacionesController::class, 'index'])->name('reclamaciones.index');
+        Route::get('/reclamaciones/{id}', [ReclamacionesController::class, 'show'])->name('reclamaciones.show');
 
-        /*
-        |
-        |
-        |
-        |
-        | API Routes (Públicas)
-        |
-        |
-        |
-        |
-        */
-
+        // API para gestion de certificados
         Route::prefix('api')->group(function () {
-            // Búsqueda pública de certificados
-            Route::get('/certificados/buscar', [CertificadosController::class, 'buscar']);
-            Route::get('/certificados/recientes', [CertificadosController::class, 'obtenerRecientes']);
+            Route::get('/certificados/todos', [CertificadosController::class, 'obtenerTodos']);
+            Route::get('/certificados/usuarios', [CertificadosController::class, 'obtenerUsuariosCertificado']);
 
-            // Cursos para autocompletado
-            Route::get('/cursos', [CertificadosController::class, 'obtenerCursos']);
-            Route::post('/cursos', [CertificadosController::class, 'guardarCurso']);
+            // Rutas especificas primero (antes de {id})
+            Route::put('/certificados/actualizar', [CertificadosController::class, 'actualizarCertificado']);
+            Route::delete('/certificados/eliminar', [CertificadosController::class, 'eliminarCertificado']);
+            Route::post('/certificados/categorizar', [CertificadosController::class, 'categorizarCurso']);
+            Route::post('/certificados/crear-curso', [CertificadosController::class, 'crearCurso']);
+
+            // Rutas con ID al final
+            Route::get('/certificados/{id}', [CertificadosController::class, 'show']);
+            Route::put('/certificados/{id}', [CertificadosController::class, 'update']);
+            Route::delete('/certificados/{id}', [CertificadosController::class, 'destroy']);
+
+            // Buscar trabajador por DNI
+            Route::get('/trabajadores/buscar', [CertificadosController::class, 'buscarTrabajador']);
+            Route::post('/trabajadores/registrar', [CertificadosController::class, 'registrarTrabajador']);
+            Route::delete('/trabajadores/{dni}', [CertificadosController::class, 'eliminarTrabajador']);
+
+            // API para reclamaciones
+            Route::get('/cursos/buscar', [CertificadosController::class, 'buscarCursos']);
+            Route::get('/certificados/check-status', [CertificadosController::class, 'checkStatus']);
+
+            Route::put('/reclamaciones/{id}/status', [ReclamacionesController::class, 'updateStatus']);
+            Route::delete('/reclamaciones/{id}', [ReclamacionesController::class, 'destroy']);
         });
     });
+});
