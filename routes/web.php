@@ -7,7 +7,8 @@ use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\ReclamacionesController;
 
 $adminDomain = config('app.admin_domain', 'admin.gisemin.com');
-$publicDomain = [
+
+$publicDomains = [
     config('app.public_domain', 'gisemin.com'),
     'www.gisemin.com',
 ];
@@ -18,7 +19,8 @@ $publicDomain = [
 |--------------------------------------------------------------------------
 */
 
-Route::domain($publicDomain)->group(function () {
+foreach ($publicDomains as $domain) {
+    Route::domain($domain)->group(function () {
     // Pagina principal - Landing
     Route::get('/', function () {
         $totalCursos = \DB::table('cursos')->count();
@@ -58,7 +60,8 @@ Route::domain($publicDomain)->group(function () {
         Route::get('/cursos', [CertificadosController::class, 'obtenerCursos']);
         Route::post('/cursos', [CertificadosController::class, 'guardarCurso']);
     });
-});
+    });
+}
 
 /*
 |--------------------------------------------------------------------------
