@@ -13,6 +13,7 @@ export default defineConfig({
                 'resources/css/certificados.css',
                 'resources/css/admin/login.css',
                 'resources/css/admin/admin.css',
+                'resources/css/admin/agregar.css',
                 'resources/js/landing.js',
                 'resources/js/certificados.js',
                 'resources/js/services-rotation.js',
