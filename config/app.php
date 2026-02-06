@@ -56,6 +56,11 @@ return [
 
     'admin_domain' => env('ADMIN_DOMAIN', 'admin.gisemin.com'),
 
+    'public_domain' => env(
+        'PUBLIC_DOMAIN',
+        parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST) ?: 'localhost'
+    ),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
