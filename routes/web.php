@@ -7,7 +7,10 @@ use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\ReclamacionesController;
 
 $adminDomain = config('app.admin_domain', 'admin.gisemin.com');
-$publicDomain = config('app.public_domain', 'gisemin.com');
+$publicDomain = [
+    config('app.public_domain', 'gisemin.com'),
+    'www.gisemin.com',
+];
 
 /*
 |--------------------------------------------------------------------------
