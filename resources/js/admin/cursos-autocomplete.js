@@ -60,7 +60,7 @@ async function cargarCursos(termino) {
     const dni = dniInput ? dniInput.value : '';
 
     try {
-        const response = await fetch(`/admin/api/cursos/buscar?q=${encodeURIComponent(termino)}&dni=${dni}`);
+        const response = await fetch(`/api/cursos/buscar?q=${encodeURIComponent(termino)}&dni=${dni}`);
         const data = await response.json();
 
         cursoDropdown.innerHTML = '';
@@ -102,7 +102,7 @@ async function cargarCursos(termino) {
 
 async function checkCertificateStatus(dni, curso) {
     try {
-        const response = await fetch(`/admin/api/certificados/check-status?dni=${dni}&curso=${encodeURIComponent(curso)}&_t=${Date.now()}`);
+        const response = await fetch(`/api/certificados/check-status?dni=${dni}&curso=${encodeURIComponent(curso)}&_t=${Date.now()}`);
         const data = await response.json();
 
         updateFormUI(data.status, data.certificado);

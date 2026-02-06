@@ -338,7 +338,7 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
             // Confirmación eliminada por solicitud del usuario
             
             try {
-                const response = await fetch('/admin/api/reclamaciones/{{ $reclamacion->id }}/status', {
+                const response = await fetch('/api/reclamaciones/{{ $reclamacion->id }}/status', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

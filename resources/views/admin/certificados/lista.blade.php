@@ -613,7 +613,7 @@ function filterUsers() {
 // Edit Logic
 async function openEditModal(certId) {
     try {
-        const response = await fetch(`/admin/api/certificados/${certId}`);
+        const response = await fetch(`/api/certificados/${certId}`);
         const data = await response.json();
         
         if (data.success) {
@@ -676,7 +676,7 @@ async function saveCertificate() {
     btn.innerText = 'Guardando...';
 
     try {
-        const response = await fetch(`/admin/api/certificados/${id}`, {
+        const response = await fetch(`/api/certificados/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -773,7 +773,7 @@ async function executeDelete() {
     btn.innerText = 'Eliminando...';
 
     try {
-        const response = await fetch(`/admin/api/certificados/${certToDelete}`, {
+        const response = await fetch(`/api/certificados/${certToDelete}`, {
             method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
@@ -863,7 +863,7 @@ async function executeUserDelete() {
     btn.innerText = 'Eliminando Usuario...';
 
     try {
-        const response = await fetch(`/admin/api/trabajadores/${userDniToDelete}`, {
+        const response = await fetch(`/api/trabajadores/${userDniToDelete}`, {
             method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,

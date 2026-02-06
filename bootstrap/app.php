@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Registrar middleware de autenticación simple
         $middleware->alias([
             'auth.simple' => \App\Http\Middleware\SimpleAuthMiddleware::class,
+            'is_admin' => \App\Http\Middleware\IsAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -95,6 +95,7 @@ class CreateUserCommand extends Command
                 'name' => $name,
                 'email' => $email,
                 'password' => Hash::make($password),
+                'is_admin' => true,
             ]);
 
             $this->info('');

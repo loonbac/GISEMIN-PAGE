@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            const response = await fetch('/admin/api/certificados/actualizar', {
+            const response = await fetch('/api/certificados/actualizar', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
             editCursoOld.value = curso;
 
             try {
-                const response = await fetch(`/admin/api/certificados/usuarios?curso=${encodeURIComponent(curso)}`);
+                const response = await fetch(`/api/certificados/usuarios?curso=${encodeURIComponent(curso)}`);
                 const data = await response.json();
 
                 if (data.success && data.usuarios) {
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            const response = await fetch('/admin/api/certificados/eliminar', {
+            const response = await fetch('/api/certificados/eliminar', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            const response = await fetch('/admin/api/certificados/categorizar', {
+            const response = await fetch('/api/certificados/categorizar', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             try {
-                const response = await fetch('/admin/api/certificados/crear-curso', {
+                const response = await fetch('/api/certificados/crear-curso', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\ReclamacionesController;
 
+$adminDomain = config('app.admin_domain', 'admin.gisemin.com');
+
 /*
 |--------------------------------------------------------------------------
 | Rutas Públicas
@@ -58,7 +60,7 @@ Route::prefix('api')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::domain($adminDomain)->name('admin.')->group(function () {
     // Login - Acceso al panel
     Route::get('/login', function () {
         return view('admin.login');
@@ -68,28 +70,29 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login.submit');
 
     // Logout
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth.simple');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(['auth.simple', 'is_admin']);
 
-    // Rutas protegidas - Requieren autenticación
-    Route::middleware('auth.simple')->group(function () {
+    // Rutas protegidas - Requieren autenticación y rol admin
+    Route::middleware(['auth.simple', 'is_admin'])->group(function () {
         // Dashboard principal
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::redirect('/dashboard', '/', 302);
+
         // Gestión de certificados
         Route::get('/certificados/agregar', [CertificadosController::class, 'create'])->name('certificados.agregar');
         Route::post('/certificados/agregar', [CertificadosController::class, 'store'])->name('certificados.store');
         Route::get('/certificados/gestionar', [CertificadosController::class, 'gestionar'])->name('certificados.gestionar');
         Route::get('/certificados/lista', [CertificadosController::class, 'listarVista'])->name('certificados.lista');
-        
+
         // Gestión de Reclamaciones
         Route::get('/reclamaciones', [ReclamacionesController::class, 'index'])->name('reclamaciones.index');
         Route::get('/reclamaciones/{id}', [ReclamacionesController::class, 'show'])->name('reclamaciones.show');
-        
+
         // API para gestión de certificados
         Route::prefix('api')->group(function () {
             Route::get('/certificados/todos', [CertificadosController::class, 'obtenerTodos']);
             Route::get('/certificados/usuarios', [CertificadosController::class, 'obtenerUsuariosCertificado']);
-            
+
             // Rutas específicas primero (antes de {id})
             Route::put('/certificados/actualizar', [CertificadosController::class, 'actualizarCertificado']);
             Route::delete('/certificados/eliminar', [CertificadosController::class, 'eliminarCertificado']);
@@ -100,16 +103,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/certificados/{id}', [CertificadosController::class, 'show']);
             Route::put('/certificados/{id}', [CertificadosController::class, 'update']);
             Route::delete('/certificados/{id}', [CertificadosController::class, 'destroy']);
-            
+
             // Buscar trabajador por DNI
             Route::get('/trabajadores/buscar', [CertificadosController::class, 'buscarTrabajador']);
             Route::post('/trabajadores/registrar', [CertificadosController::class, 'registrarTrabajador']);
             Route::delete('/trabajadores/{dni}', [CertificadosController::class, 'eliminarTrabajador']);
-            
+
             // API para reclamaciones
-            Route::get('/cursos/buscar', [CertificadosController::class, 'buscarCursos']); // Nueva ruta para autocompletado
+            Route::get('/cursos/buscar', [CertificadosController::class, 'buscarCursos']);
             Route::get('/certificados/check-status', [CertificadosController::class, 'checkStatus']);
-            
+
             Route::put('/reclamaciones/{id}/status', [ReclamacionesController::class, 'updateStatus']);
             Route::delete('/reclamaciones/{id}', [ReclamacionesController::class, 'destroy']);
         });
