@@ -588,8 +588,26 @@
         width: 100%;
     }
 
+    .right-column {
+        display: block;
+    }
+
     .form-card {
         max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .certificate-action-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .selection-box {
+        width: 100%;
     }
 
     .card {
