@@ -1850,6 +1850,7 @@ ul {
         transition: var(--transition-base);
         max-height: calc(100vh - 60px);
         overflow-y: auto;
+        z-index: 900;
     }
 
     .nav-menu li {
@@ -1901,6 +1902,21 @@ ul {
         min-height: 550px;
         max-height: 700px;
         background-attachment: scroll;
+    }
+
+    .mission-vision-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .mission-card,
+    .vision-card {
+        text-align: center;
+    }
+
+    .mv-header {
+        justify-content: center;
     }
 
     .hero-content {
