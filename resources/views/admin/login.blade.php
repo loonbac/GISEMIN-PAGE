@@ -28,6 +28,12 @@
             <p class="subtitle">BIENVENIDO</p>
             <h1>Panel Administrativo</h1>
 
+            @if ($errors->has('email'))
+                <div class="login-alert" role="alert">
+                    Usuario o contrasena son incorrectos.
+                </div>
+            @endif
+
             <form id="login-form" method="POST" action="{{ route('admin.login.submit') }}">
                 @csrf
 
