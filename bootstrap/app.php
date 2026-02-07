@@ -16,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth.simple' => \App\Http\Middleware\SimpleAuthMiddleware::class,
             'is_admin' => \App\Http\Middleware\IsAdmin::class,
         ]);
+
+        $middleware->appendToGroup('web', [
+            \App\Http\Middleware\ForceWww::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
