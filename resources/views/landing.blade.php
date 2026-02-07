@@ -25,13 +25,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    @verbatim
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "GISEMIN Consultores",
             "url": "https://gisemin.com/",
-            "logo": "{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg"
+            "logo": "https://gisemin.com/images/logo.svg"
         }
     </script>
     <script type="application/ld+json">
@@ -42,6 +43,7 @@
             "url": "https://gisemin.com/"
         }
     </script>
+    @endverbatim
 </head>
 <body>
     <!-- Navigation -->
