@@ -169,6 +169,7 @@ body {
     min-height: 40px;
     padding: 10px 16px;
     line-height: 1.1;
+    height: 40px;
 }
 
 .nav-actions .btn-nav-primary,

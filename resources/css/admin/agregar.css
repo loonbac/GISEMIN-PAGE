@@ -16,6 +16,16 @@
     width: 100%;
 }
 
+.right-column {
+    display: flex;
+    justify-content: center;
+}
+
+.form-card {
+    width: 100%;
+    max-width: 860px;
+}
+
 /* Left Column Styles */
 .left-column {
     display: flex;
@@ -570,11 +580,16 @@
     .page-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+        justify-items: center;
     }
 
     .left-column,
     .right-column {
         width: 100%;
+    }
+
+    .form-card {
+        max-width: 680px;
     }
 
     .card {
