@@ -6,19 +6,19 @@
     <meta name="description" content="GISEMIN Consultores: Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementación ISO 9001, 14001, 45001 en Perú.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#0F5F8C">
-    <link rel="canonical" href="https://gisemin.com/">
-    <link rel="alternate" hreflang="es-PE" href="https://gisemin.com/">
+    <link rel="canonical" href="https://www.gisemin.com/">
+    <link rel="alternate" hreflang="es-PE" href="https://www.gisemin.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="GISEMIN Consultores">
-    <meta property="og:url" content="https://gisemin.com/">
+    <meta property="og:url" content="https://www.gisemin.com/">
     <meta property="og:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
     <meta property="og:description" content="Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementacion ISO 9001, 14001, 45001.">
-    <meta property="og:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
+    <meta property="og:image" content="https://www.gisemin.com/images/logo.svg">
     <meta property="og:locale" content="es_PE">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
     <meta name="twitter:description" content="Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementacion ISO 9001, 14001, 45001.">
-    <meta name="twitter:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
+    <meta name="twitter:image" content="https://www.gisemin.com/images/logo.svg">
     <title>GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
     @vite(['resources/css/landing.css', 'resources/js/landing.js', 'resources/js/services-rotation.js'])
@@ -31,8 +31,8 @@
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "GISEMIN Consultores",
-            "url": "https://gisemin.com/",
-            "logo": "https://gisemin.com/images/logo.svg"
+            "url": "https://www.gisemin.com/",
+            "logo": "https://www.gisemin.com/images/logo.svg"
         }
     </script>
     <script type="application/ld+json">
@@ -40,7 +40,7 @@
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "GISEMIN Consultores",
-            "url": "https://gisemin.com/"
+            "url": "https://www.gisemin.com/"
         }
     </script>
     @endverbatim

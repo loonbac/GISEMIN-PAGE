@@ -6,19 +6,19 @@
     <meta name="description" content="Verifique certificados de trabajadores capacitados por GISEMIN Consultores. Busqueda por DNI, nombre o codigo del certificado.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#0F5F8C">
-    <link rel="canonical" href="https://gisemin.com/certificados">
-    <link rel="alternate" hreflang="es-PE" href="https://gisemin.com/certificados">
+    <link rel="canonical" href="https://www.gisemin.com/certificados">
+    <link rel="alternate" hreflang="es-PE" href="https://www.gisemin.com/certificados">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="GISEMIN Consultores">
-    <meta property="og:url" content="https://gisemin.com/certificados">
+    <meta property="og:url" content="https://www.gisemin.com/certificados">
     <meta property="og:title" content="Verificar Certificados - GISEMIN Consultores">
     <meta property="og:description" content="Verifique certificados por DNI, nombre o codigo. Consulte validez y vigencia en linea.">
-    <meta property="og:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
+    <meta property="og:image" content="https://www.gisemin.com/images/logo.svg">
     <meta property="og:locale" content="es_PE">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Verificar Certificados - GISEMIN Consultores">
     <meta name="twitter:description" content="Verifique certificados por DNI, nombre o codigo. Consulte validez y vigencia en linea.">
-    <meta name="twitter:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
+    <meta name="twitter:image" content="https://www.gisemin.com/images/logo.svg">
     <title>Verificar Certificados - GISEMIN Consultores</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
     @vite(['resources/css/certificados.css', 'resources/js/certificados.js'])
@@ -32,8 +32,8 @@
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "GISEMIN Consultores",
-            "url": "https://gisemin.com/",
-            "logo": "https://gisemin.com/images/logo.svg"
+            "url": "https://www.gisemin.com/",
+            "logo": "https://www.gisemin.com/images/logo.svg"
         }
     </script>
     <script type="application/ld+json">
@@ -41,11 +41,11 @@
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Verificar Certificados",
-            "url": "https://gisemin.com/certificados",
+            "url": "https://www.gisemin.com/certificados",
             "isPartOf": {
                 "@type": "WebSite",
                 "name": "GISEMIN Consultores",
-                "url": "https://gisemin.com/"
+                "url": "https://www.gisemin.com/"
             }
         }
     </script>
