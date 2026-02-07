@@ -76,6 +76,8 @@ html {
     scroll-behavior: smooth;
     font-size: var(--font-size-base);
     scroll-padding-top: 100px;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -84,6 +86,7 @@ body {
     color: #666;
     background-color: var(--white);
     overflow-x: hidden;
+    width: 100%;
 }
 
 img {
@@ -180,18 +183,17 @@ ul {
 }
 
 .btn-contact {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--blue-800);
     color: var(--white) !important;
     padding: 0.625rem 1.5rem;
     border-radius: var(--radius-md);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
+    border: 2px solid var(--blue-800);
     transition: var(--transition-base);
 }
 
 .btn-contact:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-color: var(--white);
+    background-color: var(--blue-900);
+    border-color: var(--blue-900);
     color: var(--white) !important;
 }
 
@@ -217,7 +219,7 @@ ul {
     align-items: center;
     gap: 0.5rem;
     background-color: transparent !important;
-    color: var(--white) !important;
+    color: var(--blue-800) !important;
     padding: 0.25rem 0.5rem !important;
     font-weight: 600;
     font-size: 0.875rem;
@@ -255,11 +257,11 @@ ul {
 
 .whatsapp-text {
     z-index: 2;
-    color: var(--white);
+    color: var(--blue-800);
 }
 
 .navbar.scrolled .whatsapp-text {
-    color: var(--gray-800);
+    color: var(--blue-800);
 }
 
 /* Pulse/Breathing Animation - reduced by 50% */
@@ -307,26 +309,21 @@ ul {
     top: 0;
     left: 0;
     right: 0;
-    background-color: transparent;
-    box-shadow: none;
+    background-color: var(--white);
+    box-shadow: var(--shadow-lg);
     z-index: 1000;
     transition: var(--transition-base);
 }
 
-.navbar.scrolled {
-    background-color: var(--white);
-    box-shadow: var(--shadow-lg);
-}
-
-.navbar.scrolled .logo h1 {
+.navbar .logo h1 {
     color: var(--blue-800);
 }
 
-.navbar.scrolled .logo span {
+.navbar .logo span {
     color: var(--blue-700);
 }
 
-.navbar.scrolled .mobile-menu-toggle span {
+.navbar .mobile-menu-toggle span {
     background-color: var(--gray-800);
 }
 
@@ -380,7 +377,7 @@ ul {
 }
 
 .nav-menu li a {
-    color: var(--white);
+    color: var(--blue-800);
     font-weight: 500;
     font-size: clamp(0.9rem, 1.1vw, 0.95rem);
     transition: var(--transition-fast);
@@ -403,7 +400,7 @@ ul {
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
-    background-color: var(--white);
+    background-color: var(--gray-800);
     transition: var(--transition-base);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }

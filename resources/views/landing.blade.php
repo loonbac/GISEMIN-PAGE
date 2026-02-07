@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
     <meta name="description" content="GISEMIN Consultores - Expertos en Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementación de Sistemas ISO 9001, 14001, 45001">
     <title>GISEMIN Consultores - Consultoría Integral en Sistemas de Gestión ISO</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
