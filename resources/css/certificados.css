@@ -119,7 +119,7 @@ ul {
     flex-direction: column;
 }
 
-.logo h1 {
+.logo-title {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-dark);
@@ -127,18 +127,18 @@ ul {
     line-height: 1;
 }
 
-.logo span {
+.logo-subtitle {
     font-size: 0.75rem;
     color: var(--primary-color);
     letter-spacing: 1px;
 }
 
 /* Navbar Scrolled State */
-.navbar.scrolled .logo h1 {
+.navbar.scrolled .logo-title {
     color: var(--primary-dark);
 }
 
-.navbar.scrolled .logo span {
+.navbar.scrolled .logo-subtitle {
     color: var(--primary-color);
 }
 
@@ -737,11 +737,11 @@ ul {
     transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-.navbar .logo h1 {
+.navbar .logo-title {
     color: var(--white) !important;
 }
 
-.navbar .logo span {
+.navbar .logo-subtitle {
     color: rgba(255, 255, 255, 0.8) !important;
 }
 
@@ -1503,11 +1503,11 @@ ul {
     height: 36px !important;
 }
 
-.logo h1 {
+.logo-title {
     font-size: 1.35rem !important;
 }
 
-.logo span {
+.logo-subtitle {
     font-size: 0.7rem !important;
 }
 

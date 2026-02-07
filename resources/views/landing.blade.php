@@ -3,13 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="description" content="GISEMIN Consultores - Expertos en Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementación de Sistemas ISO 9001, 14001, 45001">
-    <title>GISEMIN Consultores - Consultoría Integral en Sistemas de Gestión ISO</title>
+    <meta name="description" content="GISEMIN Consultores: Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementación ISO 9001, 14001, 45001 en Perú.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#0F5F8C">
+    <link rel="canonical" href="https://gisemin.com/">
+    <link rel="alternate" hreflang="es-PE" href="https://gisemin.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GISEMIN Consultores">
+    <meta property="og:url" content="https://gisemin.com/">
+    <meta property="og:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
+    <meta property="og:description" content="Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementacion ISO 9001, 14001, 45001.">
+    <meta property="og:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
+    <meta property="og:locale" content="es_PE">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
+    <meta name="twitter:description" content="Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementacion ISO 9001, 14001, 45001.">
+    <meta name="twitter:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
+    <title>GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
     @vite(['resources/css/landing.css', 'resources/js/landing.js', 'resources/js/services-rotation.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "GISEMIN Consultores",
+            "url": "https://gisemin.com/",
+            "logo": "{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "GISEMIN Consultores",
+            "url": "https://gisemin.com/"
+        }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -19,8 +51,8 @@
                 <div class="logo">
                     <img src="images/logo.svg" alt="GISEMIN Logo" class="logo-image">
                     <div class="logo-text">
-                        <h1>GISEMIN</h1>
-                        <span>Consultores</span>
+                        <span class="logo-title">GISEMIN</span>
+                        <span class="logo-subtitle">Consultores</span>
                     </div>
                 </div>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -68,7 +100,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <div class="container">
-                <h2 class="hero-title">Consultoría Integral en <span class="text-highlight">Seguridad</span>, <span class="text-highlight">Gestión</span> y <span class="text-highlight">Sostenibilidad</span> Empresarial</h2>
+                <h1 class="hero-title">Consultoria Integral en <span class="text-highlight">Seguridad</span>, <span class="text-highlight">Gestion</span> y <span class="text-highlight">Sostenibilidad</span> Empresarial</h1>
                 <p class="hero-subtitle">Impulsamos la eficiencia operativa, protegemos a las personas y fortalecemos la sostenibilidad de su organización</p>
                 <div class="hero-cta">
                     <a href="#servicios" class="btn btn-primary">Explorar Servicios</a>

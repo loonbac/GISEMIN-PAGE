@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Verifica los certificados de los trabajadores capacitados por GISEMIN Consultores.">
+    <meta name="description" content="Verifique certificados de trabajadores capacitados por GISEMIN Consultores. Busqueda por DNI, nombre o codigo del certificado.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="theme-color" content="#0F5F8C">
+    <link rel="canonical" href="https://gisemin.com/certificados">
+    <link rel="alternate" hreflang="es-PE" href="https://gisemin.com/certificados">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="GISEMIN Consultores">
+    <meta property="og:url" content="https://gisemin.com/certificados">
+    <meta property="og:title" content="Verificar Certificados - GISEMIN Consultores">
+    <meta property="og:description" content="Verifique certificados por DNI, nombre o codigo. Consulte validez y vigencia en linea.">
+    <meta property="og:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
+    <meta property="og:locale" content="es_PE">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Verificar Certificados - GISEMIN Consultores">
+    <meta name="twitter:description" content="Verifique certificados por DNI, nombre o codigo. Consulte validez y vigencia en linea.">
+    <meta name="twitter:image" content="{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg">
     <title>Verificar Certificados - GISEMIN Consultores</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
     @vite(['resources/css/certificados.css', 'resources/js/certificados.js'])
@@ -11,6 +26,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "GISEMIN Consultores",
+            "url": "https://gisemin.com/",
+            "logo": "{{ config('app.url', 'https://gisemin.com') }}/images/logo.svg"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Verificar Certificados",
+            "url": "https://gisemin.com/certificados",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "GISEMIN Consultores",
+                "url": "https://gisemin.com/"
+            }
+        }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -20,8 +57,8 @@
                 <a href="{{ route('home') }}" class="logo">
                     <img src="images/logo.svg" alt="GISEMIN Logo" class="logo-image">
                     <div class="logo-text">
-                        <h1>GISEMIN</h1>
-                        <span>Consultores</span>
+                        <span class="logo-title">GISEMIN</span>
+                        <span class="logo-subtitle">Consultores</span>
                     </div>
                 </a>
                 

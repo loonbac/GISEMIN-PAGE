@@ -315,11 +315,11 @@ ul {
     transition: var(--transition-base);
 }
 
-.navbar .logo h1 {
+.navbar .logo-title {
     color: var(--blue-800);
 }
 
-.navbar .logo span {
+.navbar .logo-subtitle {
     color: var(--blue-700);
 }
 
@@ -355,17 +355,17 @@ ul {
     flex-direction: column;
 }
 
-.logo h1 {
+.logo-title {
     font-size: clamp(1.5rem, 2.5vw, 1.75rem);
     font-weight: 700;
-    color: var(--white);
+    color: var(--blue-800);
     line-height: 1;
     transition: var(--transition-base);
 }
 
-.logo span {
+.logo-subtitle {
     font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--blue-700);
     font-weight: 400;
     transition: var(--transition-base);
 }
@@ -1827,11 +1827,11 @@ ul {
         height: 36px;
     }
 
-    .logo h1 {
+    .logo-title {
         font-size: 1.25rem;
     }
 
-    .logo span {
+    .logo-subtitle {
         font-size: 0.75rem;
     }
 
