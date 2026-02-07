@@ -296,6 +296,18 @@ h1 {
     text-underline-offset: 8px;
 }
 
+.login-alert {
+    margin: -12px 0 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: #e7f4ff;
+    border: 1px solid #4DC3F7;
+    color: #0052A3;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
 #login-form {
     display: flex;
     position: relative;
