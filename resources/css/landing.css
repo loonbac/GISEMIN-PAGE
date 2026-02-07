@@ -198,14 +198,14 @@ ul {
 }
 
 .navbar.scrolled .btn-contact {
-    background-color: var(--blue-900);
-    border-color: var(--blue-900);
+    background-color: var(--blue-800);
+    border-color: var(--blue-800);
     color: var(--white) !important;
 }
 
 .navbar.scrolled .btn-contact:hover {
-    background-color: var(--blue-800);
-    border-color: var(--blue-800);
+    background-color: var(--blue-900);
+    border-color: var(--blue-900);
     color: var(--white) !important;
 }
 

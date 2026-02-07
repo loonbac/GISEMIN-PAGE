@@ -558,3 +558,40 @@
         padding: 14px 20px;
     }
 }
+
+@media (max-width: 991px) {
+    .admin-container {
+        padding: 20px 16px;
+    }
+
+    .page-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .left-column,
+    .right-column {
+        width: 100%;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .form-header {
+        padding: 14px 16px;
+    }
+
+    .form-body {
+        padding: 16px;
+    }
+
+    .search-input-group input {
+        padding: 10px 12px;
+    }
+
+    .btn-search-icon {
+        width: 44px;
+        height: 44px;
+    }
+}
