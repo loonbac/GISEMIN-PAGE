@@ -173,7 +173,7 @@ ul {
 .btn-secondary {
     background-color: transparent;
     color: var(--white) !important;
-    border-color: var(--white) !important;
+    border-color: transparent !important;
 }
 
 .btn-secondary:hover {
