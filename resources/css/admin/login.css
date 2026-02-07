@@ -47,6 +47,7 @@ body {
     font-weight: 700;
     color: #0066B3;
     letter-spacing: 0.5px;
+    text-shadow: 0 0 2px #ffffff, 0 0 6px #ffffff;
 }
 
 /* Triángulo superior izquierdo con borde celeste */

@@ -164,6 +164,13 @@ body {
     align-items: center;
 }
 
+.nav-actions a,
+.nav-actions .btn-logout {
+    min-height: 40px;
+    padding: 10px 16px;
+    line-height: 1.1;
+}
+
 .nav-actions .btn-nav-primary,
 .nav-actions .btn-nav-purple,
 .nav-actions .btn-nav-success,
