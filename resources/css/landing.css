@@ -1816,6 +1816,28 @@ ul {
 }
 
 @media (max-width: 768px) {
+    .nav-wrapper {
+        padding: 0.5rem 0;
+    }
+
+    .logo {
+        margin-top: 0;
+        gap: 0.5rem;
+    }
+
+    .logo-image {
+        width: 36px;
+        height: 36px;
+    }
+
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+
+    .logo span {
+        font-size: 0.75rem;
+    }
+
     .nav-menu {
         position: fixed;
         top: 60px;
@@ -1831,6 +1853,24 @@ ul {
         transition: var(--transition-base);
         max-height: calc(100vh - 60px);
         overflow-y: auto;
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-menu li a {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        padding: 0.75rem 0.5rem;
+        border-radius: var(--radius-md);
+    }
+
+    .btn-contact,
+    .btn-whatsapp {
+        width: 100%;
+        justify-content: center;
     }
 
     .nav-menu.active {
@@ -1864,6 +1904,19 @@ ul {
         min-height: 550px;
         max-height: 700px;
         background-attachment: scroll;
+    }
+
+    .hero-content {
+        padding: var(--spacing-sm);
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     .hero-cta {
@@ -1925,6 +1978,55 @@ ul {
     .about-image {
         order: -1;
     }
+
+    .about-buttons {
+        flex-direction: column;
+    }
+
+    .image-wrapper {
+        width: 100%;
+    }
+
+    .service-info {
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    .collage-overlay {
+        padding: 0.75rem;
+    }
+
+    .collage-overlay h4 {
+        font-size: 0.95rem;
+    }
+
+    .contact-wrapper {
+        max-width: 100%;
+    }
+
+    .contact-item {
+        align-items: flex-start;
+    }
+
+    .contact-value {
+        font-size: 1rem;
+        word-break: break-word;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .footer-brand {
+        max-width: none;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
 }
 
 @media (max-width: 640px) {
@@ -1954,6 +2056,27 @@ ul {
         min-height: 500px;
     }
 
+    .stats-cards-grid {
+        gap: var(--spacing-md);
+    }
+
+    .stat-card-box {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .contact-form-section {
+        padding: 1.25rem;
+    }
+
+    .btn-send {
+        width: 100%;
+        align-self: stretch;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
     .scroll-to-top {
         bottom: 20px;
         right: 20px;
@@ -1974,6 +2097,19 @@ ul {
 
     .service-card {
         padding: 1.5rem;
+    }
+
+    .hero-cta {
+        gap: 0.75rem;
+    }
+
+    .collage-item {
+        padding-bottom: 70%;
+    }
+
+    .collage-large {
+        aspect-ratio: 4 / 3;
+        padding-bottom: 70%;
     }
 
     .contact-form {
