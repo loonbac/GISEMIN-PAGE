@@ -506,6 +506,12 @@ function mostrarRegistroUsuario(dni) {
     const nameInput = document.getElementById('new-user-nombre');
     if (nameInput) nameInput.value = '';
 
+    const btnRegister = document.getElementById('btn-register-user');
+    if (btnRegister) {
+        btnRegister.disabled = false;
+        btnRegister.innerHTML = 'AÑADIR USUARIO';
+    }
+
     document.getElementById('register-user-section').classList.remove('hidden');
     document.getElementById('new-user-nombre').focus();
 }
@@ -549,6 +555,10 @@ async function registrarNuevoUsuario() {
         const data = await response.json();
 
         if (data.success) {
+            // Restore button state for next time
+            btnRegister.disabled = false;
+            btnRegister.innerHTML = 'AÑADIR USUARIO';
+
             // Success! The formEmpresa will be updated by mostrarTrabajador
             mostrarTrabajador({
                 nombre: nombre,
@@ -561,7 +571,7 @@ async function registrarNuevoUsuario() {
         } else {
             await showAlert('Error', data.message || 'Error al registrar usuario', 'error');
             btnRegister.disabled = false;
-            btnRegister.innerHTML = originalContent;
+            btnRegister.innerHTML = 'AÑADIR USUARIO';
         }
     } catch (error) {
         console.error('Error:', error);
