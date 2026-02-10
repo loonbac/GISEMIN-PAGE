@@ -390,7 +390,7 @@ ul {
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
@@ -398,11 +398,13 @@ ul {
 }
 
 .mobile-menu-toggle span {
-    width: 25px;
-    height: 3px;
+    display: block;
+    width: 24px;
+    height: 2px;
     background-color: var(--gray-800);
-    transition: var(--transition-base);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
 }
 
 /* ========================================
@@ -1901,37 +1903,55 @@ ul {
         right: 0;
         background-color: var(--white);
         flex-direction: column;
-        padding: var(--spacing-md);
-        box-shadow: var(--shadow-lg);
-        transform: translateY(-100%);
+        padding: 1rem 1.25rem 1.5rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        border-top: 2px solid var(--blue-200);
+        border-radius: 0 0 16px 16px;
+        transform: translateY(-110%);
         opacity: 0;
         visibility: hidden;
-        transition: var(--transition-base);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
         max-height: calc(100vh - 60px);
         overflow-y: auto;
         z-index: 900;
+        gap: 0.25rem;
     }
 
     .nav-menu li {
         width: 100%;
     }
 
-    .nav-menu li a {
+    .nav-menu li a:not(.btn-contact):not(.btn-whatsapp) {
         display: flex;
         width: 100%;
         justify-content: center;
-        padding: 0.75rem 0.5rem;
+        padding: 0.625rem 0.5rem;
         min-height: 44px;
         align-items: center;
         border-radius: var(--radius-md);
         color: var(--gray-700);
+        font-size: 0.95rem;
+        font-weight: 500;
         text-shadow: none;
+        transition: background 0.2s ease, color 0.2s ease;
     }
 
-    .btn-contact,
+    .nav-menu li a:not(.btn-contact):not(.btn-whatsapp):hover,
+    .nav-menu li a:not(.btn-contact):not(.btn-whatsapp):active {
+        background: var(--gray-50);
+        color: var(--blue-700);
+    }
+
+    .btn-contact {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
     .btn-whatsapp {
         width: 100%;
         justify-content: center;
+        margin-top: 0.25rem;
     }
 
     .nav-menu.active {
@@ -1949,15 +1969,16 @@ ul {
     }
 
     .mobile-menu-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: translateY(7px) rotate(45deg);
     }
 
     .mobile-menu-toggle.active span:nth-child(2) {
         opacity: 0;
+        transform: scaleX(0);
     }
 
     .mobile-menu-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
+        transform: translateY(-7px) rotate(-45deg);
     }
 
     /* --- Hero --- */
