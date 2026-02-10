@@ -409,122 +409,124 @@
     }
 
     /* Responsive Improvements */
-    @media (max-width: 992px) {
+    @media (max-width: 991px) {
         .stats-summary {
             grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .admin-wrapper {
-            padding: 0;
+            gap: 10px;
         }
 
         .admin-container {
-            padding: 16px 12px !important;
-        }
-
-        .stats-summary {
-            grid-template-columns: 1fr;
-            gap: 8px;
+            padding: 12px 8px !important;
         }
 
         .company-header-toggle {
-            padding: 12px 14px;
+            padding: 10px 12px;
+            border-bottom-width: 1px;
         }
 
         .company-header-toggle h2 {
-            font-size: 12px;
-            flex-wrap: wrap;
+            font-size: 11px;
+            gap: 6px;
+        }
+
+        .user-card {
+            margin-bottom: 6px;
+            border-radius: 6px;
         }
 
         .user-header {
-            grid-template-columns: 40px 1fr 40px; /* Avatar, Name/DNI/Stats, Chevron */
-            grid-template-rows: auto;
-            height: auto !important;
-            padding: 12px 14px;
-            gap: 12px;
-        }
-
-        .user-header > div {
-            height: auto !important;
-        }
-
-        .user-col-name {
-            flex-direction: column;
-            align-items: flex-start !important;
-            gap: 4px;
-        }
-
-        .user-col-dni {
-            order: 2;
-            width: 100%;
-        }
-
-        .user-stats {
-            order: 3;
-            width: 100%;
-            margin-top: 4px !important;
-        }
-
-        /* Group Name, DNI and Stats in the center column */
-        .user-col-name {
-            grid-column: 2;
-        }
-
-        .user-col-dni, .user-stats, .user-col-icon, .user-col-delete {
-            display: none !important; /* Hide individual columns to favor layout in name col or separate row */
-        }
-        
-        /* Revised Mobile User Header */
-        .user-header {
-            display: flex;
+            display: flex !important;
             flex-direction: row;
             align-items: center;
-            flex-wrap: wrap;
+            padding: 8px 10px !important;
+            height: auto !important;
+            gap: 10px !important;
         }
 
-        .user-col-avatar {
-            margin-right: 12px;
+        /* Hide all original desktop column wrappers */
+        .user-col-dni, 
+        .user-stats, 
+        .user-col-delete,
+        .user-col-icon {
+            display: none !important;
+        }
+
+        .user-avatar {
+            width: 28px !important;
+            height: 28px !important;
+            font-size: 11px !important;
         }
 
         .user-info-main {
             flex: 1;
+            min-width: 0;
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            min-width: 0;
+            gap: 2px !important;
+        }
+
+        .user-name {
+            font-size: 13px !important;
         }
 
         .user-stats-mobile {
             display: flex;
-            gap: 6px;
-            margin-top: 4px;
+            align-items: center;
+            gap: 4px !important;
+            margin-top: 0 !important;
         }
 
-        .user-col-icon {
-            display: flex !important;
-            margin-left: auto;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .stats-summary .stat-card {
-            padding: 0 12px;
+        .user-dni {
+            font-size: 9px !important;
+            padding: 1px 5px !important;
+            background: #f8fafc !important;
         }
 
         .stat-badge {
-            padding: 3px 6px;
-            font-size: 8px;
+            font-size: 8px !important;
+            padding: 1px 4px !important;
         }
 
-        .user-name {
-            font-size: 13px;
+        /* Actions container for mobile */
+        .user-actions-mobile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .btn-user-delete-mobile {
+            color: #ef4444;
+            opacity: 0.8;
+            padding: 4px;
+        }
+
+        .collapse-icon-mobile {
+            width: 16px;
+            height: 16px;
+            color: #94a3b8;
+            transition: transform 0.3s;
+        }
+
+        .user-card.expanded .collapse-icon-mobile {
+            transform: rotate(180deg);
+        }
+
+        .table-responsive {
+            margin-top: 8px;
+            border-radius: 4px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .cert-table td, .cert-table th {
+            padding: 8px 10px !important;
+            font-size: 11px !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .stats-summary {
+            grid-template-columns: 1fr;
         }
     }
 </style>
@@ -532,7 +534,6 @@
 
 @section('content')
 <div class="admin-wrapper">
-    <!-- Admin Navbar -->
     <!-- Admin Navbar -->
     <nav class="admin-navbar">
         <div class="admin-nav-container">
@@ -610,22 +611,22 @@
                     <div class="company-group collapsed" id="group-{{ Str::slug($empresa) }}">
                         <div class="company-header-toggle" onclick="toggleCompanyGroup('{{ Str::slug($empresa) }}')">
                             <h2>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
                                     <path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7M4 17h16V4H4v13z"/>
                                 </svg>
                                 {{ $empresa }}
-                                <span style="background: #f1f5f9; color: #64748b; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
+                                <span style="background: #f1f5f9; color: #64748b; font-size: 9px; padding: 1px 6px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
                             </h2>
                             @if($empresa !== 'INDEPENDIENTE')
-                            <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; text-transform: none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                                <span style="text-decoration: underline;">Editar Empresa</span>
+                            <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 800; text-transform: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                <span style="text-decoration: underline;">Editar</span>
                             </button>
-                            <svg class="company-chevron" style="width: 18px; height: 18px; color: #94a3b8; transition: transform 0.3s; margin-left: 10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <svg class="company-chevron" style="width: 16px; height: 16px; color: #94a3b8; transition: transform 0.3s; margin-left: 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                             @else
-                            <svg class="company-chevron" style="width: 18px; height: 18px; color: #94a3b8; transition: transform 0.3s; margin-left: auto;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <svg class="company-chevron" style="width: 16px; height: 16px; color: #94a3b8; transition: transform 0.3s; margin-left: auto;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                             @endif
@@ -643,33 +644,31 @@
                                     </div>
                                 </div>
 
-                                <!-- Center Info (Mobile Layout) -->
+                                <!-- Center Info (Adaptive Layout) -->
                                 <div class="user-info-main">
-                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
                                         <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
-                                        <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                        <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 3px; border-radius: 4px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                         </button>
                                     </div>
                                     
-                                    <!-- Visible on Mobile only via CSS or as secondary info -->
                                     <div class="user-stats-mobile">
-                                        <span class="user-dni" style="padding: 2px 6px;">{{ $usuario['dni'] }}</span>
+                                        <span class="user-dni">{{ $usuario['dni'] }}</span>
                                         @if($usuario['vigentes_count'] > 0)
-                                            <span class="stat-badge vigente" style="margin: 0; padding: 2px 6px;">{{ $usuario['vigentes_count'] }} V</span>
+                                            <span class="stat-badge vigente">{{ $usuario['vigentes_count'] }} V</span>
                                         @endif
                                         @if($usuario['expirados_count'] > 0)
-                                            <span class="stat-badge expirado" style="margin: 0; padding: 2px 6px;">{{ $usuario['expirados_count'] }} E</span>
+                                            <span class="stat-badge expirado">{{ $usuario['expirados_count'] }} E</span>
                                         @endif
                                     </div>
                                 </div>
 
-                                <!-- Col 3: DNI (Desktop Only) -->
+                                <!-- Desktop Specific Columns (Hidden on mobile) -->
                                 <div class="user-col-dni">
                                     <span class="user-dni">DNI: {{ $usuario['dni'] }}</span>
                                 </div>
 
-                                <!-- Col 4: Dual Status Badges (Desktop Only) -->
                                 <div class="user-stats">
                                     @if($usuario['vigentes_count'] > 0)
                                         <span class="stat-badge vigente" style="margin: 0;">{{ $usuario['vigentes_count'] }} Vigente(s)</span>
@@ -679,7 +678,6 @@
                                     @endif
                                 </div>
 
-                                <!-- Col 5: Trash (Desktop Only) -->
                                 <div class="user-col-delete">
                                     <button class="btn-user-delete" title="Eliminar Usuario y Certificados" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -689,9 +687,18 @@
                                     </button>
                                 </div>
 
-                                <!-- Col 6: Icon -->
                                 <div class="user-col-icon">
                                     <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+
+                                <!-- Mobile Specific Actions -->
+                                <div class="user-actions-mobile">
+                                    <button class="btn-user-delete-mobile" title="Eliminar" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                    </button>
+                                    <svg class="collapse-icon-mobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                         <polyline points="6 9 12 15 18 9"></polyline>
                                     </svg>
                                 </div>
