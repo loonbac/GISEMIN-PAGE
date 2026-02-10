@@ -21,8 +21,8 @@
     <meta name="twitter:image" content="https://www.gisemin.com/images/logo.svg">
     <title>Verificar Certificados - GISEMIN Consultores</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
-    <link rel="shortcut icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('images/logo-192.png') }}">
     @vite(['resources/css/certificados.css', 'resources/js/certificados.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

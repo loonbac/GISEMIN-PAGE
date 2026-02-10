@@ -13,16 +13,16 @@
     <meta property="og:url" content="https://www.gisemin.com/">
     <meta property="og:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
     <meta property="og:description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
-    <meta property="og:image" content="https://www.gisemin.com/images/logo.svg">
+    <meta property="og:image" content="https://www.gisemin.com/images/logo-512.png">
     <meta property="og:locale" content="es_PE">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
     <meta name="twitter:description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
-    <meta name="twitter:image" content="https://www.gisemin.com/images/logo.svg">
+    <meta name="twitter:image" content="https://www.gisemin.com/images/logo-512.png">
     <title>GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
-    <link rel="shortcut icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="192x192" href="{{ asset('images/logo-192.png') }}">
     @vite(['resources/css/landing.css', 'resources/js/landing.js', 'resources/js/services-rotation.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@
             "@type": "Organization",
             "name": "GISEMIN Consultores",
             "url": "https://www.gisemin.com/",
-            "logo": "https://www.gisemin.com/images/logo.svg"
+            "logo": "https://www.gisemin.com/images/logo-512.png"
         }
     </script>
     <script type="application/ld+json">
