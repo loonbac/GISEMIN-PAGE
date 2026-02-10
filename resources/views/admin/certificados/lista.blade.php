@@ -710,7 +710,7 @@
                 <!-- Users List Grouped by Company -->
                 <div id="users-list">
                     @forelse($usuariosPorEmpresa as $empresa => $grupo)
-                    <div class="company-group collapsed" id="group-{{ Str::slug($empresa) }}">
+                    <div class="company-group" id="group-{{ Str::slug($empresa) }}">
                         <div class="company-header-toggle" onclick="toggleCompanyGroup('{{ Str::slug($empresa) }}')">
                             <h2>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
@@ -744,7 +744,7 @@
                         
                         <div class="company-users-container">
                             @foreach($grupo as $usuario)
-                        <div class="user-card" data-nombre="{{ strtolower($usuario['nombre']) }}" data-dni="{{ $usuario['dni'] }}" data-empresa="{{ strtolower($usuario['empresa'] ?? 'independiente') }}">
+                            <div class="user-card" data-nombre="{{ strtolower($usuario['nombre']) }}" data-dni="{{ $usuario['dni'] }}" data-empresa="{{ strtolower($usuario['empresa'] ?? 'independiente') }}">
                             <div class="user-header" onclick="toggleUser(this)">
                                 
                                 <!-- Desktop only: Avatar -->
@@ -912,7 +912,6 @@
                                 </div>
                             </div>
                             </div>
-                        </div>
                             @endforeach
                         </div>
                     </div>
