@@ -426,11 +426,6 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
                     @if($reclamacion->estado != 'resuelto')
                     <button id="btnMarkRead" class="btn-mark-read">Marcar como leído</button>
                     @endif
-                    
-                    <button id="btnDelete" class="btn-delete">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                        Eliminar
-                    </button>
                 </div>
             </div>
         </div>
@@ -441,7 +436,6 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
 @push('scripts')
 <script>
     const btnMarkRead = document.getElementById('btnMarkRead');
-    const btnDelete = document.getElementById('btnDelete');
 
     if (btnMarkRead) {
         btnMarkRead.addEventListener('click', async function() {
@@ -460,29 +454,6 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
                 
                 const data = await response.json();
                 if (data.success) location.reload();
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        });
-    }
-
-    if (btnDelete) {
-        btnDelete.addEventListener('click', async function() {
-            if (!confirm('¿Estás seguro de que deseas eliminar esta reclamación? Esta acción no se puede deshacer.')) return;
-
-            try {
-                const response = await fetch('/api/reclamaciones/{{ $reclamacion->id }}', {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                });
-                
-                const data = await response.json();
-                if (data.success) {
-                    window.location.href = "{{ route('admin.reclamaciones.index') }}";
-                }
             } catch (error) {
                 console.error('Error:', error);
             }
