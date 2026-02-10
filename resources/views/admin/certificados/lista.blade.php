@@ -98,16 +98,13 @@
         overflow: hidden;
     }
 
-    /* Left-align specific content containers */
+    /* Center-align all content containers on desktop */
+    .user-col-avatar,
+    .user-col-icon,
     .user-col-name,
     .user-col-dni,
-    .user-stats {
-        justify-content: flex-start;
-    }
-
-    /* Center-align specific content containers */
-    .user-col-avatar,
-    .user-col-icon {
+    .user-stats,
+    .user-col-delete {
         justify-content: center;
     }
 
@@ -409,8 +406,22 @@
         letter-spacing: 0.5px !important;
     }
 
+    /* Hide mobile-only elements on high resolution (Desktop) */
+    .user-info-main .user-dni,
+    .user-stats-mobile,
+    .user-actions-mobile {
+        display: none !important;
+    }
+
     /* Responsive Improvements */
     @media (max-width: 991px) {
+        /* Re-enable mobile-only elements */
+        .user-info-main .user-dni,
+        .user-stats-mobile,
+        .user-actions-mobile {
+            display: flex !important;
+        }
+
         .stats-summary {
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
@@ -444,7 +455,7 @@
             gap: 10px !important;
         }
 
-        /* Hide all original desktop column wrappers */
+        /* Hide original desktop column wrappers on mobile */
         .user-col-dni, 
         .user-stats, 
         .user-col-delete,
