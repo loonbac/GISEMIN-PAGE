@@ -371,10 +371,13 @@
             background: white !important;
             border: 1px solid #e8ecf1 !important;
             border-radius: 16px !important;
-            padding: 16px 18px !important;
+            padding: 16px 16px !important;
             position: relative !important;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
             margin-bottom: 14px !important;
+            box-sizing: border-box !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
         }
 
         /* Reset all td styles */
@@ -468,7 +471,7 @@
 
         /* TD 5: Status badge - in flow between DNI and button */
         td:nth-child(5) {
-            order: 5 !important;
+            order: 6 !important;
             width: auto !important;
             position: static !important;
             margin-bottom: 6px !important;
@@ -481,31 +484,33 @@
             border-radius: 20px !important;
         }
 
-        /* TD 6: Actions - full width orange/blue button */
+        /* TD 6: Actions - full width compact button */
         td:last-child {
-            order: 6 !important;
+            order: 7 !important;
             margin-bottom: 0 !important;
             margin-top: 10px !important;
             padding: 10px 0 0 0 !important;
             border-top: 1px solid #f1f5f9 !important;
             border-bottom: none !important;
-            text-align: right !important;
+            text-align: center !important;
+            width: 100% !important;
         }
 
         .btn-view {
-            width: auto !important;
-            height: 34px !important;
+            width: 100% !important;
+            height: 36px !important;
             border-radius: 8px !important;
             font-size: 13px !important;
             font-weight: 700 !important;
             letter-spacing: 0.3px !important;
-            display: inline-flex !important;
+            display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            padding: 0 24px !important;
+            padding: 0 !important;
             border: none !important;
             color: white !important;
             text-decoration: none !important;
+            box-sizing: border-box !important;
         }
 
         /* Orange for pendiente, blue for resuelto */
