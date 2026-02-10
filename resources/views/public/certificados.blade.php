@@ -72,7 +72,7 @@
                     <li><a href="{{ route('home') }}#servicios">Servicios</a></li>
                 </ul>
 
-                <button class="nav-toggle" id="navToggle">
+                <button class="nav-toggle" id="navToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -106,7 +106,7 @@
                         type="text" 
                         id="searchInput" 
                         class="search-input" 
-                        placeholder="Ingrese su DNI..."
+                        placeholder="DNI del trabajador..."
                         autocomplete="off"
                     >
                     <button id="searchBtn" class="search-btn">
@@ -195,7 +195,7 @@
                         </svg>
                     </div>
                     <h3>Ingrese los datos</h3>
-                    <p>Escriba el DNI, nombre del trabajador o código del certificado en el buscador.</p>
+                    <p>Escriba el DNI del trabajador en el buscador.</p>
                 </div>
                 <div class="info-card">
                     <div class="info-step">2</div>

@@ -267,13 +267,15 @@ function animateCounter(element) {
 
 function initNavToggle() {
     const toggle = document.getElementById('navToggle');
-    const navLinks = document.querySelector('.nav-links');
+    const navMenu = document.getElementById('navMenu');
 
-    if (!toggle || !navLinks) return;
+    if (!toggle || !navMenu) return;
 
     toggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
+        const isOpen = navMenu.classList.toggle('active');
         toggle.classList.toggle('active');
+        toggle.setAttribute('aria-expanded', isOpen);
+        toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
     });
 }
 
