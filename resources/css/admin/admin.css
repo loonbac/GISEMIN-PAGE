@@ -608,34 +608,43 @@ body {
         justify-content: center;
     }
 
-    .admin-container {
-        padding: 40px 20px;
+    .admin-logo .logo-icon {
+        width: 36px;
+        height: 36px;
     }
 
-    .admin-container {
-        padding: var(--container-padding, 32px) !important;
-        /* Force consistency on mobile too */
+    .admin-logo .logo-text {
+        font-size: 16px;
     }
 
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .form-group.full-width {
-        grid-column: span 1;
+    .admin-logo .logo-accent {
+        font-size: 10px;
     }
 
     .nav-actions {
         width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
     }
 
     .nav-actions a,
-    .nav-actions form {
-        flex: 1 1 160px;
+    .nav-actions form,
+    .nav-actions .btn-logout {
         width: 100%;
+        text-align: center;
+        justify-content: center;
+        font-size: 11px;
+        padding: 6px 4px;
+        min-height: 34px;
+        height: auto;
+        border-radius: 6px !important;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+
+    .logout-form {
+        grid-column: 1 / -1;
     }
 
     .nav-actions a,
@@ -1418,4 +1427,13 @@ body {
 
 .tab-content.active {
     display: block;
+}
+
+@media (max-width: 400px) {
+
+    .nav-actions a,
+    .nav-actions .btn-logout {
+        font-size: 10px;
+        padding: 7px 4px;
+    }
 }
