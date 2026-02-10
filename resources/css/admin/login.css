@@ -118,6 +118,7 @@ body {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(-360deg);
     }
@@ -157,6 +158,7 @@ body {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
+
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
@@ -231,6 +233,7 @@ body {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
+
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
@@ -491,16 +494,6 @@ h1 {
     }
 
     .header-logo {
-        top: 15px;
-        right: 15px;
-    }
-
-    .header-logo-text {
-        font-size: 14px;
-    }
-
-    .header-logo-icon {
-        width: 26px;
-        height: 26px;
+        display: none;
     }
 }
