@@ -643,17 +643,17 @@
         }
 
         .stats-summary .stat-card {
-            height: 30px !important;
-            padding: 0 8px !important;
+            height: 38px !important;
+            padding: 0 10px !important;
         }
 
         .stats-summary .stat-number {
-            font-size: 16px !important;
+            font-size: 20px !important;
             font-weight: 800 !important;
         }
 
         .stats-summary .stat-label {
-            font-size: 12px !important;
+            font-size: 14px !important;
             font-weight: 800 !important;
         }
     }
