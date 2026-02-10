@@ -88,24 +88,33 @@
         background: #f8fafc;
     }
 
-    /* Force all columns to be perfectly centered containers */
-    .user-header > div {
+    /* Desktop: Target ONLY the 5 visible columns as flex containers */
+    .user-col-avatar,
+    .user-info-main,
+    .user-col-dni,
+    .user-stats,
+    .user-header-actions {
         display: flex !important;
-        align-items: center !important; /* FORCE VERTICAL CENTER */
+        align-items: center !important;
         height: 52px !important;
         margin: 0 !important;
         padding: 0 !important;
         overflow: hidden;
     }
 
-    /* Center-align all content containers on desktop */
+    /* Center-align specific columns on desktop */
     .user-col-avatar,
-    .user-col-icon,
-    .user-col-name,
     .user-col-dni,
-    .user-stats,
-    .user-col-actions {
+    .user-stats {
         justify-content: center;
+    }
+
+    .user-info-main {
+        justify-content: flex-start;
+    }
+
+    .user-header-actions {
+        justify-content: flex-end !important;
     }
 
     .user-avatar {
@@ -488,7 +497,8 @@
 
     /* Hide mobile-only elements on high resolution (Desktop) */
     .user-stats-summary-mobile,
-    .user-actions-mobile {
+    .user-actions-mobile,
+    .user-avatar-mobile {
         display: none !important;
     }
 
@@ -746,7 +756,7 @@
 
                                 <!-- Name & Edit (Main Info) -->
                                 <div class="user-info-main">
-                                    <div class="user-avatar-mobile" style="display: none;">
+                                    <div class="user-avatar-mobile">
                                         <span style="font-weight: 800; color: #0f5f8c;">[{{ strtoupper(substr($usuario['nombre'], 0, 1)) }}]</span>
                                     </div>
                                     <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
