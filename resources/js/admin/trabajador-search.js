@@ -99,7 +99,7 @@ function validateCourseSelection() {
             validationMsg.style.color = '#92400e';
             validationMsg.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                Ya seleccionaste este curso. ¡Prueba con otro!
+                Ya seleccionaste este certificado. ¡Prueba con otro!
             `;
         } else if (isValid) {
             selectionBox.style.borderColor = '#10b981';
@@ -116,7 +116,7 @@ function validateCourseSelection() {
             validationMsg.style.color = '#3b82f6';
             validationMsg.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                Selecciona un curso de la lista desplegable
+                Selecciona un certificado de la lista desplegable
             `;
         }
     }
