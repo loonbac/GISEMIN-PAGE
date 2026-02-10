@@ -4,6 +4,107 @@
 
 @push('styles')
 @vite(['resources/css/landing.css', 'resources/css/admin/admin.css'])
+<style>
+    /* Responsive Improvements for Gestionar Certificados */
+    @media (max-width: 991px) {
+        .admin-container {
+            padding: 12px 8px !important;
+        }
+
+        .form-header h1 {
+            font-size: 20px !important;
+            margin-bottom: 8px !important;
+        }
+
+        .form-header p {
+            font-size: 13px !important;
+            line-height: 1.4 !important;
+        }
+
+        .action-bar {
+            margin-bottom: 20px !important;
+        }
+
+        .btn-submit {
+            padding: 12px !important;
+            font-size: 13px !important;
+        }
+
+        .categoria-header {
+            padding: 12px 15px !important;
+        }
+
+        .categoria-title {
+            font-size: 13px !important;
+            gap: 8px !important;
+        }
+
+        .categoria-count {
+            font-size: 11px !important;
+            opacity: 0.8;
+        }
+
+        .table-wrapper {
+            margin: 0 -15px; /* Pull to edges */
+            border-radius: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .certificates-table {
+            min-width: 500px;
+            font-size: 12px;
+        }
+
+        .certificates-table th,
+        .certificates-table td {
+            padding: 10px 12px !important;
+        }
+
+        .action-buttons {
+            gap: 4px !important;
+        }
+
+        .btn-action {
+            padding: 6px 8px !important;
+            font-size: 10px !important;
+            gap: 4px !important;
+        }
+
+        .modal-content {
+            width: 95% !important;
+            padding: 20px !important;
+            margin: 10px !important;
+        }
+
+        .modal-header h2 {
+            font-size: 16px !important;
+        }
+
+        .modal-body {
+            padding: 15px 0 !important;
+        }
+
+        .modal-footer {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .modal-footer button {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .form-header h1 {
+            font-size: 18px !important;
+        }
+        
+        .categoria-title {
+            font-size: 12px !important;
+        }
+    }
+</style>
 @endpush
 
 @push('scripts')
