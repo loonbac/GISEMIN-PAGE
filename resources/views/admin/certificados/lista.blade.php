@@ -1463,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Guardando...';
 
             try {
-                const response = await fetch('/admin/api/trabajadores/actualizar', {
+                const response = await fetch('/api/trabajadores/actualizar', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1491,7 +1491,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Actualizando...';
 
             try {
-                const response = await fetch('/admin/api/empresas/actualizar', {
+                const response = await fetch('/api/empresas/actualizar', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
