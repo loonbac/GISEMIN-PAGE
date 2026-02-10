@@ -587,9 +587,7 @@
         }
 
         .user-avatar-mobile {
-            display: inline-block !important; /* Make visible as requested */
-            font-size: 16px;
-            margin-right: 4px;
+            display: none !important;
         }
 
         .user-dni {
@@ -614,7 +612,7 @@
     @media (max-width: 576px) {
         .stats-summary {
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+            gap: 6px;
         }
 
         .stat-card:last-child {
@@ -623,12 +621,18 @@
             margin: 0 auto;
         }
 
+        .stats-summary .stat-card {
+            height: 34px !important;
+            padding: 0 10px !important;
+        }
+
         .stats-summary .stat-number {
-            font-size: 16px !important;
+            font-size: 15px !important;
         }
 
         .stats-summary .stat-label {
-            font-size: 10px !important;
+            font-size: 11px !important;
+            font-weight: 800 !important;
         }
     }
 </style>
@@ -774,10 +778,10 @@
                                 <!-- Desktop Stats -->
                                 <div class="user-stats">
                                     @if($usuario['vigentes_count'] > 0)
-                                        <span class="stat-badge vigente" style="margin: 0;">{{ $usuario['vigentes_count'] }} V</span>
+                                        <span class="stat-badge vigente" style="margin: 0;">{{ $usuario['vigentes_count'] }} Vigente{{ $usuario['vigentes_count'] > 1 ? 's' : '' }}</span>
                                     @endif
                                     @if($usuario['expirados_count'] > 0)
-                                        <span class="stat-badge expirado" style="margin: 0;">{{ $usuario['expirados_count'] }} E</span>
+                                        <span class="stat-badge expirado" style="margin: 0;">{{ $usuario['expirados_count'] }} Expirado{{ $usuario['expirados_count'] > 1 ? 's' : '' }}</span>
                                     @endif
                                 </div>
 
