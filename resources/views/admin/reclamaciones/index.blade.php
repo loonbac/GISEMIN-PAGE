@@ -740,6 +740,7 @@
     });
 
     function filterTable(status) {
+        const scrollY = window.scrollY;
         const allRows = document.querySelectorAll('.reclamacion-row');
         
         // Update active tab
@@ -758,6 +759,9 @@
                 row.classList.add('reclamacion-hidden');
             }
         });
+
+        // Restore scroll position
+        requestAnimationFrame(() => window.scrollTo(0, scrollY));
     }
 
     let deleteTargetId = null;
