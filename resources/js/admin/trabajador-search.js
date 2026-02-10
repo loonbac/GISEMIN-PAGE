@@ -546,15 +546,7 @@ async function registrarNuevoUsuario() {
         const data = await response.json();
 
         if (data.success) {
-            // Success! Show full worker profile and form
-            const formEmpresa = document.getElementById('form-empresa');
-            if (formEmpresa) {
-                formEmpresa.value = empresa;
-                formEmpresa.readOnly = true;
-                formEmpresa.style.background = '#f1f5f9';
-                formEmpresa.style.cursor = 'not-allowed';
-            }
-
+            // Success! The formEmpresa will be updated by mostrarTrabajador
             mostrarTrabajador({
                 nombre: nombre,
                 dni: dni,
@@ -613,6 +605,10 @@ async function handleAssignCompany() {
             input.style.background = '#f1f5f9';
             input.style.cursor = 'not-allowed';
             btn.style.display = 'none';
+
+            // Show REMOVER button
+            const btnRemove = document.getElementById('btn-remove-company');
+            if (btnRemove) btnRemove.style.display = 'block';
 
             // Update profile label
             const profileEmpresa = document.getElementById('profile-empresa');
