@@ -102,6 +102,26 @@
         overflow: hidden;
     }
 
+    /* Force Desktop Grid Layout - 5 Columns */
+    @media (min-width: 992px) {
+        .user-header {
+            display: grid !important;
+            grid-template-columns: 50px 1fr 110px 1fr 80px !important;
+            grid-template-areas: "avatar name dni stats actions" !important;
+            gap: 16px !important;
+            align-items: center !important;
+            height: 52px !important;
+        }
+
+        .user-col-avatar { grid-area: avatar; justify-content: center; }
+        .user-info-main  { grid-area: name; justify-content: flex-start; }
+        .user-col-dni    { grid-area: dni; justify-content: center; }
+        .user-stats      { grid-area: stats; justify-content: flex-start; }
+        .user-header-actions { grid-area: actions; justify-content: flex-end; }
+        
+        .user-avatar-mobile { display: none !important; }
+    }
+
     /* Center-align specific columns on desktop */
     .user-col-avatar,
     .user-col-dni,
@@ -715,7 +735,7 @@
                 <!-- Users List Grouped by Company -->
                 <div id="users-list">
                     @forelse($usuariosPorEmpresa as $empresa => $grupo)
-                    <div class="company-group" id="group-{{ Str::slug($empresa) }}">
+                    <div class="company-group collapsed" id="group-{{ Str::slug($empresa) }}">
                         <div class="company-header-toggle" onclick="toggleCompanyGroup('{{ Str::slug($empresa) }}')">
                             <h2>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
@@ -726,9 +746,8 @@
                             </h2>
                             @if($empresa !== 'INDEPENDIENTE')
                             <div style="margin-left: auto; display: flex; align-items: center; gap: 4px;">
-                                <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 800; text-transform: none;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                                    <span style="text-decoration: underline;">Editar</span>
+                                <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" title="Editar Empresa" style="width: 28px; height: 28px; padding: 5px; background: #eff6ff; color: #3b82f6; border: 1px solid #dbeafe; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                 </button>
                                 <button class="btn-user-delete" onclick="confirmDeleteCompany('{{ addslashes($empresa) }}', event)" title="Eliminar Empresa y Usuarios" style="width: 28px; height: 28px; padding: 5px;">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;">
