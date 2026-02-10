@@ -361,59 +361,129 @@
             display: block !important;
             height: auto !important;
             background: white !important;
-            border: 1px solid #e2e8f0 !important;
-            border-radius: 12px !important;
-            padding: 16px !important;
+            border: 1px solid #f1f5f9 !important;
+            border-radius: 16px !important;
+            padding: 18px !important;
             position: relative !important;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.02) !important;
+            margin-bottom: 16px !important;
         }
 
         td {
             display: block !important;
             padding: 0 !important;
             border: none !important;
-            margin-bottom: 8px !important;
+            margin-bottom: 10px !important;
             white-space: normal !important;
             width: 100% !important;
             height: auto !important;
         }
 
         td:first-child {
-            padding-left: 0 !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            margin-bottom: 14px !important;
+            padding-bottom: 12px !important;
+            border-bottom: 1px dashed #e2e8f0 !important;
             box-shadow: none !important;
-            margin-bottom: 12px !important;
+        }
+
+        /* Move Date to top right near ID */
+        td:nth-child(2) {
+            position: absolute !important;
+            top: 18px !important;
+            right: 18px !important;
+            width: auto !important;
+            margin-bottom: 0 !important;
+            font-size: 11px !important;
+            color: #94a3b8 !important;
+            font-weight: 500 !important;
+        }
+
+        td:nth-child(2)::before {
+            content: "";
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' /%3E%3C/svg%3E");
+            background-size: contain;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            vertical-align: middle;
+            margin-right: 4px;
+            margin-top: -2px;
         }
 
         .id-cell {
-            background: #f1f5f9;
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 2px 10px;
+            border-radius: 6px;
         }
 
         .reclamacion-id {
             font-weight: 800;
             color: #475569;
-            font-size: 13px;
+            font-size: 12px;
         }
 
-        /* Field labels for mobile cards */
-        td:nth-child(2)::before { content: "Fecha: "; font-weight: 700; color: #64748b; font-size: 12px; }
-        td:nth-child(3) { font-weight: 700; color: #1e293b; font-size: 16px !important; margin-bottom: 4px !important; }
-        td:nth-child(4)::before { content: "DNI: "; font-weight: 700; color: #64748b; font-size: 12px; }
+        /* Name Styling */
+        td:nth-child(3) {
+            font-size: 17px !important;
+            font-weight: 800 !important;
+            color: #0f172a !important;
+            margin-bottom: 6px !important;
+            letter-spacing: -0.3px !important;
+            padding-right: 120px !important; /* Avoid overlap with date */
+        }
 
+        /* DNI Styling */
+        td:nth-child(4) {
+            font-size: 13px !important;
+            color: #64748b !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            margin-bottom: 12px !important;
+        }
+
+        td:nth-child(4)::before {
+            content: "";
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-4 0a1 1 0 011-1h2a1 1 0 011 1v1m-4 0h4' /%3E%3C/svg%3E");
+            background-size: contain;
+            width: 14px;
+            height: 14px;
+            display: inline-block;
+        }
+
+        /* Status Badge */
+        td:nth-child(5) {
+            margin-bottom: 4px !important;
+        }
+
+        .status-badge {
+            height: 24px !important;
+            padding: 0 12px !important;
+            font-size: 12px !important;
+            border-radius: 20px !important;
+        }
+
+        /* Actions - Fluid Button */
         td:last-child {
             margin-bottom: 0 !important;
-            margin-top: 14px !important;
-            padding-top: 12px !important;
+            margin-top: 18px !important;
+            padding-top: 14px !important;
             border-top: 1px solid #f1f5f9 !important;
             text-align: center !important;
         }
 
         .btn-view {
             width: 100% !important;
-            height: 38px !important;
-            box-shadow: none !important;
+            height: 42px !important;
+            border-radius: 10px !important;
+            background: #3b82f6 !important;
+            font-size: 15px !important;
+            letter-spacing: 0.5px !important;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2) !important;
         }
     }
 
@@ -423,6 +493,19 @@
         }
         .stat-card.total {
             grid-column: auto;
+        }
+        
+        td:nth-child(3) {
+            padding-right: 0 !important;
+        }
+        
+        td:nth-child(2) {
+            position: static !important;
+            margin-bottom: 8px !important;
+            background: #fdf2f2; /* Subtle bg if forced to stack */
+            padding: 2px 8px !important;
+            border-radius: 4px !important;
+            display: inline-block !important;
         }
     }
 </style>
