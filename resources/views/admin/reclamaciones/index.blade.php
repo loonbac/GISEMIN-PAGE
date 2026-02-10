@@ -373,12 +373,15 @@
             border: none !important;
             background: transparent !important;
             box-shadow: none !important;
+            overflow-x: hidden !important;
+            min-width: 0 !important;
         }
 
         table {
             display: block !important;
             width: 100% !important;
             table-layout: auto !important;
+            min-width: 0 !important;
         }
 
         colgroup {
