@@ -479,15 +479,16 @@
 
         .btn-view {
             width: 100% !important;
-            height: 44px !important;
+            height: 46px !important;
             border-radius: 12px !important;
             background: #2563eb !important;
             font-size: 16px !important;
             font-weight: 700 !important;
             letter-spacing: 0.5px !important;
-            justify-content: center !important; /* Ensure perfect centering */
             display: flex !important;
             align-items: center !important;
+            justify-content: center !important;
+            padding: 0 !important;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15) !important;
             border: 1px solid rgba(255,255,255,0.1) !important;
         }
