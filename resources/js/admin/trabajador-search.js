@@ -615,7 +615,7 @@ async function handleAssignCompany() {
             if (profileEmpresa) profileEmpresa.textContent = empresa.toUpperCase();
 
             console.log('Empresa asignada correctamente');
-            await showAlert('¡Éxito!', 'Empresa asignada correctamente.', 'success');
+            // Success alert removed for a silent flow
         } else {
             await showAlert('Error', data.message || 'Error al asignar empresa', 'error');
         }
@@ -676,7 +676,7 @@ async function handleRemoveCompany() {
             if (profileEmpresa) profileEmpresa.textContent = 'Independiente';
 
             console.log('Empresa removida correctamente');
-            await showAlert('¡Éxito!', 'Usuario removido de la empresa con éxito.', 'success');
+            // Success alert removed for a silent flow
         } else {
             await showAlert('Error', data.message || 'Error al remover empresa', 'error');
         }
