@@ -7,7 +7,7 @@
 @endpush
 
 @push('scripts')
-@vite(['resources/js/admin/trabajador-search.js', 'resources/js/admin/cursos-autocomplete.js'])
+@vite(['resources/js/admin/trabajador-search.js', 'resources/js/admin/cursos-autocomplete.js', 'resources/js/admin/empresas-autocomplete.js'])
 @endpush
 
 @section('content')
@@ -175,7 +175,10 @@
                                     <div class="form-group" style="margin-bottom: 12px;">
                                         <label>Empresa (Se edita en la lista)</label>
                                         <div style="display: flex; gap: 8px; align-items: center;">
-                                            <input type="text" name="empresa" id="form-empresa" class="form-input reg-empresa-sync" placeholder="Ej: GISEMIN S.A.C." readonly style="background: #f1f5f9; cursor: not-allowed; flex: 1;">
+                                            <div class="autocomplete-wrapper" style="flex: 1;">
+                                                <input type="text" name="empresa" id="form-empresa" class="form-input reg-empresa-sync" placeholder="Ej: GISEMIN S.A.C." readonly style="background: #f1f5f9; cursor: not-allowed; width: 100%;">
+                                                <ul id="empresas-dropdown" class="custom-dropdown"></ul>
+                                            </div>
                                             <button type="button" id="btn-assign-company" class="btn-primary" style="display: none; padding: 10px 14px; border-radius: 10px; font-size: 11px; font-weight: 800; white-space: nowrap; background: #0f5f8c; color: white; border: none; cursor: pointer;">ASIGNAR</button>
                                             <button type="button" id="btn-remove-company" class="btn-primary" style="display: none; padding: 10px 14px; border-radius: 10px; font-size: 11px; font-weight: 800; white-space: nowrap; background: #dc2626; color: white; border: none; cursor: pointer;">REMOVER</button>
                                         </div>

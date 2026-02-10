@@ -1,6 +1,6 @@
 <!-- Global Custom Modals -->
-<div id="custom-modal-container" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); align-items: center; justify-content: center;">
-    <div id="custom-modal-content" style="background-color: #ffffff; margin: auto; padding: 24px; border: 1px solid rgba(226, 232, 240, 0.8); width: 100%; max-width: 400px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); transform: translateY(-20px); transition: all 0.3s ease;">
+<div id="custom-modal-container" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(15, 23, 42, 0.6); align-items: center; justify-content: center;">
+    <div id="custom-modal-content" style="background-color: #ffffff; margin: auto; padding: 24px; border: 1px solid rgba(226, 232, 240, 1); width: 100%; max-width: 400px; border-radius: 16px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); transform: scale(0.95); opacity: 0; transition: all 0.15s ease-out;">
         <div id="custom-modal-icon" style="margin-bottom: 16px; display: flex; justify-content: center;">
             <!-- Icon will be injected here -->
         </div>
@@ -68,19 +68,21 @@
         
         modalContainer.style.display = 'flex';
         setTimeout(() => {
-            modalContent.style.transform = 'translateY(0)';
+            modalContent.style.transform = 'scale(1)';
+            modalContent.style.opacity = '1';
         }, 10);
     }
 
     function closeModal(result) {
-        modalContent.style.transform = 'translateY(-20px)';
+        modalContent.style.transform = 'scale(0.95)';
+        modalContent.style.opacity = '0';
         setTimeout(() => {
             modalContainer.style.display = 'none';
             if (currentResolve) {
                 currentResolve(result);
                 currentResolve = null;
             }
-        }, 200);
+        }, 150);
     }
 
     btnConfirm.addEventListener('click', () => closeModal(true));

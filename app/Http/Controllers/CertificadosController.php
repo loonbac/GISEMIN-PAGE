@@ -122,6 +122,23 @@ class CertificadosController extends Controller
         ]);
     }
 
+    /**
+     * Obtener lista de empresas únicas para el autocompletado
+     */
+    public function buscarEmpresas(Request $request)
+    {
+        $query = $request->get('q', '');
+        
+        $empresas = Trabajador::whereNotNull('empresa')
+            ->where('empresa', '!=', 'Independiente')
+            ->where('empresa', 'LIKE', "%{$query}%")
+            ->distinct()
+            ->pluck('empresa')
+            ->take(10);
+            
+        return response()->json($empresas);
+    }
+
     public function registrarTrabajador(Request $request)
     {
         \Log::info('Intento de registro de trabajador', $request->all());
