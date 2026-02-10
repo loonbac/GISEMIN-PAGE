@@ -119,6 +119,7 @@ Route::domain($adminDomain)->name('admin.')->group(function () {
             Route::post('/trabajadores/registrar', [CertificadosController::class, 'registrarTrabajador']);
             Route::put('/trabajadores/actualizar', [CertificadosController::class, 'actualizarTrabajador']);
             Route::put('/empresas/actualizar', [CertificadosController::class, 'actualizarEmpresaMasivo']);
+            Route::delete('/empresas/eliminar', [CertificadosController::class, 'eliminarEmpresaMasivo']);
             Route::post('/trabajadores/asignar-empresa', [CertificadosController::class, 'asignarEmpresa']);
             Route::post('/trabajadores/remover-empresa', [CertificadosController::class, 'removerEmpresa']);
             Route::get('/empresas/buscar', [CertificadosController::class, 'buscarEmpresas']);

@@ -1032,4 +1032,53 @@ class CertificadosController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Eliminar una empresa completa (todos sus trabajadores y certificados)
+     */
+    public function eliminarEmpresaMasivo(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'empresa' => 'required|string',
+            ]);
+
+            $empresa = $validated['empresa'];
+            $empresaQuery = $empresa === 'Independiente' ? null : $empresa;
+
+            \DB::beginTransaction();
+
+            // Obtener DNI de todos los trabajadores de esta empresa
+            $dnis = Trabajador::where('empresa', $empresaQuery)->pluck('dni');
+
+            // 1. Eliminar certificados de estos trabajadores
+            Certificado::whereIn('dni', $dnis)->delete();
+
+            // 2. Eliminar a los trabajadores
+            $count = Trabajador::where('empresa', $empresaQuery)->delete();
+
+            \DB::commit();
+
+            $hoy = now()->setTimezone('America/Lima')->format('Y-m-d');
+            $globalStats = [
+                'total_usuarios' => \App\Models\Trabajador::count(),
+                'total_certificados' => Certificado::count(),
+                'total_vigentes' => Certificado::where('fecha_vencimiento', '>=', $hoy)->count(),
+                'total_expirados' => Certificado::where('fecha_vencimiento', '<', $hoy)->count(),
+            ];
+
+            return response()->json([
+                'success' => true,
+                'message' => "Se han eliminado la empresa \"$empresa\" y sus $count trabajadores asociados.",
+                'global_stats' => $globalStats
+            ]);
+
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al eliminar empresa: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 }

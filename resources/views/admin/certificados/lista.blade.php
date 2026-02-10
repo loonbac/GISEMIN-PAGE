@@ -74,7 +74,7 @@
 
     .user-header {
         display: grid;
-        grid-template-columns: 50px 1.2fr 110px 1fr 40px 40px; /* Added column for user delete */
+        grid-template-columns: 50px 1fr 110px 1fr 80px; /* Redefined 5 columns for balance */
         align-items: stretch;
         padding: 0 16px;
         cursor: pointer;
@@ -104,7 +104,7 @@
     .user-col-name,
     .user-col-dni,
     .user-stats,
-    .user-col-delete {
+    .user-col-actions {
         justify-content: center;
     }
 
@@ -247,18 +247,27 @@
     .action-buttons { display: flex; gap: 6px; }
     
     .btn-action {
-        padding: 4px 8px;
+        padding: 6px 10px;
         border: none;
         border-radius: 10px;
-        font-size: 12px;
+        font-size: 13px;
         cursor: pointer;
         display: flex;
         align-items: center;
-        gap: 4px;
-        transition: background 0.2s;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.2s;
+    }
+
+    .btn-view-drive-full {
+        background: #0066B3;
+        color: white !important;
+        width: 100%;
+        font-weight: 700;
+        margin-bottom: 8px;
     }
     
-    .btn-action svg { width: 14px; height: 14px; }
+    .btn-action svg { width: 16px; height: 16px; }
     
     .btn-edit { background: #e0f2fe; color: #0369a1; }
     .btn-edit:hover { background: #bae6fd; }
@@ -267,9 +276,9 @@
     .btn-delete:hover { background: #fecaca; }
 
     .btn-user-delete {
-        background: transparent;
+        background: #fee2e2;
         color: #dc2626;
-        border: none;
+        border: 1px solid #fecaca;
         padding: 8px;
         border-radius: 10px;
         cursor: pointer;
@@ -277,22 +286,43 @@
         align-items: center;
         justify-content: center;
         transition: all 0.2s;
-        opacity: 0.1; /* High-risk action, keep subtle unless hovered */
-    }
-    
-    .user-card:hover .btn-user-delete {
-        opacity: 0.6;
+        opacity: 0.8;
     }
     
     .btn-user-delete:hover {
-        background: #fee2e2;
-        opacity: 1 !important;
-        transform: scale(1.1);
+        background: #fecaca;
+        opacity: 1;
+        transform: scale(1.05);
     }
     
     .btn-user-delete svg {
         width: 18px;
         height: 18px;
+    }
+
+    .user-header-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px;
+        justify-content: flex-end !important;
+    }
+
+    .btn-edit-inline {
+        background: #f1f5f9;
+        border: none;
+        padding: 5px;
+        border-radius: 6px;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-edit-inline:hover {
+        background: #e2e8f0;
+        color: #1e293b;
     }
 
     .search-container { margin-bottom: 24px; }
@@ -406,20 +436,75 @@
         letter-spacing: 0.5px !important;
     }
 
+    /* New Card-Based Details for Mobile */
+    .cert-cards-mobile {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 15px;
+    }
+
+    .cert-mobile-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .cert-mobile-title {
+        font-size: 15px;
+        font-weight: 800;
+        color: #1e293b;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+
+    .cert-mobile-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+        background: #f8fafc;
+        padding: 8px 12px;
+        border-radius: 8px;
+    }
+
+    .cert-mobile-date {
+        font-size: 12px;
+        font-weight: 700;
+        color: #64748b;
+    }
+
+    .cert-mobile-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .cert-mobile-actions .btn-action {
+        flex: 1;
+        height: 40px;
+    }
+
     /* Hide mobile-only elements on high resolution (Desktop) */
-    .user-info-main .user-dni,
-    .user-stats-mobile,
+    .user-stats-summary-mobile,
     .user-actions-mobile {
         display: none !important;
     }
 
     /* Responsive Improvements */
     @media (max-width: 991px) {
-        /* Re-enable mobile-only elements */
-        .user-info-main .user-dni,
-        .user-stats-mobile,
-        .user-actions-mobile {
+        .user-stats-summary-mobile {
             display: flex !important;
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 700;
+            gap: 8px;
+        }
+
+        .user-header-actions {
+            display: flex !important;
+            margin-left: auto;
         }
 
         .stats-summary {
@@ -428,111 +513,91 @@
         }
 
         .admin-container {
-            padding: 12px 8px !important;
-        }
-
-        .company-header-toggle {
-            padding: 10px 12px;
-            border-bottom-width: 1px;
-        }
-
-        .company-header-toggle h2 {
-            font-size: 11px;
-            gap: 6px;
+            padding: 12px 10px !important;
         }
 
         .user-card {
-            margin-bottom: 6px;
-            border-radius: 6px;
+            margin-bottom: 10px;
+            border-radius: 12px;
         }
 
         .user-header {
-            display: flex !important;
-            flex-direction: row;
-            align-items: center;
-            padding: 8px 10px !important;
+            display: grid !important;
+            grid-template-areas: 
+                "info actions" 
+                "details details";
+            grid-template-columns: 1fr auto;
+            padding: 16px !important;
             height: auto !important;
-            gap: 10px !important;
+            gap: 4px 12px !important;
+            align-items: center !important;
         }
 
-        /* Hide original desktop column wrappers on mobile */
+        .user-info-main { 
+            grid-area: info; 
+            display: flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            justify-content: flex-start !important;
+        }
+        
+        .user-header-actions { 
+            grid-area: actions;
+        }
+
+        .user-stats-summary-mobile { 
+            grid-area: details;
+            display: flex !important;
+            align-items: center;
+            gap: 8px;
+            padding-top: 6px;
+            border-top: 1px solid #f1f5f9;
+            margin-top: 4px;
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        /* Hide desktop-only elements */
+        .user-col-avatar,
         .user-col-dni, 
-        .user-stats, 
-        .user-col-delete,
-        .user-col-icon {
+        .user-stats,
+        .table-responsive {
             display: none !important;
         }
 
-        .user-avatar {
-            width: 28px !important;
-            height: 28px !important;
-            font-size: 11px !important;
-        }
-
-        .user-info-main {
-            flex: 1;
-            min-width: 0;
+        .cert-cards-mobile {
             display: flex;
-            flex-direction: column;
-            gap: 2px !important;
         }
 
         .user-name {
-            font-size: 13px !important;
+            font-size: 16px !important;
+            font-weight: 800 !important;
+            max-width: 180px;
         }
 
-        .user-stats-mobile {
-            display: flex;
-            align-items: center;
-            gap: 4px !important;
-            margin-top: 0 !important;
+        .user-avatar-mobile {
+            display: inline-block !important; /* Make visible as requested */
+            font-size: 16px;
+            margin-right: 4px;
         }
 
         .user-dni {
-            font-size: 9px !important;
-            padding: 1px 5px !important;
-            background: #f8fafc !important;
-        }
-
-        .stat-badge {
-            font-size: 8px !important;
-            padding: 1px 4px !important;
-        }
-
-        /* Actions container for mobile */
-        .user-actions-mobile {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-left: auto;
-        }
-
-        .btn-user-delete-mobile {
-            color: #ef4444;
-            opacity: 0.8;
-            padding: 4px;
-        }
-
-        .collapse-icon-mobile {
-            width: 16px;
-            height: 16px;
-            color: #94a3b8;
-            transition: transform 0.3s;
-        }
-
-        .user-card.expanded .collapse-icon-mobile {
-            transform: rotate(180deg);
-        }
-
-        .table-responsive {
-            margin-top: 8px;
-            border-radius: 4px;
-            border: 1px solid #f1f5f9;
-        }
-
-        .cert-table td, .cert-table th {
-            padding: 8px 10px !important;
             font-size: 11px !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            color: #64748b;
+        }
+
+        .collapse-icon {
+            width: 22px !important;
+            height: 22px !important;
+        }
+
+        .btn-user-delete {
+            opacity: 1 !important;
+            padding: 6px !important;
         }
     }
 
@@ -645,10 +710,18 @@
                                 <span style="background: #f1f5f9; color: #64748b; font-size: 9px; padding: 1px 6px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
                             </h2>
                             @if($empresa !== 'INDEPENDIENTE')
-                            <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 800; text-transform: none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                                <span style="text-decoration: underline;">Editar</span>
-                            </button>
+                            <div style="margin-left: auto; display: flex; align-items: center; gap: 4px;">
+                                <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 800; text-transform: none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                    <span style="text-decoration: underline;">Editar</span>
+                                </button>
+                                <button onclick="confirmDeleteCompany('{{ addslashes($empresa) }}', event)" style="background: none; border: none; color: #ef4444; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7" title="Eliminar Empresa y Usuarios">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </div>
                             <svg class="company-chevron" style="width: 16px; height: 16px; color: #94a3b8; transition: transform 0.3s; margin-left: 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
@@ -664,70 +737,56 @@
                         <div class="user-card" data-nombre="{{ strtolower($usuario['nombre']) }}" data-dni="{{ $usuario['dni'] }}" data-empresa="{{ strtolower($usuario['empresa'] ?? 'independiente') }}">
                             <div class="user-header" onclick="toggleUser(this)">
                                 
-                                <!-- Col 1: Avatar -->
+                                <!-- Desktop only: Avatar -->
                                 <div class="user-col-avatar">
                                     <div class="user-avatar">
                                         {{ strtoupper(substr($usuario['nombre'], 0, 1)) }}
                                     </div>
                                 </div>
 
-                                <!-- Center Info (Adaptive Layout) -->
+                                <!-- Name & Edit (Main Info) -->
                                 <div class="user-info-main">
-                                    <!-- Row 1: Name, DNI, Edit -->
-                                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                                        <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
-                                        <span class="user-dni" style="padding: 2px 6px; font-size: 10px;">{{ $usuario['dni'] }}</span>
-                                        <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                                        </button>
+                                    <div class="user-avatar-mobile" style="display: none;">
+                                        <span style="font-weight: 800; color: #0f5f8c;">[{{ strtoupper(substr($usuario['nombre'], 0, 1)) }}]</span>
                                     </div>
+                                    <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
                                     
-                                    <!-- Row 2: Status Badges -->
-                                    <div class="user-stats-mobile" style="display: flex; gap: 6px; margin-top: 2px;">
-                                        @if($usuario['vigentes_count'] > 0)
-                                            <span class="stat-badge vigente" style="padding: 2px 8px; font-size: 9px;">{{ $usuario['vigentes_count'] }} VIGENTE(S)</span>
-                                        @endif
-                                        @if($usuario['expirados_count'] > 0)
-                                            <span class="stat-badge expirado" style="padding: 2px 8px; font-size: 9px;">{{ $usuario['expirados_count'] }} EXPIRADO(S)</span>
-                                        @endif
-                                    </div>
+                                    <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" class="btn-edit-inline" title="Editar Datos">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                    </button>
                                 </div>
 
-                                <!-- Desktop Specific Columns (Hidden on mobile) -->
+                                <!-- Desktop DNI -->
                                 <div class="user-col-dni">
                                     <span class="user-dni">DNI: {{ $usuario['dni'] }}</span>
                                 </div>
 
+                                <!-- Desktop Stats -->
                                 <div class="user-stats">
                                     @if($usuario['vigentes_count'] > 0)
-                                        <span class="stat-badge vigente" style="margin: 0;">{{ $usuario['vigentes_count'] }} Vigente(s)</span>
+                                        <span class="stat-badge vigente" style="margin: 0;">{{ $usuario['vigentes_count'] }} V</span>
                                     @endif
                                     @if($usuario['expirados_count'] > 0)
-                                        <span class="stat-badge expirado" style="margin: 0;">{{ $usuario['expirados_count'] }} Expirado(s)</span>
+                                        <span class="stat-badge expirado" style="margin: 0;">{{ $usuario['expirados_count'] }} E</span>
                                     @endif
                                 </div>
 
-                                <div class="user-col-delete">
-                                    <button class="btn-user-delete" title="Eliminar Usuario y Certificados" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Mobile Details (Second row on mobile) -->
+                                <div class="user-stats-summary-mobile">
+                                    <span>DNI: {{ $usuario['dni'] }}</span>
+                                    <span style="color: #059669;">({{ $usuario['vigentes_count'] }} V)</span>
+                                    <span style="color: #dc2626;">({{ $usuario['expirados_count'] }} E)</span>
+                                </div>
+
+                                <!-- Actions (Delete & Chevron) -->
+                                <div class="user-header-actions">
+                                    <button class="btn-user-delete" title="Eliminar Usuario" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                             <polyline points="3 6 5 6 21 6"></polyline>
                                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                         </svg>
                                     </button>
-                                </div>
-
-                                <div class="user-col-icon">
-                                    <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-
-                                <!-- Mobile Specific Actions -->
-                                <div class="user-actions-mobile">
-                                    <button class="btn-user-delete-mobile" title="Eliminar" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                                    </button>
-                                    <svg class="collapse-icon-mobile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                         <polyline points="6 9 12 15 18 9"></polyline>
                                     </svg>
                                 </div>
@@ -787,7 +846,7 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="6" style="text-align: center; padding: 20px; color: #64748b;">
+                                                <td colspan="5" style="text-align: center; padding: 20px; color: #64748b;">
                                                     Este usuario no tiene certificados registrados.
                                                 </td>
                                             </tr>
@@ -795,6 +854,53 @@
                                         </tbody>
                                     </table>
                                 </div>
+
+                                <!-- Mobile Certificate Cards -->
+                                <div class="cert-cards-mobile">
+                                    @forelse($usuario['certificados'] as $cert)
+                                    @php
+                                        $now = now()->setTimezone('America/Lima')->format('Y-m-d');
+                                        $esVigente = $cert->fecha_vencimiento >= $now;
+                                    @endphp
+                                    <div class="cert-mobile-card" id="cert-card-mobile-{{ $cert->id }}">
+                                        <div class="cert-mobile-title">{{ $cert->curso }}</div>
+                                        
+                                        <div class="cert-mobile-meta">
+                                            <span class="cert-mobile-date">{{ $cert->fecha_emision->format('d/m/Y') }}</span>
+                                            @if($esVigente)
+                                                <span class="status-vigente" style="font-size: 11px;">Vigente</span>
+                                            @else
+                                                <span class="status-expirado" style="font-size: 11px;">Expirado</span>
+                                            @endif
+                                        </div>
+
+                                        <div class="cert-mobile-actions-wrapper">
+                                            @if($cert->drive_link)
+                                                <a href="{{ $cert->drive_link }}" target="_blank" class="btn-action btn-view-drive-full">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 16px; height: 16px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                                    VER CERTIFICADO
+                                                </a>
+                                            @endif
+                                            
+                                            <div class="cert-mobile-actions">
+                                                <button class="btn-action btn-edit" onclick="openEditModal({{ $cert->id }})">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                                                    Editar
+                                                </button>
+                                                <button class="btn-action btn-delete" onclick="confirmDelete({{ $cert->id }})">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                    Borrar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @empty
+                                    <div style="text-align: center; padding: 20px; color: #64748b; font-size: 13px;">
+                                        Sin certificados registrados.
+                                    </div>
+                                    @endforelse
+                                </div>
+                            </div>
                             </div>
                         </div>
                             @endforeach
@@ -1213,7 +1319,163 @@ async function executeUserDelete() {
         btn.innerText = originalText;
     }
 }
+
+// Company Delete Logic
+let companyToDelete = null;
+
+function confirmDeleteCompany(empresa, event) {
+    if (event) event.stopPropagation();
+    companyToDelete = empresa;
+    document.getElementById('deleteCompanyModal').classList.remove('hidden');
+    document.getElementById('delete-company-name-display').textContent = empresa;
+}
+
+function closeDeleteCompanyModal() {
+    document.getElementById('deleteCompanyModal').classList.add('hidden');
+    companyToDelete = null;
+}
+
+async function executeCompanyDelete() {
+    if (!companyToDelete) return;
+    
+    const btn = document.getElementById('btn-confirm-company-delete');
+    const originalText = btn.innerText;
+    
+    btn.disabled = true;
+    btn.innerText = 'Eliminando Empresa...';
+
+    try {
+        const response = await fetch(`{{ config('app.url') }}/admin/api/empresas/eliminar`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ empresa: companyToDelete })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            const slug = companyToDelete.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+            const companyGroup = document.getElementById(`group-${slug}`);
+            
+            if (companyGroup) {
+                companyGroup.style.transition = 'all 0.4s';
+                companyGroup.style.opacity = '0';
+                companyGroup.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    companyGroup.remove();
+                    if (document.querySelectorAll('.company-group').length === 0) {
+                        location.reload();
+                    }
+                }, 400);
+            }
+            
+            if (data.global_stats) {
+                updateGlobalStats(data.global_stats);
+            }
+
+            closeDeleteCompanyModal();
+        } else {
+            alert(data.message || 'Error al eliminar la empresa');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error de red al intentar eliminar la empresa');
+    } finally {
+        btn.disabled = false;
+        btn.innerText = originalText;
+    }
+}
+
+// Consolidation of Worker Edit and Bulk Company Edit
+function openEditWorkerModal(dni, nombre, event) {
+    if (event) event.stopPropagation();
+    document.getElementById('edit-worker-dni').value = dni;
+    document.getElementById('edit-worker-nombre').value = nombre;
+    const modal = document.getElementById('workerEditModal');
+    modal.style.display = 'flex';
+}
+
+function closeEditWorkerModal() {
+    document.getElementById('workerEditModal').style.display = 'none';
+}
+
+function openBulkEditModal(empresaActual, event) {
+    if (event) event.stopPropagation();
+    document.getElementById('bulk-empresa-actual-display').textContent = empresaActual;
+    document.getElementById('bulk-empresa-actual').value = empresaActual;
+    document.getElementById('bulk-empresa-nueva').value = empresaActual === 'Independiente' ? '' : empresaActual;
+    const modal = document.getElementById('bulkCompanyEditModal');
+    modal.style.display = 'flex';
+}
+
+function closeBulkEditModal() {
+    document.getElementById('bulkCompanyEditModal').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const editWorkerForm = document.getElementById('editWorkerForm');
+    if (editWorkerForm) {
+        editWorkerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const dni = document.getElementById('edit-worker-dni').value;
+            const nombre = document.getElementById('edit-worker-nombre').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Guardando...';
+
+            try {
+                const response = await fetch('/admin/api/trabajadores/actualizar', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ dni, nombre })
+                });
+                const data = await response.json();
+                if (data.success) { location.reload(); }
+                else { alert(data.message || 'Error al actualizar'); submitBtn.disabled = false; submitBtn.textContent = originalText; }
+            } catch (error) { console.error('Error:', error); alert('Error de conexión'); submitBtn.disabled = false; submitBtn.textContent = originalText; }
+        });
+    }
+
+    const bulkCompanyEditForm = document.getElementById('bulkCompanyEditForm');
+    if (bulkCompanyEditForm) {
+        bulkCompanyEditForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const empresaActual = document.getElementById('bulk-empresa-actual').value;
+            const empresaNueva = document.getElementById('bulk-empresa-nueva').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Actualizando...';
+
+            try {
+                const response = await fetch('/admin/api/empresas/actualizar', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ empresa_actual: empresaActual, empresa_nueva: empresaNueva })
+                });
+                const data = await response.json();
+                if (data.success) { location.reload(); }
+                else { alert(data.message || 'Error al actualizar'); submitBtn.disabled = false; submitBtn.textContent = originalText; }
+            } catch (error) { console.error('Error:', error); alert('Error de conexión'); submitBtn.disabled = false; submitBtn.textContent = originalText; }
+        });
+    }
+});
 </script>
+</div>
+
 <!-- Modal para confirmar eliminación de USUARIO (Cascada) -->
 <div id="deleteUserModal" class="modal hidden">
     <div class="modal-overlay" onclick="closeDeleteUserModal()"></div>
@@ -1244,6 +1506,35 @@ async function executeUserDelete() {
     </div>
 </div>
 
+<!-- Modal para confirmar eliminación de EMPRESA -->
+<div id="deleteCompanyModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeDeleteCompanyModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 style="color: #dc2626;">Eliminar Empresa</h2>
+            <button class="modal-close" onclick="closeDeleteCompanyModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p style="color: #1e293b; font-weight: 700; font-size: 15px; margin-bottom: 8px;">¿Eliminar la empresa <span id="delete-company-name-display"></span>?</p>
+            <div style="background: #fff1f2; border-left: 4px solid #dc2626; padding: 12px; margin-bottom: 15px;">
+                <p style="color: #991b1b; font-size: 12px; font-weight: 600;">
+                    <i class="fas fa-exclamation-triangle"></i> ADVERTENCIA CRÍTICA: Se eliminarán TODOS los trabajadores y certificados asociados a esta empresa de forma definitiva.
+                </p>
+            </div>
+            <p style="color: #64748b; font-size: 12px;">Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-secondary-red" onclick="closeDeleteCompanyModal()">Cancelar</button>
+            <button type="button" class="btn-danger" id="btn-confirm-company-delete" onclick="executeCompanyDelete()" style="background: #dc2626;">Borrar Empresa y Todo su Personal</button>
+        </div>
+    </div>
+</div>
+
 <!-- Worker Edit Modal -->
 <div id="workerEditModal" class="modal" style="display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
     <div class="modal-content" style="background:#fff; padding:24px; border-radius:16px; width:400px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 2px solid #3b82f6;">
@@ -1257,12 +1548,12 @@ async function executeUserDelete() {
             </button>
         </div>
         
-            <form id="editWorkerForm">
-                <input type="hidden" id="edit-worker-dni">
-                <div class="form-group" style="margin-bottom: 24px;">
-                    <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Nombre Completo</label>
-                    <input type="text" id="edit-worker-nombre" name="nombre" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" required>
-                </div>
+        <form id="editWorkerForm">
+            <input type="hidden" id="edit-worker-dni">
+            <div class="form-group" style="margin-bottom: 24px;">
+                <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Nombre Completo</label>
+                <input type="text" id="edit-worker-nombre" name="nombre" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" required>
+            </div>
             
             <div style="display: flex; gap: 12px;">
                 <button type="button" class="btn-secondary-red" onclick="closeEditWorkerModal()" style="flex:1;">Cancelar</button>
@@ -1271,119 +1562,6 @@ async function executeUserDelete() {
         </form>
     </div>
 </div>
-
-<script>
-function openEditWorkerModal(dni, nombre, event) {
-    if (event) event.stopPropagation(); // Evitar que se abra el acordeón
-    
-    document.getElementById('edit-worker-dni').value = dni;
-    document.getElementById('edit-worker-nombre').value = nombre;
-    
-    const modal = document.getElementById('workerEditModal');
-    modal.style.display = 'flex';
-}
-
-function closeEditWorkerModal() {
-    document.getElementById('workerEditModal').style.display = 'none';
-}
-
-document.getElementById('editWorkerForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const dni = document.getElementById('edit-worker-dni').value;
-    const nombre = document.getElementById('edit-worker-nombre').value;
-    
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Guardando...';
-
-    try {
-        const response = await fetch('/api/trabajadores/actualizar', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ dni, nombre })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            location.reload();
-        } else {
-            alert(data.message || 'Error al actualizar');
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error de conexión');
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    }
-});
-
-/* --- Bulk Company Edit Logic --- */
-function openBulkEditModal(empresaActual, event) {
-    if (event) event.stopPropagation();
-    
-    document.getElementById('bulk-empresa-actual-display').textContent = empresaActual;
-    document.getElementById('bulk-empresa-actual').value = empresaActual;
-    document.getElementById('bulk-empresa-nueva').value = empresaActual === 'Independiente' ? '' : empresaActual;
-    
-    const modal = document.getElementById('bulkCompanyEditModal');
-    modal.style.display = 'flex';
-}
-
-function closeBulkEditModal() {
-    document.getElementById('bulkCompanyEditModal').style.display = 'none';
-}
-
-document.getElementById('bulkCompanyEditForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const empresaActual = document.getElementById('bulk-empresa-actual').value;
-    const empresaNueva = document.getElementById('bulk-empresa-nueva').value;
-    
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Actualizando...';
-
-    try {
-        const response = await fetch('/api/empresas/actualizar', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ 
-                empresa_actual: empresaActual, 
-                empresa_nueva: empresaNueva 
-            })
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            location.reload();
-        } else {
-            alert(data.message || 'Error al actualizar');
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error de conexión');
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-    }
-});
-</script>
 
 <!-- Bulk Company Edit Modal -->
 <div id="bulkCompanyEditModal" class="modal" style="display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); align-items:center; justify-content:center;">

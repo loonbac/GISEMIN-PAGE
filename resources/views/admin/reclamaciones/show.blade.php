@@ -207,6 +207,27 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
         border: 1px solid #10b981;
     }
 
+    .btn-delete {
+        padding: 8px 20px;
+        background: transparent;
+        color: #ef4444;
+        border: 1px solid #ef4444;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .btn-delete:hover {
+        background: #fef2f2;
+        color: #dc2626;
+        border-color: #dc2626;
+    }
+
     @media (max-width: 991px) {
         .reclamacion-detail {
             max-width: 100% !important;
@@ -273,6 +294,21 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
             padding: 0 !important;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15) !important;
             border: 1px solid rgba(255,255,255,0.1) !important;
+        }
+
+        .btn-delete {
+            width: 100% !important;
+            height: 46px !important;
+            background: #fef2f2 !important;
+            color: #ef4444 !important;
+            border: 1px solid #fca5a5 !important;
+            border-radius: 12px !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin-top: 10px;
         }
     }
 </style>
@@ -354,7 +390,6 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
 
             <div class="section-divider"></div>
 
-            <h3 class="section-title">Estado</h3>
             <div class="status-section">
                 <div class="status-info">
                     <div class="status-label">Estado Actual:</div>
@@ -363,14 +398,16 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
                     </span>
                 </div>
 
-                @if($reclamacion->estado != 'resuelto')
-                <button id="btnMarkRead" class="btn-mark-read">Marcar como leído</button>
-                @else
-                <div style="font-size: 13px; color: #64748b;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: text-bottom;"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    Marcado como leído
+                <div class="actions" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    @if($reclamacion->estado != 'resuelto')
+                    <button id="btnMarkRead" class="btn-mark-read">Marcar como leído</button>
+                    @endif
+                    
+                    <button id="btnDelete" class="btn-delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                        Eliminar
+                    </button>
                 </div>
-                @endif
             </div>
         </div>
     </div>
@@ -380,10 +417,10 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
 @push('scripts')
 <script>
     const btnMarkRead = document.getElementById('btnMarkRead');
+    const btnDelete = document.getElementById('btnDelete');
+
     if (btnMarkRead) {
         btnMarkRead.addEventListener('click', async function() {
-            // Confirmación eliminada por solicitud del usuario
-            
             try {
                 const response = await fetch('/api/reclamaciones/{{ $reclamacion->id }}/status', {
                     method: 'PUT',
@@ -398,15 +435,32 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
                 });
                 
                 const data = await response.json();
+                if (data.success) location.reload();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    if (btnDelete) {
+        btnDelete.addEventListener('click', async function() {
+            if (!confirm('¿Estás seguro de que deseas eliminar esta reclamación? Esta acción no se puede deshacer.')) return;
+
+            try {
+                const response = await fetch('/api/reclamaciones/{{ $reclamacion->id }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                });
                 
+                const data = await response.json();
                 if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error al actualizar el estado');
+                    window.location.href = "{{ route('admin.reclamaciones.index') }}";
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('Error al actualizar el estado');
             }
         });
     }
