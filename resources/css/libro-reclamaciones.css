@@ -355,7 +355,7 @@ textarea {
     }
 
     .form-content {
-        padding: 24px;
+        padding: 16px;
     }
 
     .book-header {
@@ -384,8 +384,22 @@ textarea {
         grid-template-columns: 1fr;
     }
 
+    .complaint-form {
+        gap: 16px;
+    }
+
+    .form-section {
+        gap: 12px;
+    }
+
+    .success-banner {
+        margin-bottom: 0;
+    }
+
     .form-actions {
         flex-direction: column-reverse;
+        padding-top: 8px;
+        margin-top: 4px;
     }
 
     .btn-cancel,
