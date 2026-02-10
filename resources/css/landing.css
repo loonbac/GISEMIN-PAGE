@@ -390,7 +390,7 @@ ul {
 .mobile-menu-toggle {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
@@ -1969,7 +1969,7 @@ ul {
     }
 
     .mobile-menu-toggle.active span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
+        transform: translateY(8px) rotate(45deg);
     }
 
     .mobile-menu-toggle.active span:nth-child(2) {
@@ -1978,7 +1978,7 @@ ul {
     }
 
     .mobile-menu-toggle.active span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
+        transform: translateY(-8px) rotate(-45deg);
     }
 
     /* --- Hero --- */
