@@ -44,32 +44,117 @@
             opacity: 0.8;
         }
 
-        .table-wrapper {
-            margin: 0 -8px; /* Slightly less aggressive pull */
-            border-radius: 0;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        /* Transform table to cards */
+        .certificates-table thead {
+            display: none;
         }
 
-        .certificates-table {
-            min-width: 400px;
-            font-size: 11px;
-        }
-
-        .certificates-table th,
+        .certificates-table, 
+        .certificates-table tbody, 
+        .certificates-table tr, 
         .certificates-table td {
-            padding: 6px 10px !important;
-            line-height: 1.2 !important;
+            display: block;
+            width: 100%;
+            border: none !important;
+        }
+
+        .certificates-table tr {
+            background: white;
+            border: 1px solid #f1f5f9 !important;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            padding: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            position: relative;
+        }
+
+        .certificates-table td {
+            padding: 0 !important;
+            margin-bottom: 8px;
+            text-align: left !important;
+        }
+
+        .certificates-table td:last-child {
+            margin-bottom: 0;
+            margin-top: 14px;
+            padding-top: 12px !important;
+            border-top: 1px solid #f1f5f9 !important;
+        }
+
+        /* Custom styles for card contents */
+        .curso-name {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: #1e293b !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+        }
+
+        .curso-name::before {
+            content: "";
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%233b82f6' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' /%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .cantidad {
+            font-size: 13px !important;
+            font-weight: 600 !important;
+            color: #64748b !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .cantidad::before {
+            content: "Trabajadores:";
+            font-weight: 700;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cantidad::after {
+            content: "";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238b5cf6' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z' /%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            order: -1;
         }
 
         .action-buttons {
-            gap: 2px !important;
+            justify-content: flex-start !important;
+            gap: 10px !important;
         }
 
         .btn-action {
-            padding: 4px 6px !important;
-            font-size: 9px !important;
-            gap: 3px !important;
+            flex: 1;
+            padding: 10px !important;
+            font-size: 12px !important;
+            justify-content: center !important;
+            border-radius: 8px !important;
+        }
+
+        .btn-edit {
+            background: #eff6ff !important;
+            color: #2563eb !important;
+            border: 1px solid #dbeafe !important;
+        }
+
+        .btn-delete {
+            background: #fef2f2 !important;
+            color: #dc2626 !important;
+            border: 1px solid #fee2e2 !important;
         }
 
         .modal-content {
