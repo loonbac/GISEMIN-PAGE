@@ -1586,7 +1586,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <input type="hidden" id="edit-worker-dni">
             <div class="form-group" style="margin-bottom: 24px;">
                 <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Nombre Completo</label>
-                <input type="text" id="edit-worker-nombre" name="nombre" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" required>
+                <input type="text" id="edit-worker-nombre" name="nombre" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" required oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]/g, '').toUpperCase()">
             </div>
             
             <div style="display: flex; gap: 12px;">
