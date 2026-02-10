@@ -407,6 +407,126 @@
         text-transform: uppercase !important;
         letter-spacing: 0.5px !important;
     }
+
+    /* Responsive Improvements */
+    @media (max-width: 992px) {
+        .stats-summary {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .admin-wrapper {
+            padding: 0;
+        }
+
+        .admin-container {
+            padding: 16px 12px !important;
+        }
+
+        .stats-summary {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .company-header-toggle {
+            padding: 12px 14px;
+        }
+
+        .company-header-toggle h2 {
+            font-size: 12px;
+            flex-wrap: wrap;
+        }
+
+        .user-header {
+            grid-template-columns: 40px 1fr 40px; /* Avatar, Name/DNI/Stats, Chevron */
+            grid-template-rows: auto;
+            height: auto !important;
+            padding: 12px 14px;
+            gap: 12px;
+        }
+
+        .user-header > div {
+            height: auto !important;
+        }
+
+        .user-col-name {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 4px;
+        }
+
+        .user-col-dni {
+            order: 2;
+            width: 100%;
+        }
+
+        .user-stats {
+            order: 3;
+            width: 100%;
+            margin-top: 4px !important;
+        }
+
+        /* Group Name, DNI and Stats in the center column */
+        .user-col-name {
+            grid-column: 2;
+        }
+
+        .user-col-dni, .user-stats, .user-col-icon, .user-col-delete {
+            display: none !important; /* Hide individual columns to favor layout in name col or separate row */
+        }
+        
+        /* Revised Mobile User Header */
+        .user-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .user-col-avatar {
+            margin-right: 12px;
+        }
+
+        .user-info-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 0;
+        }
+
+        .user-stats-mobile {
+            display: flex;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .user-col-icon {
+            display: flex !important;
+            margin-left: auto;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-summary .stat-card {
+            padding: 0 12px;
+        }
+
+        .stat-badge {
+            padding: 3px 6px;
+            font-size: 8px;
+        }
+
+        .user-name {
+            font-size: 13px;
+        }
+    }
 </style>
 @endpush
 
@@ -523,25 +643,34 @@
                                     </div>
                                 </div>
 
-                                <!-- Col 2: Name -->
-                                <div class="user-col-name">
-                                    <div style="display: flex; flex-direction: column;">
-                                        <div style="display: flex; align-items: center; gap: 10px;">
-                                            <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
-                                            <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                                            </button>
-                                        </div>
+                                <!-- Center Info (Mobile Layout) -->
+                                <div class="user-info-main">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
+                                        <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Visible on Mobile only via CSS or as secondary info -->
+                                    <div class="user-stats-mobile">
+                                        <span class="user-dni" style="padding: 2px 6px;">{{ $usuario['dni'] }}</span>
+                                        @if($usuario['vigentes_count'] > 0)
+                                            <span class="stat-badge vigente" style="margin: 0; padding: 2px 6px;">{{ $usuario['vigentes_count'] }} V</span>
+                                        @endif
+                                        @if($usuario['expirados_count'] > 0)
+                                            <span class="stat-badge expirado" style="margin: 0; padding: 2px 6px;">{{ $usuario['expirados_count'] }} E</span>
+                                        @endif
                                     </div>
                                 </div>
 
-                                <!-- Col 3: DNI -->
+                                <!-- Col 3: DNI (Desktop Only) -->
                                 <div class="user-col-dni">
                                     <span class="user-dni">DNI: {{ $usuario['dni'] }}</span>
                                 </div>
 
-                                <!-- Col 4: Dual Status Badges -->
-                                <div class="user-stats" style="display: flex; align-items: center; gap: 8px;">
+                                <!-- Col 4: Dual Status Badges (Desktop Only) -->
+                                <div class="user-stats">
                                     @if($usuario['vigentes_count'] > 0)
                                         <span class="stat-badge vigente" style="margin: 0;">{{ $usuario['vigentes_count'] }} Vigente(s)</span>
                                     @endif
@@ -550,7 +679,7 @@
                                     @endif
                                 </div>
 
-                                <!-- Col 5: Trash (Cascade Delete) -->
+                                <!-- Col 5: Trash (Desktop Only) -->
                                 <div class="user-col-delete">
                                     <button class="btn-user-delete" title="Eliminar Usuario y Certificados" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
                                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -568,66 +697,68 @@
                                 </div>
                             </div>
                             <div class="user-content">
-                                <table class="cert-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Curso</th>
-                                            <th>Fecha Emisión</th>
-                                            <th>Estado</th>
-                                            <th>Link</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse($usuario['certificados'] as $cert)
-                                        @php
-                                            $now = now()->setTimezone('America/Lima')->format('Y-m-d');
-                                            $esVigente = $cert->fecha_vencimiento >= $now;
-                                        @endphp
-                                        <tr id="cert-row-{{ $cert->id }}">
-                                            <td>{{ $cert->curso }}</td>
-                                            <td>{{ $cert->fecha_emision->format('d/m/Y') }}</td>
-                                            <td>
-                                                @if($esVigente)
-                                                    <span class="status-vigente">Vigente</span>
-                                                @else
-                                                    <span class="status-expirado">Expirado</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if($cert->drive_link)
-                                                    <a href="{{ $cert->drive_link }}" target="_blank" class="btn-view-drive">Ver Drive</a>
-                                                @else
-                                                    <span style="color: #999;">-</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <div class="action-buttons">
-                                                    <button class="btn-action btn-edit" onclick="openEditModal({{ $cert->id }})">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                                        </svg>
-                                                        Editar
-                                                    </button>
-                                                    <button class="btn-action btn-delete" onclick="confirmDelete({{ $cert->id }})">
-                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="6" style="text-align: center; padding: 20px; color: #64748b;">
-                                                Este usuario no tiene certificados registrados.
-                                            </td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="cert-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Curso</th>
+                                                <th>Fecha Emisión</th>
+                                                <th>Estado</th>
+                                                <th>Link</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($usuario['certificados'] as $cert)
+                                            @php
+                                                $now = now()->setTimezone('America/Lima')->format('Y-m-d');
+                                                $esVigente = $cert->fecha_vencimiento >= $now;
+                                            @endphp
+                                            <tr id="cert-row-{{ $cert->id }}">
+                                                <td>{{ $cert->curso }}</td>
+                                                <td>{{ $cert->fecha_emision->format('d/m/Y') }}</td>
+                                                <td>
+                                                    @if($esVigente)
+                                                        <span class="status-vigente">Vigente</span>
+                                                    @else
+                                                        <span class="status-expirado">Expirado</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($cert->drive_link)
+                                                        <a href="{{ $cert->drive_link }}" target="_blank" class="btn-view-drive">Ver Drive</a>
+                                                    @else
+                                                        <span style="color: #999;">-</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <div class="action-buttons">
+                                                        <button class="btn-action btn-edit" onclick="openEditModal({{ $cert->id }})">
+                                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                            </svg>
+                                                            Editar
+                                                        </button>
+                                                        <button class="btn-action btn-delete" onclick="confirmDelete({{ $cert->id }})">
+                                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="6" style="text-align: center; padding: 20px; color: #64748b;">
+                                                    Este usuario no tiene certificados registrados.
+                                                </td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                             @endforeach
