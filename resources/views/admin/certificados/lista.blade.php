@@ -526,7 +526,22 @@
 
     @media (max-width: 576px) {
         .stats-summary {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .stat-card:last-child {
+            grid-column: 1 / -1;
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        .stats-summary .stat-number {
+            font-size: 16px !important;
+        }
+
+        .stats-summary .stat-label {
+            font-size: 10px !important;
         }
     }
 </style>
