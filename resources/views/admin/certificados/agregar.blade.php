@@ -45,7 +45,7 @@
                     <div class="search-section" style="margin-bottom: 0;">
                         <h3 style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748b; margin-bottom: 12px; letter-spacing: 0.5px;">Buscar por DNI</h3>
                         <div class="search-input-group">
-                            <input type="text" id="dni-search" placeholder="Ingresa el DNI" autocomplete="off" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <input type="text" id="dni-search" placeholder="Ingresa el DNI" autocomplete="off" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9">
                             <button id="btn-buscar" class="btn-search-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M10 2a8 8 0 0 1 6.32 12.9l4.39 4.38a1 1 0 0 1-1.42 1.42l-4.38-4.39A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
                             </button>
@@ -114,7 +114,7 @@
                         <h3 style="color: #92400e; font-weight: 800; font-size: 14px; margin: 0 0 2px;">¡DNI no encontrado!</h3>
                         <div style="background: white; padding: 6px; border-radius: 8px; border: 1px solid #fbbf24; margin-bottom: 8px; box-shadow: 0 2px 4px rgba(245, 158, 11, 0.05);">
                             <p style="font-size: 8px; color: #b45309; text-transform: uppercase; margin-bottom: 0; font-weight: 800; letter-spacing: 0.5px;">DNI PARA REGISTRO</p>
-                            <input type="text" id="reg-dni-edit" style="width: 100%; border: none; text-align: center; font-size: 18px; font-weight: 900; color: #92400e; letter-spacing: 0px; padding: 0; background: transparent; outline: none;" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            <input type="text" id="reg-dni-edit" style="width: 100%; border: none; text-align: center; font-size: 18px; font-weight: 900; color: #92400e; letter-spacing: 0px; padding: 0; background: transparent; outline: none;" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9">
                         </div>
                         <p style="font-size: 11px; color: #92400e; line-height: 1.3; font-weight: 500; margin: 0;">Verifica el DNI e ingresa el nombre y empresa.</p>
                     </div>

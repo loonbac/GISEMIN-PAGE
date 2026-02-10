@@ -108,6 +108,7 @@
                         class="search-input" 
                         placeholder="DNI del trabajador..."
                         autocomplete="off"
+                        maxlength="9"
                     >
                     <button id="searchBtn" class="search-btn">
                         <span>Buscar</span>
