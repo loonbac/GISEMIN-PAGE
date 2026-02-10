@@ -399,10 +399,12 @@
                             </svg>
                             {{ $empresa }}
                             <span style="background: #f1f5f9; color: #64748b; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
+                            @if($empresa !== 'INDEPENDIENTE')
                             <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; text-transform: none;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                 Editar Empresa
                             </button>
+                            @endif
                         </h2>
                         
                         @foreach($grupo as $usuario)
@@ -416,14 +418,17 @@
                                     </div>
                                 </div>
 
+                                <!-- Col 2: Name -->
+                                <div class="user-col-name">
                                     <div style="display: flex; flex-direction: column;">
                                         <div style="display: flex; align-items: center; gap: 10px;">
                                             <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
-                                            <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', '{{ addslashes($usuario['empresa'] ?? '') }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
+                                            <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                             </button>
                                         </div>
                                     </div>
+                                </div>
 
                                 <!-- Col 3: DNI -->
                                 <div class="user-col-dni">
@@ -431,12 +436,12 @@
                                 </div>
 
                                 <!-- Col 4: Dual Status Badges -->
-                                <div class="user-stats">
+                                <div class="user-stats" style="display: flex; align-items: center; gap: 8px;">
                                     @if($usuario['vigentes_count'] > 0)
-                                        <span class="stat-badge vigente">{{ $usuario['vigentes_count'] }} Vigente(s)</span>
+                                        <span class="stat-badge vigente" style="margin: 0;">{{ $usuario['vigentes_count'] }} Vigente(s)</span>
                                     @endif
                                     @if($usuario['expirados_count'] > 0)
-                                        <span class="stat-badge expirado">{{ $usuario['expirados_count'] }} Expirado(s)</span>
+                                        <span class="stat-badge expirado" style="margin: 0;">{{ $usuario['expirados_count'] }} Expirado(s)</span>
                                     @endif
                                 </div>
 
@@ -972,16 +977,12 @@ async function executeUserDelete() {
             </button>
         </div>
         
-        <form id="editWorkerForm">
-            <input type="hidden" id="edit-worker-dni">
-            <div class="form-group" style="margin-bottom: 16px;">
-                <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Nombre Completo</label>
-                <input type="text" id="edit-worker-nombre" name="nombre" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" required>
-            </div>
-            <div class="form-group" style="margin-bottom: 24px;">
-                <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Empresa</label>
-                <input type="text" id="edit-worker-empresa" name="empresa" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" placeholder="Independiente">
-            </div>
+            <form id="editWorkerForm">
+                <input type="hidden" id="edit-worker-dni">
+                <div class="form-group" style="margin-bottom: 24px;">
+                    <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Nombre Completo</label>
+                    <input type="text" id="edit-worker-nombre" name="nombre" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" required>
+                </div>
             
             <div style="display: flex; gap: 12px;">
                 <button type="button" class="btn-secondary" onclick="closeEditWorkerModal()" style="flex:1; border: 2px solid #e2e8f0; background: #f8fafc; color: #64748b; padding:10px; border-radius:10px; cursor:pointer;">Cancelar</button>
@@ -992,12 +993,11 @@ async function executeUserDelete() {
 </div>
 
 <script>
-function openEditWorkerModal(dni, nombre, empresa, event) {
+function openEditWorkerModal(dni, nombre, event) {
     if (event) event.stopPropagation(); // Evitar que se abra el acordeón
     
     document.getElementById('edit-worker-dni').value = dni;
     document.getElementById('edit-worker-nombre').value = nombre;
-    document.getElementById('edit-worker-empresa').value = (empresa && empresa !== 'Independiente') ? empresa : '';
     
     const modal = document.getElementById('workerEditModal');
     modal.style.display = 'flex';
@@ -1012,7 +1012,6 @@ document.getElementById('editWorkerForm').addEventListener('submit', async funct
     
     const dni = document.getElementById('edit-worker-dni').value;
     const nombre = document.getElementById('edit-worker-nombre').value;
-    const empresa = document.getElementById('edit-worker-empresa').value;
     
     const submitBtn = this.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
@@ -1027,7 +1026,7 @@ document.getElementById('editWorkerForm').addEventListener('submit', async funct
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({ dni, nombre, empresa })
+            body: JSON.stringify({ dni, nombre })
         });
 
         const data = await response.json();

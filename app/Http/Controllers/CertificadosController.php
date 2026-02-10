@@ -360,7 +360,7 @@ class CertificadosController extends Controller
         
         // Agrupar por empresa
         $usuariosPorEmpresa = $usuarios->groupBy(function($u) {
-            return $u['empresa'] ?: 'Independiente';
+            return strtoupper($u['empresa'] ?: 'Independiente');
         })->sortKeys();
 
         return view('admin.certificados.lista', [
@@ -910,14 +910,12 @@ class CertificadosController extends Controller
             $validated = $request->validate([
                 'dni' => 'required|string|exists:trabajadores,dni',
                 'nombre' => 'required|string|max:255',
-                'empresa' => 'nullable|string|max:255',
             ]);
 
             $trabajador = Trabajador::where('dni', $validated['dni'])->firstOrFail();
             
             $trabajador->update([
                 'nombre' => strtoupper($validated['nombre']),
-                'empresa' => $validated['empresa'] ? strtoupper($validated['empresa']) : null,
             ]);
 
             return response()->json([
