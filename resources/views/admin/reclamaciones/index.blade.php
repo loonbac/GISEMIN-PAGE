@@ -397,8 +397,8 @@
 
         /* === MOBILE CARD DESIGN === */
         .reclamacion-row {
-            display: flex !important;
-            flex-wrap: wrap !important;
+            display: flex;
+            flex-wrap: wrap;
             height: auto !important;
             background: white !important;
             border: 1px solid #e8ecf1 !important;
@@ -409,8 +409,12 @@
             margin-bottom: 14px !important;
             box-sizing: border-box !important;
             max-width: 100% !important;
-            overflow: visible !important;
+            overflow: hidden !important;
             width: 100% !important;
+        }
+
+        .reclamacion-hidden {
+            display: none !important;
         }
 
         /* Reset all td styles */
@@ -746,9 +750,9 @@
         // Simple Layout Toggle
         allRows.forEach(row => {
             if(status === 'all' || row.getAttribute('data-status') === status) {
-                row.style.display = ''; 
+                row.classList.remove('reclamacion-hidden');
             } else {
-                row.style.display = 'none'; 
+                row.classList.add('reclamacion-hidden');
             }
         });
     }
