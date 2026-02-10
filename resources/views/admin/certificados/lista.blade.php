@@ -308,8 +308,8 @@
         background: #fee2e2;
         color: #dc2626;
         border: 1px solid #fecaca;
-        padding: 8px;
-        border-radius: 10px;
+        padding: 5px;
+        border-radius: 6px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -325,8 +325,8 @@
     }
     
     .btn-user-delete svg {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
     }
 
     .user-header-actions {
