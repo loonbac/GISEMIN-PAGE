@@ -413,6 +413,7 @@
 @section('content')
 <div class="admin-wrapper">
     <!-- Admin Navbar -->
+    <!-- Admin Navbar -->
     <nav class="admin-navbar">
         <div class="admin-nav-container">
             <a href="{{ route('home') }}" class="admin-logo">
