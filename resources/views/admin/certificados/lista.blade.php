@@ -218,8 +218,8 @@
     }
 
     .cert-table th {
-        text-align: left;
-        padding: 8px 12px;
+        text-align: center;
+        padding: 10px 12px;
         background: transparent;
         font-size: 11px;
         font-weight: 700;
@@ -229,10 +229,11 @@
     }
 
     .cert-table td {
-        padding: 10px 12px;
+        padding: 12px;
         border-bottom: 1px solid #f1f5f9;
         font-size: 13px;
         color: #334155;
+        text-align: center;
     }
 
     .cert-table tr:last-child td {
@@ -661,20 +662,22 @@
 
                                 <!-- Center Info (Adaptive Layout) -->
                                 <div class="user-info-main">
-                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                    <!-- Row 1: Name, DNI, Edit -->
+                                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                                         <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
-                                        <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 3px; border-radius: 4px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
+                                        <span class="user-dni" style="padding: 2px 6px; font-size: 10px;">{{ $usuario['dni'] }}</span>
+                                        <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                         </button>
                                     </div>
                                     
-                                    <div class="user-stats-mobile">
-                                        <span class="user-dni">{{ $usuario['dni'] }}</span>
+                                    <!-- Row 2: Status Badges -->
+                                    <div class="user-stats-mobile" style="display: flex; gap: 6px; margin-top: 2px;">
                                         @if($usuario['vigentes_count'] > 0)
-                                            <span class="stat-badge vigente">{{ $usuario['vigentes_count'] }} V</span>
+                                            <span class="stat-badge vigente" style="padding: 2px 8px; font-size: 9px;">{{ $usuario['vigentes_count'] }} VIGENTE(S)</span>
                                         @endif
                                         @if($usuario['expirados_count'] > 0)
-                                            <span class="stat-badge expirado">{{ $usuario['expirados_count'] }} E</span>
+                                            <span class="stat-badge expirado" style="padding: 2px 8px; font-size: 9px;">{{ $usuario['expirados_count'] }} EXPIRADO(S)</span>
                                         @endif
                                     </div>
                                 </div>
