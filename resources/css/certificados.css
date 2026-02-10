@@ -2501,66 +2501,93 @@ body {
 /* Responsivo para las nuevas tarjetas */
 @media (max-width: 640px) {
     .user-header {
-        flex-direction: row;
+        display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 12px;
         padding: 16px;
     }
 
     .user-avatar {
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1.1rem;
         border-radius: 12px;
+        flex-shrink: 0;
+    }
+
+    .user-main-info {
+        flex: 1;
+        min-width: 0;
     }
 
     .user-name {
         font-size: 1.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .user-dni {
         font-size: 0.8rem;
+        gap: 6px;
     }
 
     .user-badge {
         font-size: 0.75rem;
-        padding: 5px 10px;
-        margin-top: 0;
-    }
-
-    .cert-item {
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
-        padding: 14px 0;
-    }
-
-    .cert-title {
-        font-size: 1rem;
-        margin-bottom: 4px;
-    }
-
-    .cert-meta {
-        flex-direction: row;
-        gap: 12px;
-        font-size: 0.8rem;
-    }
-
-    .cert-date-large {
-        font-size: 0.9rem;
-    }
-
-    .cert-actions {
-        margin-left: auto;
-    }
-
-    .btn-cert-view {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-        gap: 6px;
+        padding: 5px 12px;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        order: 3;
     }
 
     .user-certs-list {
         padding: 0 16px;
+    }
+
+    .cert-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 14px 0;
+    }
+
+    .cert-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .cert-title {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+        line-height: 1.3;
+    }
+
+    .cert-meta {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .cert-date-large {
+        font-size: 0.85rem;
+    }
+
+    .cert-actions {
+        margin-left: 0;
+        flex-shrink: 0;
+    }
+
+    .btn-cert-view {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        gap: 4px;
+    }
+
+    .no-link {
+        font-size: 0.75rem;
     }
 }
