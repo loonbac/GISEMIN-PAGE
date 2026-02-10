@@ -5,13 +5,15 @@
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const navMenu = document.getElementById('navMenu');
 
-mobileMenuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileMenuToggle.classList.toggle('active');
-    const isOpen = navMenu.classList.contains('active');
-    mobileMenuToggle.setAttribute('aria-expanded', isOpen);
-    mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
-});
+if (mobileMenuToggle && navMenu) {
+    mobileMenuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+        const isOpen = navMenu.classList.contains('active');
+        mobileMenuToggle.setAttribute('aria-expanded', isOpen);
+        mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+    });
+}
 
 // Close mobile menu when clicking on a link
 const navLinks = document.querySelectorAll('.nav-menu a');
@@ -111,12 +113,14 @@ window.addEventListener('scroll', () => {
     }
 });
 
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-});
+}
 
 // ========================================
 // Scroll Animations - DISABLED
@@ -136,23 +140,25 @@ scrollToTopBtn.addEventListener('click', () => {
 
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    // Get form data
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
+        // Get form data
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
 
-    // Simulate form submission
-    // In a real application, you would send this data to a server
-    console.log('Form submitted:', data);
+        // Simulate form submission
+        // In a real application, you would send this data to a server
+        console.log('Form submitted:', data);
 
-    // Show success message
-    showNotification('¡Gracias por contactarnos! Nos pondremos en contacto pronto.', 'success');
+        // Show success message
+        showNotification('¡Gracias por contactarnos! Nos pondremos en contacto pronto.', 'success');
 
-    // Reset form
-    contactForm.reset();
-});
+        // Reset form
+        contactForm.reset();
+    });
+}
 
 // ========================================
 // Notification System
