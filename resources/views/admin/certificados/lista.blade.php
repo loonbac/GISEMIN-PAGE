@@ -74,14 +74,14 @@
 
     .user-header {
         display: grid;
-        grid-template-columns: 50px 1fr 110px 1fr 80px; /* Redefined 5 columns for balance */
+        grid-template-columns: 40px 1fr 110px 1fr 80px;
         align-items: stretch;
         padding: 0 16px;
         cursor: pointer;
         user-select: none;
         transition: background 0.2s;
         height: 52px;
-        gap: 16px; /* Controlled gap */
+        gap: 10px;
     }
 
     .user-header:hover {
@@ -106,9 +106,9 @@
     @media (min-width: 992px) {
         .user-header {
             display: grid !important;
-            grid-template-columns: 50px 1fr 110px 1fr 80px !important;
+            grid-template-columns: 40px 1fr 110px 1fr 80px !important;
             grid-template-areas: "avatar name dni stats actions" !important;
-            gap: 16px !important;
+            gap: 10px !important;
             align-items: center !important;
             height: 52px !important;
         }
