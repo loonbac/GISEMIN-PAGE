@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Verifique certificados de trabajadores capacitados por GISEMIN Consultores. Busqueda por DNI, nombre o codigo del certificado.">
+    <meta name="description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#0F5F8C">
     <link rel="canonical" href="https://www.gisemin.com/certificados">
@@ -12,15 +12,17 @@
     <meta property="og:site_name" content="GISEMIN Consultores">
     <meta property="og:url" content="https://www.gisemin.com/certificados">
     <meta property="og:title" content="Verificar Certificados - GISEMIN Consultores">
-    <meta property="og:description" content="Verifique certificados por DNI, nombre o codigo. Consulte validez y vigencia en linea.">
+    <meta property="og:description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
     <meta property="og:image" content="https://www.gisemin.com/images/logo.svg">
     <meta property="og:locale" content="es_PE">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Verificar Certificados - GISEMIN Consultores">
-    <meta name="twitter:description" content="Verifique certificados por DNI, nombre o codigo. Consulte validez y vigencia en linea.">
+    <meta name="twitter:description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
     <meta name="twitter:image" content="https://www.gisemin.com/images/logo.svg">
     <title>Verificar Certificados - GISEMIN Consultores</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}">
     @vite(['resources/css/certificados.css', 'resources/js/certificados.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

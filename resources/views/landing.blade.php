@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
-    <meta name="description" content="GISEMIN Consultores: Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementación ISO 9001, 14001, 45001 en Perú.">
+    <meta name="description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <meta name="theme-color" content="#0F5F8C">
     <link rel="canonical" href="https://www.gisemin.com/">
@@ -12,15 +12,17 @@
     <meta property="og:site_name" content="GISEMIN Consultores">
     <meta property="og:url" content="https://www.gisemin.com/">
     <meta property="og:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
-    <meta property="og:description" content="Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementacion ISO 9001, 14001, 45001.">
+    <meta property="og:description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
     <meta property="og:image" content="https://www.gisemin.com/images/logo.svg">
     <meta property="og:locale" content="es_PE">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO">
-    <meta name="twitter:description" content="Seguridad y Salud Ocupacional, Calidad, Medio Ambiente y Responsabilidad Social. Implementacion ISO 9001, 14001, 45001.">
+    <meta name="twitter:description" content="Su socio estratégico de alto nivel, expertos en blindar y potenciar operaciones mediante una gestión integral que fusiona Seguridad, Salud, Calidad, Medio Ambiente y Responsabilidad Social.">
     <meta name="twitter:image" content="https://www.gisemin.com/images/logo.svg">
     <title>GISEMIN Consultores - Consultoria Integral en Sistemas de Gestion ISO</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo.svg') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo.svg') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}">
     @vite(['resources/css/landing.css', 'resources/js/landing.js', 'resources/js/services-rotation.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
