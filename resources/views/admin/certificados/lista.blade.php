@@ -347,6 +347,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: 8px;
     }
 
     .btn-edit-inline:hover {
