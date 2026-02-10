@@ -207,25 +207,60 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
         border: 1px solid #10b981;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 991px) {
         .reclamacion-detail {
-            padding: 20px;
+            max-width: 100% !important;
+            padding: 12px 10px !important;
+        }
+
+        .detail-header {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 4px !important;
+        }
+
+        .detail-header h1 {
+            font-size: 16px !important;
+        }
+
+        .detail-body {
+            padding: 16px !important;
+        }
+
+        .section-title {
+            font-size: 14px !important;
+            margin-bottom: 10px !important;
         }
 
         .info-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
+        }
+
+        .info-value {
+            font-size: 14px !important;
+        }
+
+        .info-value.large {
+            padding: 10px !important;
         }
 
         .status-section {
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
-            text-align: center;
+            flex-direction: column !important;
+            border-radius: 12px !important;
+            padding: 16px !important;
+            gap: 16px !important;
         }
 
         .status-info {
-            flex-direction: column;
-            gap: 12px;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .btn-mark-read {
+            width: 100% !important;
+            justify-content: center !important;
         }
     }
 </style>

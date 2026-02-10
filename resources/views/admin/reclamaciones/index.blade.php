@@ -273,11 +273,157 @@
         .stats-grid { flex-wrap: wrap; }
         .stat-card { min-width: 45%; }
     }
-    @media (max-width: 768px) {
-        .reclamaciones-container { padding: 16px; }
-        .stats-grid { flex-direction: column; }
-        .stat-card { width: 100%; }
-        .tabs-container { overflow-x: auto; white-space: nowrap; }
+
+    @media (max-width: 991px) {
+        .reclamaciones-container {
+            padding: 12px 8px !important;
+            zoom: 1 !important; /* Reset zoom on mobile */
+        }
+
+        .page-header {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 4px !important;
+        }
+
+        .page-title {
+            font-size: 20px !important;
+        }
+
+        .page-subtitle {
+            margin-left: 0 !important;
+            font-size: 12px !important;
+        }
+
+        .stats-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+        }
+
+        .stat-card {
+            min-width: 0 !important;
+            width: 100% !important;
+            padding: 0 10px !important;
+            height: 44px !important;
+        }
+
+        .stat-num-box {
+            font-size: 24px !important;
+        }
+
+        .stat-label {
+            font-size: 13px !important;
+        }
+
+        .stat-card.total {
+            grid-column: 1 / -1;
+        }
+
+        .tabs-container {
+            display: flex !important;
+            width: 100% !important;
+            overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px !important;
+        }
+
+        .tab-btn {
+            flex: 1 !important;
+            min-width: 100px !important;
+            font-size: 14px !important;
+            height: 32px !important;
+        }
+
+        /* Card Layout for Table */
+        .table-container {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        table {
+            display: block !important;
+            width: 100% !important;
+        }
+
+        thead {
+            display: none !important;
+        }
+
+        tbody {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+        }
+
+        .reclamacion-row {
+            display: block !important;
+            height: auto !important;
+            background: white !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 16px !important;
+            position: relative !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+        }
+
+        td {
+            display: block !important;
+            padding: 0 !important;
+            border: none !important;
+            margin-bottom: 8px !important;
+            white-space: normal !important;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        td:first-child {
+            padding-left: 0 !important;
+            box-shadow: none !important;
+            margin-bottom: 12px !important;
+        }
+
+        .id-cell {
+            background: #f1f5f9;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .reclamacion-id {
+            font-weight: 800;
+            color: #475569;
+            font-size: 13px;
+        }
+
+        /* Field labels for mobile cards */
+        td:nth-child(2)::before { content: "Fecha: "; font-weight: 700; color: #64748b; font-size: 12px; }
+        td:nth-child(3) { font-weight: 700; color: #1e293b; font-size: 16px !important; margin-bottom: 4px !important; }
+        td:nth-child(4)::before { content: "DNI: "; font-weight: 700; color: #64748b; font-size: 12px; }
+
+        td:last-child {
+            margin-bottom: 0 !important;
+            margin-top: 14px !important;
+            padding-top: 12px !important;
+            border-top: 1px solid #f1f5f9 !important;
+            text-align: center !important;
+        }
+
+        .btn-view {
+            width: 100% !important;
+            height: 38px !important;
+            box-shadow: none !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-grid {
+            grid-template-columns: 1fr !important;
+        }
+        .stat-card.total {
+            grid-column: auto;
+        }
     }
 </style>
 @endpush
