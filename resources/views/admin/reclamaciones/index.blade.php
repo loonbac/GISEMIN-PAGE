@@ -409,7 +409,8 @@
             margin-bottom: 14px !important;
             box-sizing: border-box !important;
             max-width: 100% !important;
-            overflow: hidden !important;
+            overflow: visible !important;
+            width: 100% !important;
         }
 
         /* Reset all td styles */
@@ -531,6 +532,7 @@
             display: flex !important;
             gap: 8px !important;
             align-items: center !important;
+            width: 100% !important;
         }
 
         .btn-view {
