@@ -267,48 +267,70 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
         }
 
         .status-section {
-            flex-direction: column !important;
+            flex-direction: row !important;
             border-radius: 12px !important;
-            padding: 16px !important;
-            gap: 16px !important;
+            padding: 12px 16px !important;
+            gap: 10px !important;
+            flex-wrap: wrap !important;
         }
 
         .status-info {
-            flex-direction: column !important;
+            flex-direction: row !important;
             align-items: center !important;
             gap: 8px !important;
         }
 
-        .btn-mark-read {
+        .status-label {
+            font-size: 11px !important;
+        }
+
+        .actions {
             width: 100% !important;
-            height: 46px !important;
+            flex-direction: row !important;
+            gap: 8px !important;
+        }
+
+        .btn-mark-read {
+            flex: 1 !important;
+            height: 38px !important;
             background: #2563eb !important;
             color: white !important;
-            border-radius: 12px !important;
-            font-size: 16px !important;
+            border-radius: 10px !important;
+            font-size: 13px !important;
             font-weight: 700 !important;
-            letter-spacing: 0.5px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             padding: 0 !important;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15) !important;
-            border: 1px solid rgba(255,255,255,0.1) !important;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15) !important;
+            border: none !important;
+        }
+
+        /* Delete button as a compact trash icon on mobile */
+        .btn-delete-header {
+            display: flex !important;
         }
 
         .btn-delete {
-            width: 100% !important;
-            height: 46px !important;
-            background: #fef2f2 !important;
+            width: 38px !important;
+            height: 38px !important;
+            min-width: 38px !important;
+            background: #fee2e2 !important;
             color: #ef4444 !important;
-            border: 1px solid #fca5a5 !important;
-            border-radius: 12px !important;
-            font-size: 16px !important;
-            font-weight: 700 !important;
+            border: 1px solid #fecaca !important;
+            border-radius: 10px !important;
+            font-size: 0 !important;
+            padding: 0 !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            margin-top: 10px;
+            margin-top: 0 !important;
+            gap: 0 !important;
+        }
+
+        .btn-delete svg {
+            width: 16px !important;
+            height: 16px !important;
         }
     }
 </style>
@@ -344,7 +366,9 @@ Reclamación #{{ $reclamacion->id }} - GISEMIN Admin
     <div class="detail-card">
         <div class="detail-header">
             <h1>Reclamación #{{ $reclamacion->id }}</h1>
-            <span class="date">{{ $reclamacion->created_at->format('d/m/Y H:i') }}</span>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span class="date">{{ $reclamacion->created_at->format('d/m/Y H:i') }}</span>
+            </div>
         </div>
 
         <div class="detail-body">
