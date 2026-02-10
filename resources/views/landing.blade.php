@@ -136,8 +136,8 @@
                                     </svg>
                                 </div>
                                 <div class="stat-info">
-                                    <h4>{{ $totalCursos }}+</h4>
-                                    <p>Certificados Disponibles</p>
+                                    <h4>1400+</h4>
+                                    <p>Certificados Emitidos</p>
                                 </div>
                             </div>
                             
@@ -150,8 +150,39 @@
                                     </svg>
                                 </div>
                                 <div class="stat-info">
-                                    <h4>200+</h4>
-                                    <p>Clientes Atendidos</p>
+                                    <h4>1000+</h4>
+                                    <p>Trabajadores Capacitados</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M3 21h18"></path>
+                                        <path d="M3 7v14"></path>
+                                        <path d="M21 7v14"></path>
+                                        <path d="M9 21V9h6v12"></path>
+                                        <path d="M2 3h20"></path>
+                                        <path d="M9 3v4"></path>
+                                        <path d="M15 3v4"></path>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>45+</h4>
+                                    <p>Empresas Atendidas</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>{{ $totalCursos }}+</h4>
+                                    <p>Cursos Disponibles</p>
                                 </div>
                             </div>
                         </div>

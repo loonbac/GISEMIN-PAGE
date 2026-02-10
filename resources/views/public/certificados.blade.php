@@ -138,7 +138,7 @@
                         </svg>
                     </div>
                     <div class="stat-content">
-                        <span class="stat-number" data-count="15000">0</span>
+                        <span class="stat-number" data-count="1400">0</span>
                         <span class="stat-label">Certificados Emitidos</span>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                         </svg>
                     </div>
                     <div class="stat-content">
-                        <span class="stat-number" data-count="8500">0</span>
+                        <span class="stat-number" data-count="1000">0</span>
                         <span class="stat-label">Trabajadores Capacitados</span>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                         </svg>
                     </div>
                     <div class="stat-content">
-                        <span class="stat-number" data-count="250">0</span>
+                        <span class="stat-number" data-count="45">0</span>
                         <span class="stat-label">Empresas Atendidas</span>
                     </div>
                 </div>
@@ -171,7 +171,7 @@
                         </svg>
                     </div>
                     <div class="stat-content">
-                        <span class="stat-number" data-count="45">0</span>
+                        <span class="stat-number" data-count="{{ $totalCursos }}">0</span>
                         <span class="stat-label">Cursos Disponibles</span>
                     </div>
                 </div>

@@ -29,7 +29,8 @@ foreach ($publicDomains as $domain) {
 
     // Verificar certificados - Pagina publica
     Route::get('/certificados', function () {
-        return view('public.certificados');
+        $totalCursos = \DB::table('cursos')->count();
+        return view('public.certificados', compact('totalCursos'));
     })->name('certificados');
 
     // Formulario de contacto
