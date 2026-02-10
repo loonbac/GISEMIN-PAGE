@@ -466,14 +466,12 @@
             flex-shrink: 0 !important;
         }
 
-        /* TD 5: Status badge */
+        /* TD 5: Status badge - in flow between DNI and button */
         td:nth-child(5) {
-            order: 2 !important;
+            order: 5 !important;
             width: auto !important;
-            position: absolute !important;
-            top: 16px !important;
-            right: 18px !important;
-            margin-bottom: 0 !important;
+            position: static !important;
+            margin-bottom: 6px !important;
         }
 
         .status-badge {
