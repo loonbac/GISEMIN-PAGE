@@ -34,6 +34,14 @@ class Certificado extends Model
     }
 
     /**
+     * Get the worker associated with the certificate.
+     */
+    public function trabajador()
+    {
+        return $this->belongsTo(Trabajador::class, 'dni', 'dni');
+    }
+
+    /**
      * Scope para buscar por DNI o nombre
      */
     public function scopeBuscar($query, $termino)

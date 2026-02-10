@@ -2329,10 +2329,20 @@ body {
 }
 
 .user-dni {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--gray-500);
-    font-weight: 600;
+    font-weight: 500;
     margin: 4px 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-company-label {
+    color: var(--blue-900);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 .user-badge {
@@ -2366,19 +2376,24 @@ body {
 }
 
 .cert-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--gray-800);
-    margin-bottom: 6px;
+    font-size: 1.35rem;
+    /* Bigger as requested */
+    font-weight: 800;
+    color: var(--blue-900);
+    /* Consistent dark blue */
+    margin-bottom: 8px;
     line-height: 1.2;
 }
 
 .cert-meta {
     display: flex;
     gap: 20px;
-    color: var(--gray-800); /* Darker for better contrast */
-    font-size: 0.95rem; /* Slightly larger */
-    font-weight: 700; /* Bold as requested */
+    color: var(--gray-800);
+    /* Darker for better contrast */
+    font-size: 0.95rem;
+    /* Slightly larger */
+    font-weight: 700;
+    /* Bold as requested */
 }
 
 .cert-meta span {
@@ -2390,6 +2405,19 @@ body {
 .cert-meta i {
     color: var(--blue-600);
     font-size: 0.8em;
+}
+
+.calendar-icon-blue {
+    color: var(--blue-900) !important;
+    /* Dark blue icon */
+    font-size: 1rem !important;
+}
+
+.cert-date-large {
+    font-size: 1.15rem;
+    /* Larger date */
+    color: var(--gray-900);
+    font-weight: 800;
 }
 
 .cert-actions {

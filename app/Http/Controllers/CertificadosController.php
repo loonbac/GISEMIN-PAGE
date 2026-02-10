@@ -317,7 +317,7 @@ class CertificadosController extends Controller
 
         // Buscar SOLO por DNI exacto (como pidió el usuario) y solo certificados VIGENTES
         // DNI diferente = Usuario diferente.
-        $certificados = Certificado::vigentes()
+        $certificados = Certificado::with('trabajador')->vigentes()
             ->where('dni', $termino)
             ->get();
 
@@ -336,6 +336,7 @@ class CertificadosController extends Controller
             $resultados[] = [
                 'nombre' => $cert->nombre,
                 'dni' => $cert->dni,
+                'empresa' => $cert->trabajador ? $cert->trabajador->empresa : 'INDEPENDIENTE',
                 'curso' => $cert->curso,
                 'categoria' => ($curso && $curso->categoria) ? $curso->categoria : 'General',
                 'fecha' => $cert->fecha_emision->format('d/m/Y'),

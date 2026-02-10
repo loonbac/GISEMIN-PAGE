@@ -110,6 +110,7 @@ function displayResults(results) {
             acc[cert.dni] = {
                 nombre: cert.nombre,
                 dni: cert.dni,
+                empresa: cert.empresa || 'INDEPENDIENTE',
                 certificados: []
             };
         }
@@ -127,7 +128,7 @@ function displayResults(results) {
                         </div>
                         <div class="user-main-info">
                             <h3 class="user-name">${user.nombre}</h3>
-                            <p class="user-dni">DNI: ${user.dni}</p>
+                            <p class="user-dni">DNI: ${user.dni} | <span class="user-company-label">${user.empresa}</span></p>
                         </div>
                         <div class="user-badge">
                             ${user.certificados.length} Certificado${user.certificados.length > 1 ? 's' : ''} Válido${user.certificados.length > 1 ? 's' : ''}
@@ -138,9 +139,9 @@ function displayResults(results) {
                         ${user.certificados.map(cert => `
                             <div class="cert-item">
                                 <div class="cert-info">
-                                    <div class="cert-title">${cert.curso}</div>
+                                    <div class="cert-title">CERTIFICADO: ${cert.curso}</div>
                                     <div class="cert-meta">
-                                        <span><i class="fas fa-calendar-alt"></i> Emisión: ${cert.fecha}</span>
+                                        <span><i class="fas fa-calendar-alt calendar-icon-blue"></i> FECHA DE EMISIÓN: <span class="cert-date-large">${cert.fecha}</span></span>
                                     </div>
                                 </div>
                                 <div class="cert-actions">
