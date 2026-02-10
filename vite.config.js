@@ -20,6 +20,7 @@ export default defineConfig({
                 'resources/js/admin/cursos-autocomplete.js',
                 'resources/js/admin/certificados-gestionar.js',
                 'resources/js/admin/trabajador-search.js',
+                'resources/js/admin/empresas-autocomplete.js',
             ],
             refresh: true,
         }),
