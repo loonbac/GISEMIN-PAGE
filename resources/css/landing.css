@@ -2127,7 +2127,11 @@ ul {
 
     .contact-wrapper {
         max-width: 100%;
-        padding: 0 1.25rem;
+        padding: 0 1.5rem;
+    }
+
+    .contact-details-section {
+        padding: 0 0.5rem;
     }
 
     .contact-item {
