@@ -725,8 +725,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                     <span style="text-decoration: underline;">Editar</span>
                                 </button>
-                                <button onclick="confirmDeleteCompany('{{ addslashes($empresa) }}', event)" style="background: none; border: none; color: #ef4444; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7" title="Eliminar Empresa y Usuarios">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <button class="btn-user-delete" onclick="confirmDeleteCompany('{{ addslashes($empresa) }}', event)" title="Eliminar Empresa y Usuarios" style="width: 28px; height: 28px; padding: 5px;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 14px; height: 14px;">
                                         <polyline points="3 6 5 6 21 6"></polyline>
                                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                     </svg>
@@ -1520,7 +1520,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="modal-overlay" onclick="closeDeleteCompanyModal()"></div>
     <div class="modal-content">
         <div class="modal-header">
-            <h2 style="color: #dc2626;">Eliminar Empresa</h2>
+            <h2 style="color: #dc2626;">Eliminar Empresa Completa</h2>
             <button class="modal-close" onclick="closeDeleteCompanyModal()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1529,17 +1529,17 @@ document.addEventListener('DOMContentLoaded', function() {
             </button>
         </div>
         <div class="modal-body">
-            <p style="color: #1e293b; font-weight: 700; font-size: 15px; margin-bottom: 8px;">¿Eliminar la empresa <span id="delete-company-name-display"></span>?</p>
-            <div style="background: #fff1f2; border-left: 4px solid #dc2626; padding: 12px; margin-bottom: 15px;">
-                <p style="color: #991b1b; font-size: 12px; font-weight: 600;">
-                    <i class="fas fa-exclamation-triangle"></i> ADVERTENCIA CRÍTICA: Se eliminarán TODOS los trabajadores y certificados asociados a esta empresa de forma definitiva.
+            <p style="color: #1e293b; font-weight: 700; font-size: 15px; margin-bottom: 8px;">¿Eliminar la empresa <span id="delete-company-name-display" style="color: #dc2626;"></span>?</p>
+            <div style="background: #fff1f2; border-left: 4px solid #dc2626; padding: 12px; margin-bottom: 15px; border-radius: 4px;">
+                <p style="color: #991b1b; font-size: 12px; font-weight: 600; margin: 0;">
+                    ADVERTENCIA: Esta acción eliminará la empresa y TODOS sus trabajadores y certificados registrados.
                 </p>
             </div>
             <p style="color: #64748b; font-size: 12px;">Esta acción no se puede deshacer.</p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn-secondary-red" onclick="closeDeleteCompanyModal()">Cancelar</button>
-            <button type="button" class="btn-danger" id="btn-confirm-company-delete" onclick="executeCompanyDelete()" style="background: #dc2626;">Borrar Empresa y Todo su Personal</button>
+            <button type="button" class="btn-danger" id="btn-confirm-company-delete" onclick="executeCompanyDelete()" style="background: #dc2626;">Borrar Empresa y Todo</button>
         </div>
     </div>
 </div>
