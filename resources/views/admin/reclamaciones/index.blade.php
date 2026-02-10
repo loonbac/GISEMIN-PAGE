@@ -467,23 +467,29 @@
             border-radius: 20px !important;
         }
 
-        /* Actions - Fluid Button */
+        /* Actions - Fluid Button centered with borders */
         td:last-child {
             margin-bottom: 0 !important;
             margin-top: 18px !important;
-            padding-top: 14px !important;
+            padding: 16px 0 0 0 !important;
             border-top: 1px solid #f1f5f9 !important;
+            border-bottom: none !important;
             text-align: center !important;
         }
 
         .btn-view {
             width: 100% !important;
-            height: 42px !important;
-            border-radius: 10px !important;
-            background: #3b82f6 !important;
-            font-size: 15px !important;
+            height: 44px !important;
+            border-radius: 12px !important;
+            background: #2563eb !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
             letter-spacing: 0.5px !important;
-            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2) !important;
+            justify-content: center !important; /* Ensure perfect centering */
+            display: flex !important;
+            align-items: center !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15) !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
         }
     }
 
