@@ -204,6 +204,7 @@
         overflow: visible; /* Changed to visible to help see content */
         text-overflow: ellipsis;
         line-height: 1;
+        font-weight: 700;
     }
 
     /* Extra padding for ID column to separate from border */
@@ -256,6 +257,13 @@
 
     .btn-view:hover {
         background: #1d4ed8;
+    }
+
+    .mobile-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
     }
     
     .empty-state {
