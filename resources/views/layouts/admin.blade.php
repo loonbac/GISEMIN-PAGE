@@ -1,5 +1,13 @@
-<!DOCTYPE html>
-<html lang="es">
+    <nav class="admin-navbar">
+        <div class="admin-nav-container">
+            <a href="{{ route('home') }}" class="admin-logo">
+                <img src="{{ asset('images/logo.svg') }}" alt="GISEMIN Logo" class="logo-icon">
+                <div class="logo-text-container">
+                    <span class="logo-text">GISEMIN</span>
+                    <span class="logo-accent">ADMIN</span>
+                </div>
+            </a>
+            <!-- ... -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
