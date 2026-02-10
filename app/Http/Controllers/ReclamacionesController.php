@@ -16,7 +16,7 @@ class ReclamacionesController extends Controller
         $validator = Validator::make($request->all(), [
             'nombre_completo' => 'required|string|max:255',
             'dni' => 'required|string|size:8',
-            'telefono' => 'required|string|max:20',
+            'telefono' => 'required|string|max:10',
             'email' => 'required|email|max:255',
             'detalle_reclamo' => 'required|string',
             'pedido' => 'required|string',
@@ -25,6 +25,7 @@ class ReclamacionesController extends Controller
             'dni.required' => 'El DNI es obligatorio.',
             'dni.size' => 'El DNI debe tener 8 dígitos.',
             'telefono.required' => 'El teléfono es obligatorio.',
+            'telefono.max' => 'El teléfono no debe exceder los 10 dígitos.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico no es válido.',
             'detalle_reclamo.required' => 'La descripción del problema es obligatoria.',

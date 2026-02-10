@@ -62,7 +62,7 @@
 
                     <div class="form-group">
                         <label for="telefono">Teléfono <span class="required">*</span></label>
-                        <input type="tel" id="telefono" name="telefono" value="{{ old('telefono') }}" required placeholder="Ej: 987 654 321" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="tel" id="telefono" name="telefono" value="{{ old('telefono') }}" required placeholder="Ej: 987654321" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         @error('telefono') <span class="error-msg" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
 
