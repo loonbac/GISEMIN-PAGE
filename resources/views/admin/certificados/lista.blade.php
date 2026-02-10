@@ -612,7 +612,7 @@
     @media (max-width: 576px) {
         .stats-summary {
             grid-template-columns: repeat(2, 1fr);
-            gap: 6px;
+            gap: 5px;
         }
 
         .stat-card:last-child {
@@ -622,16 +622,17 @@
         }
 
         .stats-summary .stat-card {
-            height: 34px !important;
-            padding: 0 10px !important;
+            height: 30px !important;
+            padding: 0 8px !important;
         }
 
         .stats-summary .stat-number {
-            font-size: 15px !important;
+            font-size: 16px !important;
+            font-weight: 800 !important;
         }
 
         .stats-summary .stat-label {
-            font-size: 11px !important;
+            font-size: 12px !important;
             font-weight: 800 !important;
         }
     }
