@@ -266,10 +266,20 @@ function mostrarTrabajador(trabajador) {
     }
 
     if (formEmpresa) {
+        const isIndependiente = !trabajador.empresa || trabajador.empresa === 'Independiente';
         formEmpresa.value = trabajador.empresa || '';
-        formEmpresa.readOnly = true;
-        formEmpresa.style.background = '#f1f5f9';
-        formEmpresa.style.cursor = 'not-allowed';
+
+        if (isIndependiente) {
+            formEmpresa.readOnly = false;
+            formEmpresa.style.background = 'white';
+            formEmpresa.style.cursor = 'text';
+            formEmpresa.placeholder = 'Agregar Empresa (Opcional)';
+        } else {
+            formEmpresa.readOnly = true;
+            formEmpresa.style.background = '#f1f5f9';
+            formEmpresa.style.cursor = 'not-allowed';
+            formEmpresa.placeholder = 'Ej: GISEMIN S.A.C.';
+        }
     }
 
     const profileTotal = document.getElementById('profile-total');
@@ -481,14 +491,12 @@ function mostrarRegistroUsuario(dni) {
 
 async function registrarNuevoUsuario() {
     const nombreInput = document.getElementById('new-user-nombre');
-    const empresaInput = document.getElementById('new-user-empresa');
     const dniInput = document.getElementById('reg-dni-edit');
     const btnRegister = document.getElementById('btn-register-user');
 
-    if (!nombreInput || !empresaInput || !dniInput || !btnRegister) return;
+    if (!nombreInput || !dniInput || !btnRegister) return;
 
     const nombre = nombreInput.value.trim();
-    const empresa = empresaInput.value.trim();
     const dni = dniInput.value.trim();
 
     if (!dni) {
@@ -514,7 +522,7 @@ async function registrarNuevoUsuario() {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({ dni, nombre, empresa })
+            body: JSON.stringify({ dni, nombre })
         });
 
         const data = await response.json();
@@ -532,7 +540,7 @@ async function registrarNuevoUsuario() {
             mostrarTrabajador({
                 nombre: nombre,
                 dni: dni,
-                empresa: empresa || 'Independiente',
+                empresa: null,
                 total_certificados: 0,
                 vencidos: [],
                 vigentes: []
@@ -550,16 +558,4 @@ async function registrarNuevoUsuario() {
     }
 }
 
-// Global Sync for Empresa fields (Only for new user registration)
-document.addEventListener('DOMContentLoaded', () => {
-    const newUserEmpresa = document.getElementById('new-user-empresa');
-    const formEmpresa = document.getElementById('form-empresa');
 
-    if (newUserEmpresa && formEmpresa) {
-        newUserEmpresa.addEventListener('input', (e) => {
-            if (!formEmpresa.readOnly) {
-                formEmpresa.value = e.target.value;
-            }
-        });
-    }
-});

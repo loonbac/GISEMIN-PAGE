@@ -130,13 +130,12 @@ class CertificadosController extends Controller
             $validated = $request->validate([
                 'nombre' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\.-]+$/'],
                 'dni' => 'required|numeric|digits_between:1,20|unique:trabajadores,dni',
-                'empresa' => 'nullable|string|max:255',
             ]);
 
             $trabajador = Trabajador::create([
                 'nombre' => strtoupper($validated['nombre']),
                 'dni' => $validated['dni'],
-                'empresa' => $validated['empresa'] ? strtoupper($validated['empresa']) : null,
+                'empresa' => null, // Siempre inicia como independiente
             ]);
 
             \Log::info('Trabajador registrado con éxito', ['id' => $trabajador->id]);
@@ -213,6 +212,11 @@ class CertificadosController extends Controller
         // Si el nombre cambió, actualizarlo
         if ($trabajador->nombre !== $request->nombre) {
             $trabajador->update(['nombre' => strtoupper($request->nombre)]);
+        }
+
+        // Lógica de Empresa: Solo permitir asignar si el trabajador es actualmente independiente
+        if (empty($trabajador->empresa) && !empty($request->empresa)) {
+            $trabajador->update(['empresa' => strtoupper($request->empresa)]);
         }
 
         // Calcular fecha de vencimiento basado en duración (meses)
