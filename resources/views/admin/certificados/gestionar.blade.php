@@ -31,44 +31,45 @@
         }
 
         .categoria-header {
-            padding: 12px 15px !important;
+            padding: 8px 12px !important;
         }
 
         .categoria-title {
-            font-size: 13px !important;
-            gap: 8px !important;
+            font-size: 11px !important;
+            gap: 6px !important;
         }
 
         .categoria-count {
-            font-size: 11px !important;
+            font-size: 10px !important;
             opacity: 0.8;
         }
 
         .table-wrapper {
-            margin: 0 -15px; /* Pull to edges */
+            margin: 0 -8px; /* Slightly less aggressive pull */
             border-radius: 0;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
 
         .certificates-table {
-            min-width: 500px;
-            font-size: 12px;
+            min-width: 400px;
+            font-size: 11px;
         }
 
         .certificates-table th,
         .certificates-table td {
-            padding: 10px 12px !important;
+            padding: 6px 10px !important;
+            line-height: 1.2 !important;
         }
 
         .action-buttons {
-            gap: 4px !important;
+            gap: 2px !important;
         }
 
         .btn-action {
-            padding: 6px 8px !important;
-            font-size: 10px !important;
-            gap: 4px !important;
+            padding: 4px 6px !important;
+            font-size: 9px !important;
+            gap: 3px !important;
         }
 
         .modal-content {
