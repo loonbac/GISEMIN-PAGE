@@ -472,7 +472,7 @@
                     </div>
                     <div class="stat-card">
                         <div class="stat-content">
-                            <div class="stat-number" id="global-empresas-count" style="color: #3b82f6;">{{ $usuariosPorEmpresa->count() }}</div>
+                            <div class="stat-number" id="global-empresas-count" style="color: #3b82f6;">{{ $usuariosPorEmpresa->has('INDEPENDIENTE') ? $usuariosPorEmpresa->count() - 1 : $usuariosPorEmpresa->count() }}</div>
                             <div class="stat-label">Empresas</div>
                         </div>
                     </div>

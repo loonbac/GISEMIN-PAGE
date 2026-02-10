@@ -842,7 +842,6 @@ class CertificadosController extends Controller
         }
 
         $cursos = $query->orderBy('nombre')
-            ->limit(10)
             ->get(['id', 'nombre', 'categoria']);
             
         return response()->json($cursos);
