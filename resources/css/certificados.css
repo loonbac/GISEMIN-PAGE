@@ -827,6 +827,18 @@ ul {
     color: var(--white) !important;
 }
 
+/* Override white nav links for mobile dropdown (white bg) */
+@media (max-width: 768px) {
+    .navbar .nav-menu li a {
+        color: var(--gray-700) !important;
+    }
+
+    .navbar .nav-menu li a:hover,
+    .navbar .nav-menu li a:active {
+        color: var(--primary-color) !important;
+    }
+}
+
 .navbar .btn-contact {
     background: rgba(255, 255, 255, 0.15) !important;
     border-color: rgba(255, 255, 255, 0.4) !important;
