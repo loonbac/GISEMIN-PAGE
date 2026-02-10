@@ -305,13 +305,13 @@
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR6x6N2gwpX6XGo0QIGaHqJglOq3j8WBZ98g&s" alt="Trabajo en Altura">
+                        <img src="https://i0.wp.com/www.segusa.com.mx/wp-content/uploads/2023/07/arnes-proteccion.png?resize=980%2C641&ssl=1" alt="Trabajo en Altura">
                         <div class="collage-overlay">
                             <h4>TRABAJOS DE ALTO RIESGO (TAR) - TRABAJO EN ALTURA</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2gI492oLthEtldluFn8t0lw18vUdGytcNQ&s" alt="SST en Minería">
+                        <img src="https://www.kpnsafety.com/wp-content/uploads/2025/01/Diseno-sin-titulo-4.jpg" alt="SST en Minería">
                         <div class="collage-overlay">
                             <h4>SST EN MINERÍA</h4>
                         </div>
