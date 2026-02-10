@@ -269,7 +269,7 @@
                         <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" alt="Formación y Entrenamiento">
                     </div>
                     <div class="service-info">
-                        <h3>FORMACIÓN Y ENTRENAMIENTO DE ALTO IMPACTO</h3>
+                        <h3>FORMACIÓN/ENTRENAMIENTO DE ALTO IMPACTO</h3>
                         <a href="#contacto" class="btn-service">Más información</a>
                     </div>
                 </div>
@@ -293,37 +293,37 @@
             <div class="container">
                 <div class="collage-grid">
                     <div class="collage-item">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Capacitaciones SST">
+                        <img src="https://safety-construction.com/wp-content/uploads/2024/06/capacitaciones-de-seguridad-y-salud-en-el-trabajo-Ley-29783.jpg" alt="Capacitaciones SST">
                         <div class="collage-overlay">
                             <h4>CAPACITACIONES OBLIGATORIAS / NORMATIVAS (SST)</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80" alt="IPERC">
+                        <img src="https://cfcgroup.org/web/wp-content/uploads/2023/04/iperc2.jpg" alt="IPERC">
                         <div class="collage-overlay">
                             <h4>IDENTIFICACIÓN DE PELIGROS, EVALUACIÓN DE RIESGOS Y CONTROLES (IPERC)</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&q=80" alt="Trabajo en Altura">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR6x6N2gwpX6XGo0QIGaHqJglOq3j8WBZ98g&s" alt="Trabajo en Altura">
                         <div class="collage-overlay">
                             <h4>TRABAJOS DE ALTO RIESGO (TAR) - TRABAJO EN ALTURA</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=800&q=80" alt="SST en Minería">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2gI492oLthEtldluFn8t0lw18vUdGytcNQ&s" alt="SST en Minería">
                         <div class="collage-overlay">
                             <h4>SST EN MINERÍA</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://images.unsplash.com/photo-1584362917165-526a968579e8?w=400&q=80" alt="Bioseguridad">
+                        <img src="https://montanaweb-bucket.s3.amazonaws.com/web/blog/285/Bioseguridad-MONTANA.jpg" alt="Bioseguridad">
                         <div class="collage-overlay">
                             <h4>BIOSEGURIDAD</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&q=80" alt="Primeros Auxilios">
+                        <img src="https://www.spmas.es/wp-content/uploads/2024/02/Primeros-Auxilios_MAS-Prevencion.jpg" alt="Primeros Auxilios">
                         <div class="collage-overlay">
                             <h4>EMERGENCIAS Y PRIMEROS AUXILIOS</h4>
                         </div>
