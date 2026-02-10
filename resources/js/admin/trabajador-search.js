@@ -218,14 +218,14 @@ async function handleCertificateSubmit(e) {
             btnSubmit.disabled = true;
             btnSubmit.innerHTML = originalContent;
         } else {
-            alert(data.message || 'Error al registrar certificado');
+            await showAlert('Error', data.message || 'Error al registrar certificado', 'error');
             btnSubmit.disabled = false;
             btnSubmit.innerHTML = originalContent;
         }
 
     } catch (error) {
         console.error('Error:', error);
-        alert('Error de conexión al servidor');
+        await showAlert('Error', 'Error de conexión al servidor', 'error');
         btnSubmit.disabled = false;
         btnSubmit.innerHTML = originalContent;
     }
@@ -234,7 +234,7 @@ async function handleCertificateSubmit(e) {
 async function buscarTrabajador() {
     const dni = document.getElementById('dni-search').value.trim();
     if (dni.length < 1) {
-        alert('Ingresa un DNI');
+        await showAlert('Atención', 'Por favor, ingresa un número de DNI', 'warning');
         return;
     }
 
@@ -252,7 +252,7 @@ async function buscarTrabajador() {
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al buscar trabajador');
+        await showAlert('Error', 'Hubo un problema al buscar el trabajador', 'error');
     } finally {
         btnBuscar.disabled = false;
     }
@@ -518,12 +518,12 @@ async function registrarNuevoUsuario() {
     const dni = dniInput.value.trim();
 
     if (!dni) {
-        alert('Ingresa un DNI válido');
+        await showAlert('Atención', 'Ingresa un DNI válido', 'warning');
         return;
     }
 
     if (!nombre) {
-        alert('Ingresa el nombre');
+        await showAlert('Atención', 'Ingresa el nombre completo', 'warning');
         return;
     }
 
@@ -564,13 +564,13 @@ async function registrarNuevoUsuario() {
                 vigentes: []
             });
         } else {
-            alert(data.message || 'Error al registrar usuario');
+            await showAlert('Error', data.message || 'Error al registrar usuario', 'error');
             btnRegister.disabled = false;
             btnRegister.innerHTML = originalContent;
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error de conexión al servidor');
+        await showAlert('Error', 'Error de conexión al servidor', 'error');
         btnRegister.disabled = false;
         btnRegister.innerHTML = originalContent;
     }
@@ -586,7 +586,7 @@ async function handleAssignCompany() {
     const empresa = input.value.trim();
 
     if (!empresa) {
-        alert('Por favor, ingresa un nombre de empresa');
+        await showAlert('Atención', 'Por favor, ingresa un nombre de empresa', 'warning');
         return;
     }
 
@@ -619,12 +619,13 @@ async function handleAssignCompany() {
             if (profileEmpresa) profileEmpresa.textContent = empresa.toUpperCase();
 
             console.log('Empresa asignada correctamente');
+            await showAlert('¡Éxito!', 'Empresa asignada correctamente.', 'success');
         } else {
-            alert(data.message || 'Error al asignar empresa');
+            await showAlert('Error', data.message || 'Error al asignar empresa', 'error');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error de conexión');
+        await showAlert('Error', 'Error de conexión', 'error');
     } finally {
         btn.disabled = false;
         btn.textContent = originalText;
@@ -641,7 +642,8 @@ async function handleRemoveCompany() {
     if (!dniInput) return;
     const dni = dniInput.value;
 
-    if (!confirm('¿Estás seguro de sacar a este usuario del grupo de la empresa? El usuario volverá a ser Independiente.')) {
+    const confirmed = await showConfirm('¿Estás seguro?', 'El usuario volverá a ser Independiente y saldrá del grupo de la empresa.', 'warning');
+    if (!confirmed) {
         return;
     }
 
@@ -678,12 +680,13 @@ async function handleRemoveCompany() {
             if (profileEmpresa) profileEmpresa.textContent = 'Independiente';
 
             console.log('Empresa removida correctamente');
+            await showAlert('¡Éxito!', 'Usuario removido de la empresa con éxito.', 'success');
         } else {
-            alert(data.message || 'Error al remover empresa');
+            await showAlert('Error', data.message || 'Error al remover empresa', 'error');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error de conexión');
+        await showAlert('Error', 'Error de conexión', 'error');
     } finally {
         btn.disabled = false;
         btn.textContent = originalText;

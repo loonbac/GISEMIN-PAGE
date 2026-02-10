@@ -13,6 +13,7 @@
 </head>
 <body>
     @yield('content')
+    @include('partials.modals')
     @stack('scripts')
 </body>
 </html>
