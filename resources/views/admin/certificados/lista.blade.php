@@ -8,7 +8,7 @@
     /* Stats Ultra Slim Rectangles */
     .stats-summary {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 12px;
         margin-bottom: 24px;
     }
@@ -358,10 +358,32 @@
         display: none;
     }
 
-    /* Modal Button Refinements */
-    .modal-footer .btn-secondary {
+    /* Modal Button Refinements - General class */
+    .btn-secondary-red {
         background: #fef2f2 !important; /* Light red background */
         color: #dc2626 !important; /* Red text */
+        border: 2px solid #fee2e2 !important;
+        padding: 8px 20px !important;
+        font-size: 13px !important;
+        height: 38px !important;
+        border-radius: 10px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .btn-secondary-red:hover {
+        background: #fee2e2 !important;
+    }
+
+    .modal-footer .btn-secondary {
+        /* Aliasing for consistency if needed */
+        background: #fef2f2 !important;
+        color: #dc2626 !important;
         border: 2px solid #fee2e2 !important;
         padding: 8px 20px !important;
         font-size: 13px !important;
@@ -448,6 +470,12 @@
                             <div class="stat-label">Expirados</div>
                         </div>
                     </div>
+                    <div class="stat-card">
+                        <div class="stat-content">
+                            <div class="stat-number" id="global-empresas-count" style="color: #3b82f6;">{{ $usuariosPorEmpresa->count() }}</div>
+                            <div class="stat-label">Empresas</div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Search -->
@@ -458,7 +486,7 @@
                 <!-- Users List Grouped by Company -->
                 <div id="users-list">
                     @forelse($usuariosPorEmpresa as $empresa => $grupo)
-                    <div class="company-group" id="group-{{ Str::slug($empresa) }}">
+                    <div class="company-group collapsed" id="group-{{ Str::slug($empresa) }}">
                         <div class="company-header-toggle" onclick="toggleCompanyGroup('{{ Str::slug($empresa) }}')">
                             <h2>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
@@ -468,14 +496,18 @@
                                 <span style="background: #f1f5f9; color: #64748b; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
                             </h2>
                             @if($empresa !== 'INDEPENDIENTE')
-                            <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; text-transform: none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                                Editar Empresa
+                            <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; text-transform: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                <span style="text-decoration: underline;">Editar Empresa</span>
                             </button>
-                            @endif
-                            <svg class="company-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <svg class="company-chevron" style="width: 18px; height: 18px; color: #94a3b8; transition: transform 0.3s; margin-left: 10px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
+                            @else
+                            <svg class="company-chevron" style="width: 18px; height: 18px; color: #94a3b8; transition: transform 0.3s; margin-left: auto;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                            @endif
                         </div>
                         
                         <div class="company-users-container">
@@ -657,7 +689,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn-secondary" onclick="closeEditModal()">Cancelar</button>
+            <button type="button" class="btn-secondary-red" onclick="closeEditModal()">Cancelar</button>
             <button type="button" class="btn-submit" id="btn-save-edit" onclick="saveCertificate()">Guardar Cambios</button>
         </div>
     </div>
@@ -680,7 +712,7 @@
             <p style="color: #64748b; font-size: 14px;">¿Estás seguro de que deseas eliminar este certificado? Esta acción no se puede deshacer.</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn-secondary" onclick="closeDeleteModal()">Cancelar</button>
+            <button type="button" class="btn-secondary-red" onclick="closeDeleteModal()">Cancelar</button>
             <button type="button" class="btn-danger" id="btn-confirm-delete" onclick="executeDelete()">Eliminar Definitivamente</button>
         </div>
     </div>
@@ -1038,7 +1070,7 @@ async function executeUserDelete() {
             <p style="color: #64748b; font-size: 12px;">Esta acción no se puede deshacer.</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn-secondary" onclick="closeDeleteUserModal()">Cancelar</button>
+            <button type="button" class="btn-secondary-red" onclick="closeDeleteUserModal()">Cancelar</button>
             <button type="button" class="btn-danger" id="btn-confirm-user-delete" onclick="executeUserDelete()" style="background: #dc2626;">Borrar Usuario y Todo</button>
         </div>
     </div>
@@ -1065,7 +1097,7 @@ async function executeUserDelete() {
                 </div>
             
             <div style="display: flex; gap: 12px;">
-                <button type="button" class="btn-secondary" onclick="closeEditWorkerModal()" style="flex:1; border: 2px solid #e2e8f0; background: #f8fafc; color: #64748b; padding:10px; border-radius:10px; cursor:pointer;">Cancelar</button>
+                <button type="button" class="btn-secondary-red" onclick="closeEditWorkerModal()" style="flex:1;">Cancelar</button>
                 <button type="submit" class="btn-primary" style="flex:2; background: #3b82f6; color: white; border: none; font-weight: 700; padding:10px; border-radius:10px; cursor:pointer;">Guardar Cambios</button>
             </div>
         </form>
@@ -1213,7 +1245,7 @@ document.getElementById('bulkCompanyEditForm').addEventListener('submit', async 
             </div>
             
             <div style="display: flex; gap: 12px;">
-                <button type="button" class="btn-secondary" onclick="closeBulkEditModal()" style="flex:1;">Cancelar</button>
+                <button type="button" class="btn-secondary-red" onclick="closeBulkEditModal()" style="flex:1;">Cancelar</button>
                 <button type="submit" class="btn-primary" style="flex:2; background: #3b82f6; color: white; border: none; font-weight: 700; padding:12px; border-radius:10px; cursor:pointer;">Actualizar Todo</button>
             </div>
         </form>
