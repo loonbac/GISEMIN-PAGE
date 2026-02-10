@@ -114,6 +114,7 @@ class CertificadosController extends Controller
             'trabajador' => [
                 'nombre' => $trabajador->nombre,
                 'dni' => $trabajador->dni,
+                'empresa' => $trabajador->empresa,
                 'total_certificados' => $allCerts->count(),
                 'vigentes' => $vigentes,
                 'vencidos' => $vencidos
@@ -129,11 +130,13 @@ class CertificadosController extends Controller
             $validated = $request->validate([
                 'nombre' => ['required', 'string', 'max:255', 'regex:/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\.-]+$/'],
                 'dni' => 'required|numeric|digits_between:1,20|unique:trabajadores,dni',
+                'empresa' => 'nullable|string|max:255',
             ]);
 
             $trabajador = Trabajador::create([
-                'nombre' => strtoupper($validated['nombre']), // Guardar en mayúsculas por convención
+                'nombre' => strtoupper($validated['nombre']),
                 'dni' => $validated['dni'],
+                'empresa' => $validated['empresa'] ? strtoupper($validated['empresa']) : null,
             ]);
 
             \Log::info('Trabajador registrado con éxito', ['id' => $trabajador->id]);
@@ -143,6 +146,7 @@ class CertificadosController extends Controller
                 'trabajador' => [
                     'nombre' => $trabajador->nombre,
                     'dni' => $trabajador->dni,
+                    'empresa' => $trabajador->empresa,
                     'total_certificados' => 0,
                 ],
             ]);
@@ -176,6 +180,7 @@ class CertificadosController extends Controller
             'fecha_emision' => 'required|date',
             'duracion' => 'required|integer|min:1|max:12', // Validar meses
             'drive_link' => 'nullable|url|max:2048',
+            'empresa' => 'nullable|string|max:255',
         ]);
 
         // Obtener el curso (debe existir previamente)
@@ -207,7 +212,7 @@ class CertificadosController extends Controller
 
         // Si el nombre cambió, actualizarlo
         if ($trabajador->nombre !== $request->nombre) {
-            $trabajador->update(['nombre' => $request->nombre]);
+            $trabajador->update(['nombre' => strtoupper($request->nombre)]);
         }
 
         // Calcular fecha de vencimiento basado en duración (meses)
@@ -343,6 +348,7 @@ class CertificadosController extends Controller
             return [
                 'nombre' => $user->nombre,
                 'dni' => $user->dni,
+                'empresa' => $user->empresa,
                 'total_certificados' => $certs->count(),
                 'vigentes_count' => $vigentes->count(),
                 'expirados_count' => $expirados->count(),
@@ -351,7 +357,16 @@ class CertificadosController extends Controller
         });
 
         $cursos = Curso::orderBy('nombre')->get();
-        return view('admin.certificados.lista', compact('usuarios', 'cursos'));
+        
+        // Agrupar por empresa
+        $usuariosPorEmpresa = $usuarios->groupBy(function($u) {
+            return $u['empresa'] ?: 'Independiente';
+        })->sortKeys();
+
+        return view('admin.certificados.lista', [
+            'usuariosPorEmpresa' => $usuariosPorEmpresa,
+            'cursos' => $cursos
+        ]);
     }
 
     /**
@@ -882,6 +897,70 @@ class CertificadosController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Error al eliminar usuario: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Actualizar datos del trabajador (Nombre/Empresa) desde la lista
+     */
+    public function actualizarTrabajador(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'dni' => 'required|string|exists:trabajadores,dni',
+                'nombre' => 'required|string|max:255',
+                'empresa' => 'nullable|string|max:255',
+            ]);
+
+            $trabajador = Trabajador::where('dni', $validated['dni'])->firstOrFail();
+            
+            $trabajador->update([
+                'nombre' => strtoupper($validated['nombre']),
+                'empresa' => $validated['empresa'] ? strtoupper($validated['empresa']) : null,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Trabajador actualizado correctamente',
+                'trabajador' => $trabajador
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al actualizar trabajador: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Actualizar el nombre de una empresa para todos sus trabajadores asociados
+     */
+    public function actualizarEmpresaMasivo(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'empresa_actual' => 'required|string',
+                'empresa_nueva' => 'required|string|max:255',
+            ]);
+
+            $empresaActual = $validated['empresa_actual'] === 'Independiente' ? null : $validated['empresa_actual'];
+            $empresaNueva = strtoupper($validated['empresa_nueva']);
+
+            $count = Trabajador::where('empresa', $empresaActual)
+                ->update(['empresa' => $empresaNueva]);
+
+            return response()->json([
+                'success' => true,
+                'message' => "Se han actualizado $count trabajadores correctamente",
+                'count' => $count
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al actualizar empresa: ' . $e->getMessage()
             ], 500);
         }
     }

@@ -353,32 +353,32 @@
             <div class="admin-card">
                 <div class="form-header">
                     <h1>Lista de Usuarios</h1>
-                    <p>{{ $usuarios->count() }} usuarios registrados</p>
+                    <p>{{ $usuariosPorEmpresa->flatten(1)->count() }} usuarios registrados</p>
                 </div>
 
                 <!-- Stats Summary -->
                 <div class="stats-summary">
                     <div class="stat-card">
                         <div class="stat-content">
-                            <div class="stat-number" id="global-users-count">{{ $usuarios->count() }}</div>
+                            <div class="stat-number" id="global-users-count">{{ $usuariosPorEmpresa->flatten(1)->count() }}</div>
                             <div class="stat-label">Usuarios</div>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-content">
-                            <div class="stat-number" id="global-certs-count">{{ $usuarios->sum('total_certificados') }}</div>
+                            <div class="stat-number" id="global-certs-count">{{ $usuariosPorEmpresa->flatten(1)->sum('total_certificados') }}</div>
                             <div class="stat-label">Certificados</div>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-content">
-                            <div class="stat-number" id="global-vigentes-count" style="color: #059669;">{{ $usuarios->sum('vigentes_count') }}</div>
+                            <div class="stat-number" id="global-vigentes-count" style="color: #059669;">{{ $usuariosPorEmpresa->flatten(1)->sum('vigentes_count') }}</div>
                             <div class="stat-label">Vigentes</div>
                         </div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-content">
-                            <div class="stat-number" id="global-expirados-count" style="color: #dc2626;">{{ $usuarios->sum('expirados_count') }}</div>
+                            <div class="stat-number" id="global-expirados-count" style="color: #dc2626;">{{ $usuariosPorEmpresa->flatten(1)->sum('expirados_count') }}</div>
                             <div class="stat-label">Expirados</div>
                         </div>
                     </div>
@@ -389,118 +389,138 @@
                     <input type="text" id="searchInput" class="form-input" placeholder="Buscar por nombre o DNI..." onkeyup="filterUsers()">
                 </div>
 
-                <!-- Users List -->
+                <!-- Users List Grouped by Company -->
                 <div id="users-list">
-                    @forelse($usuarios as $usuario)
-                    <div class="user-card" data-nombre="{{ strtolower($usuario['nombre']) }}" data-dni="{{ $usuario['dni'] }}">
-                        <div class="user-header" onclick="toggleUser(this)">
-                            
-                            <!-- Col 1: Avatar -->
-                            <div class="user-col-avatar">
-                                <div class="user-avatar">
-                                    {{ strtoupper(substr($usuario['nombre'], 0, 1)) }}
+                    @forelse($usuariosPorEmpresa as $empresa => $grupo)
+                    <div class="company-group" style="margin-bottom: 24px;">
+                        <h2 style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
+                                <path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7M4 17h16V4H4v13z"/>
+                            </svg>
+                            {{ $empresa }}
+                            <span style="background: #f1f5f9; color: #64748b; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
+                            <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; text-transform: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                Editar Empresa
+                            </button>
+                        </h2>
+                        
+                        @foreach($grupo as $usuario)
+                        <div class="user-card" data-nombre="{{ strtolower($usuario['nombre']) }}" data-dni="{{ $usuario['dni'] }}" data-empresa="{{ strtolower($usuario['empresa'] ?? 'independiente') }}">
+                            <div class="user-header" onclick="toggleUser(this)">
+                                
+                                <!-- Col 1: Avatar -->
+                                <div class="user-col-avatar">
+                                    <div class="user-avatar">
+                                        {{ strtoupper(substr($usuario['nombre'], 0, 1)) }}
+                                    </div>
+                                </div>
+
+                                    <div style="display: flex; flex-direction: column;">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
+                                            <button onclick="openEditWorkerModal('{{ $usuario['dni'] }}', '{{ addslashes($usuario['nombre']) }}', '{{ addslashes($usuario['empresa'] ?? '') }}', event)" style="background: #f1f5f9; border: none; padding: 4px; border-radius: 6px; color: #64748b; cursor: pointer; transition: all 0.2s;" title="Editar Datos">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                <!-- Col 3: DNI -->
+                                <div class="user-col-dni">
+                                    <span class="user-dni">DNI: {{ $usuario['dni'] }}</span>
+                                </div>
+
+                                <!-- Col 4: Dual Status Badges -->
+                                <div class="user-stats">
+                                    @if($usuario['vigentes_count'] > 0)
+                                        <span class="stat-badge vigente">{{ $usuario['vigentes_count'] }} Vigente(s)</span>
+                                    @endif
+                                    @if($usuario['expirados_count'] > 0)
+                                        <span class="stat-badge expirado">{{ $usuario['expirados_count'] }} Expirado(s)</span>
+                                    @endif
+                                </div>
+
+                                <!-- Col 5: Trash (Cascade Delete) -->
+                                <div class="user-col-delete">
+                                    <button class="btn-user-delete" title="Eliminar Usuario y Certificados" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <!-- Col 6: Icon -->
+                                <div class="user-col-icon">
+                                    <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
                                 </div>
                             </div>
-
-                            <!-- Col 2: Name -->
-                            <div class="user-col-name">
-                                <h3 class="user-name">{{ $usuario['nombre'] }}</h3>
-                            </div>
-
-                            <!-- Col 3: DNI -->
-                            <div class="user-col-dni">
-                                <span class="user-dni">DNI: {{ $usuario['dni'] }}</span>
-                            </div>
-
-                            <!-- Col 4: Dual Status Badges -->
-                            <div class="user-stats">
-                                @if($usuario['vigentes_count'] > 0)
-                                    <span class="stat-badge vigente">{{ $usuario['vigentes_count'] }} Vigente(s)</span>
-                                @endif
-                                @if($usuario['expirados_count'] > 0)
-                                    <span class="stat-badge expirado">{{ $usuario['expirados_count'] }} Expirado(s)</span>
-                                @endif
-                            </div>
-
-                            <!-- Col 5: Trash (Cascade Delete) -->
-                            <div class="user-col-delete">
-                                <button class="btn-user-delete" title="Eliminar Usuario y Certificados" onclick="confirmDeleteUser('{{ $usuario['dni'] }}', '{{ $usuario['nombre'] }}', event)">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <!-- Col 6: Icon -->
-                            <div class="user-col-icon">
-                                <svg class="collapse-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
+                            <div class="user-content">
+                                <table class="cert-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Curso</th>
+                                            <th>Fecha Emisión</th>
+                                            <th>Estado</th>
+                                            <th>Link</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($usuario['certificados'] as $cert)
+                                        @php
+                                            $now = now()->setTimezone('America/Lima')->format('Y-m-d');
+                                            $esVigente = $cert->fecha_vencimiento >= $now;
+                                        @endphp
+                                        <tr id="cert-row-{{ $cert->id }}">
+                                            <td>{{ $cert->curso }}</td>
+                                            <td>{{ $cert->fecha_emision->format('d/m/Y') }}</td>
+                                            <td>
+                                                @if($esVigente)
+                                                    <span class="status-vigente">Vigente</span>
+                                                @else
+                                                    <span class="status-expirado">Expirado</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($cert->drive_link)
+                                                    <a href="{{ $cert->drive_link }}" target="_blank" class="btn-view-drive">Ver Drive</a>
+                                                @else
+                                                    <span style="color: #999;">-</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-action btn-edit" onclick="openEditModal({{ $cert->id }})">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                                        </svg>
+                                                        Editar
+                                                    </button>
+                                                    <button class="btn-action btn-delete" onclick="confirmDelete({{ $cert->id }})">
+                                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="6" style="text-align: center; padding: 20px; color: #64748b;">
+                                                Este usuario no tiene certificados registrados.
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="user-content">
-                            <table class="cert-table">
-                                <thead>
-                                    <tr>
-                                        <th>Curso</th>
-                                        <th>Fecha Emisión</th>
-                                        <th>Estado</th>
-                                        <th>Link</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($usuario['certificados'] as $cert)
-                                    @php
-                                        $now = now()->setTimezone('America/Lima')->format('Y-m-d');
-                                        $esVigente = $cert->fecha_vencimiento >= $now;
-                                    @endphp
-                                    <tr id="cert-row-{{ $cert->id }}">
-                                        <td>{{ $cert->curso }}</td>
-                                        <td>{{ $cert->fecha_emision->format('d/m/Y') }}</td>
-                                        <td>
-                                            @if($esVigente)
-                                                <span class="status-vigente">Vigente</span>
-                                            @else
-                                                <span class="status-expirado">Expirado</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($cert->drive_link)
-                                                <a href="{{ $cert->drive_link }}" target="_blank" class="btn-view-drive">Ver Drive</a>
-                                            @else
-                                                <span style="color: #999;">-</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <div class="action-buttons">
-                                                <button class="btn-action btn-edit" onclick="openEditModal({{ $cert->id }})">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                                    </svg>
-                                                    Editar
-                                                </button>
-                                                <button class="btn-action btn-delete" onclick="confirmDelete({{ $cert->id }})">
-                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="6" style="text-align: center; padding: 20px; color: #64748b;">
-                                            Este usuario no tiene certificados registrados.
-                                        </td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
+                        @endforeach
                     </div>
                     @empty
                     <div class="empty-state" style="text-align: center; padding: 40px; color: #64748b;">
@@ -540,7 +560,7 @@
             <form id="editCertForm">
                 <input type="hidden" id="edit-cert-id">
                 <div class="form-group">
-                    <label class="form-label">Curso</label>
+                    <label class="form-label" style="font-weight: 800; text-transform: uppercase; font-size: 11px;">Editar Certificado</label>
                     <select id="edit-cert-curso" class="form-input" required>
                         <option value="">Seleccione un curso...</option>
                         @foreach($cursos as $c)
@@ -596,17 +616,27 @@ function toggleUser(header) {
 
 function filterUsers() {
     const search = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.user-card');
+    const companyGroups = document.querySelectorAll('.company-group');
     
-    cards.forEach(card => {
-        const nombre = card.dataset.nombre;
-        const dni = card.dataset.dni;
+    companyGroups.forEach(group => {
+        const cards = group.querySelectorAll('.user-card');
+        let hasVisibleCards = false;
         
-        if (nombre.includes(search) || dni.includes(search)) {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
-        }
+        cards.forEach(card => {
+            const nombre = card.dataset.nombre;
+            const dni = card.dataset.dni;
+            const empresa = card.dataset.empresa;
+            
+            if (nombre.includes(search) || dni.includes(search) || empresa.includes(search)) {
+                card.style.display = '';
+                hasVisibleCards = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Hide/Show the entire company group based on visibility of its users
+        group.style.display = hasVisibleCards ? '' : 'none';
     });
 }
 
@@ -926,6 +956,188 @@ async function executeUserDelete() {
             <button type="button" class="btn-secondary" onclick="closeDeleteUserModal()">Cancelar</button>
             <button type="button" class="btn-danger" id="btn-confirm-user-delete" onclick="executeUserDelete()" style="background: #dc2626;">Borrar Usuario y Todo</button>
         </div>
+    </div>
+</div>
+
+<!-- Worker Edit Modal -->
+<div id="workerEditModal" class="modal" style="display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+    <div class="modal-content" style="background:#fff; padding:24px; border-radius:16px; width:400px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 2px solid #3b82f6;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="font-size: 18px; font-weight: 800; color: #1e293b; margin: 0; display: flex; align-items: center; gap: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #3b82f6;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Editar Trabajador
+            </h2>
+            <button onclick="closeEditWorkerModal()" style="background:none; border:none; color:#64748b; cursor:pointer; padding:4px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        
+        <form id="editWorkerForm">
+            <input type="hidden" id="edit-worker-dni">
+            <div class="form-group" style="margin-bottom: 16px;">
+                <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Nombre Completo</label>
+                <input type="text" id="edit-worker-nombre" name="nombre" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" required>
+            </div>
+            <div class="form-group" style="margin-bottom: 24px;">
+                <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Empresa</label>
+                <input type="text" id="edit-worker-empresa" name="empresa" class="form-input" style="width:100%; padding:10px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" placeholder="Independiente">
+            </div>
+            
+            <div style="display: flex; gap: 12px;">
+                <button type="button" class="btn-secondary" onclick="closeEditWorkerModal()" style="flex:1; border: 2px solid #e2e8f0; background: #f8fafc; color: #64748b; padding:10px; border-radius:10px; cursor:pointer;">Cancelar</button>
+                <button type="submit" class="btn-primary" style="flex:2; background: #3b82f6; color: white; border: none; font-weight: 700; padding:10px; border-radius:10px; cursor:pointer;">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function openEditWorkerModal(dni, nombre, empresa, event) {
+    if (event) event.stopPropagation(); // Evitar que se abra el acordeón
+    
+    document.getElementById('edit-worker-dni').value = dni;
+    document.getElementById('edit-worker-nombre').value = nombre;
+    document.getElementById('edit-worker-empresa').value = (empresa && empresa !== 'Independiente') ? empresa : '';
+    
+    const modal = document.getElementById('workerEditModal');
+    modal.style.display = 'flex';
+}
+
+function closeEditWorkerModal() {
+    document.getElementById('workerEditModal').style.display = 'none';
+}
+
+document.getElementById('editWorkerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const dni = document.getElementById('edit-worker-dni').value;
+    const nombre = document.getElementById('edit-worker-nombre').value;
+    const empresa = document.getElementById('edit-worker-empresa').value;
+    
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Guardando...';
+
+    try {
+        const response = await fetch('/api/trabajadores/actualizar', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ dni, nombre, empresa })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            location.reload();
+        } else {
+            alert(data.message || 'Error al actualizar');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error de conexión');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }
+});
+
+/* --- Bulk Company Edit Logic --- */
+function openBulkEditModal(empresaActual, event) {
+    if (event) event.stopPropagation();
+    
+    document.getElementById('bulk-empresa-actual-display').textContent = empresaActual;
+    document.getElementById('bulk-empresa-actual').value = empresaActual;
+    document.getElementById('bulk-empresa-nueva').value = empresaActual === 'Independiente' ? '' : empresaActual;
+    
+    const modal = document.getElementById('bulkCompanyEditModal');
+    modal.style.display = 'flex';
+}
+
+function closeBulkEditModal() {
+    document.getElementById('bulkCompanyEditModal').style.display = 'none';
+}
+
+document.getElementById('bulkCompanyEditForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const empresaActual = document.getElementById('bulk-empresa-actual').value;
+    const empresaNueva = document.getElementById('bulk-empresa-nueva').value;
+    
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Actualizando...';
+
+    try {
+        const response = await fetch('/api/empresas/actualizar', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+                empresa_actual: empresaActual, 
+                empresa_nueva: empresaNueva 
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            location.reload();
+        } else {
+            alert(data.message || 'Error al actualizar');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error de conexión');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+    }
+});
+</script>
+
+<!-- Bulk Company Edit Modal -->
+<div id="bulkCompanyEditModal" class="modal" style="display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); align-items:center; justify-content:center;">
+    <div class="modal-content" style="background:#fff; padding:24px; border-radius:16px; width:450px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 2px solid #3b82f6;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="font-size: 18px; font-weight: 800; color: #1e293b; margin: 0; display: flex; align-items: center; gap: 10px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #3b82f6;"><path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7M4 17h16V4H4v13z"/></svg>
+                Editar Empresa (Masivo)
+            </h2>
+            <button onclick="closeBulkEditModal()" style="background:none; border:none; color:#64748b; cursor:pointer; padding:4px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        
+        <form id="bulkCompanyEditForm">
+            <input type="hidden" id="bulk-empresa-actual">
+            <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px; margin-bottom: 16px; border-radius: 4px;">
+                <p style="font-size: 12px; color: #1e40af; margin: 0; font-weight: 600;">
+                    Se cambiará el nombre de la empresa para TODOS los trabajadores de:
+                </p>
+                <p style="font-size: 14px; font-weight: 800; color: #1e293b; margin: 4px 0 0;" id="bulk-empresa-actual-display"></p>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 24px;">
+                <label style="display:block; font-size:11px; font-weight:800; color:#64748b; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Nuevo Nombre de Empresa</label>
+                <input type="text" id="bulk-empresa-nueva" name="empresa_nueva" class="form-input" style="width:100%; padding:12px 14px; border:2px solid #e2e8f0; border-radius:10px; font-size:14px; outline:none;" placeholder="Ej: NUEVA EMPRESA S.A.C." required>
+            </div>
+            
+            <div style="display: flex; gap: 12px;">
+                <button type="button" class="btn-secondary" onclick="closeBulkEditModal()" style="flex:1; border: 2px solid #e2e8f0; background: #f8fafc; color: #64748b; padding:12px; border-radius:10px; cursor:pointer; font-weight: 700;">Cancelar</button>
+                <button type="submit" class="btn-primary" style="flex:2; background: #3b82f6; color: white; border: none; font-weight: 700; padding:12px; border-radius:10px; cursor:pointer;">Actualizar Todo</button>
+            </div>
+        </form>
     </div>
 </div>
 

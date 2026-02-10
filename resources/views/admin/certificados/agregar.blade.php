@@ -61,7 +61,11 @@
                                 </div>
                                 <div class="profile-info">
                                     <h4 id="profile-nombre" style="margin: 0; font-size: 14px; font-weight: 800; color: #1e293b; line-height: 1.2;"></h4>
-                                    <p id="profile-dni" style="margin: 2px 0 0; font-size: 11px; font-weight: 800; color: #64748b;"></p>
+                                    <div style="display: flex; gap: 8px; align-items: center; margin-top: 2px;">
+                                        <p id="profile-dni" style="margin: 0; font-size: 11px; font-weight: 800; color: #64748b;"></p>
+                                        <span style="color: #cbd5e1; font-size: 10px;">•</span>
+                                        <p id="profile-empresa" style="margin: 0; font-size: 11px; font-weight: 800; color: #3b82f6;"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -112,11 +116,17 @@
                             <p style="font-size: 8px; color: #b45309; text-transform: uppercase; margin-bottom: 0; font-weight: 800; letter-spacing: 0.5px;">DNI PARA REGISTRO</p>
                             <input type="text" id="reg-dni-edit" style="width: 100%; border: none; text-align: center; font-size: 18px; font-weight: 900; color: #92400e; letter-spacing: 0px; padding: 0; background: transparent; outline: none;" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                         </div>
-                        <p style="font-size: 11px; color: #92400e; line-height: 1.3; font-weight: 500; margin: 0;">Verifica el DNI e ingresa el nombre.</p>
+                        <p style="font-size: 11px; color: #92400e; line-height: 1.3; font-weight: 500; margin: 0;">Verifica el DNI e ingresa el nombre y empresa.</p>
                     </div>
-                    <div class="form-group" style="margin-bottom: 12px;">
-                        <label style="color: #92400e; font-size: 11px; margin-bottom: 4px;">Nombre Completo</label>
-                        <input type="text" id="new-user-nombre" class="form-input" placeholder="Ej: Juan Pérez" style="border-color: #fcd34d; background: white; color: #92400e; padding: 8px 12px; font-size: 13px;" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
+                    <div class="registration-form-grid" style="display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="color: #92400e; font-size: 11px; margin-bottom: 4px;">Nombre Completo</label>
+                            <input type="text" id="new-user-nombre" class="form-input" placeholder="Ej: Juan Pérez" style="border-color: #fcd34d; background: white; color: #92400e; padding: 8px 12px; font-size: 13px;" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="color: #92400e; font-size: 11px; margin-bottom: 4px;">Empresa (Opcional)</label>
+                            <input type="text" id="new-user-empresa" class="form-input reg-empresa-sync" placeholder="Ej: GISEMIN S.A.C." style="border-color: #fcd34d; background: white; color: #92400e; padding: 8px 12px; font-size: 13px;">
+                        </div>
                     </div>
                     <button id="btn-register-user" class="btn-submit-main" style="margin-top: 0; background: #fbbf24; color: #92400e; border: none; padding: 10px; font-size: 12px; box-shadow: 0 2px 8px rgba(251, 191, 36, 0.2);">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-right: 6px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="12" y1="11" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16"/></svg>
@@ -164,6 +174,11 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                                             Rellena esto con un certificado válido
                                         </p>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom: 12px;">
+                                        <label>Empresa (Se edita en la lista)</label>
+                                        <input type="text" name="empresa" id="form-empresa" class="form-input reg-empresa-sync" placeholder="Ej: GISEMIN S.A.C." readonly style="background: #f1f5f9; cursor: not-allowed;">
                                     </div>
 
                                     <div class="form-row" style="margin-bottom: 12px;">

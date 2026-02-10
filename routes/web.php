@@ -113,9 +113,11 @@ Route::domain($adminDomain)->name('admin.')->group(function () {
             Route::put('/certificados/{id}', [CertificadosController::class, 'update']);
             Route::delete('/certificados/{id}', [CertificadosController::class, 'destroy']);
 
-            // Buscar trabajador por DNI
+            // Rutas de trabajadores y empresas
             Route::get('/trabajadores/buscar', [CertificadosController::class, 'buscarTrabajador']);
             Route::post('/trabajadores/registrar', [CertificadosController::class, 'registrarTrabajador']);
+            Route::put('/trabajadores/actualizar', [CertificadosController::class, 'actualizarTrabajador']);
+            Route::put('/empresas/actualizar', [CertificadosController::class, 'actualizarEmpresaMasivo']);
             Route::delete('/trabajadores/{dni}', [CertificadosController::class, 'eliminarTrabajador']);
 
             // API para reclamaciones

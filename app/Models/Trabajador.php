@@ -14,6 +14,7 @@ class Trabajador extends Model
     protected $fillable = [
         'nombre',
         'dni',
+        'empresa',
     ];
 
     /**
