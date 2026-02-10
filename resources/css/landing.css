@@ -2133,6 +2133,10 @@ ul {
         grid-template-columns: 1fr;
     }
 
+    .service-image {
+        aspect-ratio: 16 / 9;
+    }
+
     .indicators-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
@@ -2211,6 +2215,10 @@ ul {
 
     .service-card {
         padding: 0;
+    }
+
+    .service-image {
+        aspect-ratio: 2 / 1;
     }
 
     .hero-cta {
