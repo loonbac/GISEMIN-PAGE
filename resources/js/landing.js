@@ -8,6 +8,9 @@ const navMenu = document.getElementById('navMenu');
 mobileMenuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     mobileMenuToggle.classList.toggle('active');
+    const isOpen = navMenu.classList.contains('active');
+    mobileMenuToggle.setAttribute('aria-expanded', isOpen);
+    mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
 });
 
 // Close mobile menu when clicking on a link

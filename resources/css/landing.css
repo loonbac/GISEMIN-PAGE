@@ -1790,6 +1790,37 @@ ul {
 }
 
 /* ========================================
+   Accessibility: Focus & Touch Targets
+   ======================================== */
+
+*:focus-visible {
+    outline: 3px solid var(--blue-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+.btn:focus-visible,
+.btn-service:focus-visible,
+.btn-stat:focus-visible,
+.btn-send:focus-visible,
+.btn-contact:focus-visible {
+    outline-offset: 3px;
+}
+
+/* Screen-reader only helper */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ========================================
    Responsive Design
    ======================================== */
 
@@ -1810,9 +1841,37 @@ ul {
         grid-column: span 3;
         aspect-ratio: 3 / 1;
     }
+
+    /* Certification layout: stack on tablets */
+    .certification-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .certification-benefits.left,
+    .certification-benefits.right {
+        align-items: center;
+    }
+
+    .certification-benefits.left .benefit-item,
+    .certification-benefits.right .benefit-item {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .certification-container {
+        order: -1;
+    }
+
+    .certification-benefits {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
+
+    /* --- Navigation --- */
     .nav-wrapper {
         padding: 0.5rem 0;
     }
@@ -1862,7 +1921,11 @@ ul {
         width: 100%;
         justify-content: center;
         padding: 0.75rem 0.5rem;
+        min-height: 44px;
+        align-items: center;
         border-radius: var(--radius-md);
+        color: var(--gray-700);
+        text-shadow: none;
     }
 
     .btn-contact,
@@ -1877,13 +1940,12 @@ ul {
         visibility: visible;
     }
 
-    .nav-menu li a {
-        color: var(--gray-700);
-        text-shadow: none;
-    }
-
     .mobile-menu-toggle {
         display: flex;
+        min-width: 44px;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
     }
 
     .mobile-menu-toggle.active span:nth-child(1) {
@@ -1898,25 +1960,11 @@ ul {
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
+    /* --- Hero --- */
     .hero {
         min-height: 550px;
         max-height: 700px;
         background-attachment: scroll;
-    }
-
-    .mission-vision-grid {
-        grid-template-columns: 1fr;
-        max-width: 520px;
-        margin: 0 auto;
-    }
-
-    .mission-card,
-    .vision-card {
-        text-align: center;
-    }
-
-    .mv-header {
-        justify-content: center;
     }
 
     .hero-content {
@@ -1941,6 +1989,54 @@ ul {
         width: 100%;
     }
 
+    /* --- About Section --- */
+    .about,
+    .mission-vision-section,
+    .services,
+    .services-collage,
+    .stats-cards,
+    .certification-section {
+        padding-top: 60px;
+    }
+
+    .about-grid,
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-image {
+        order: -1;
+    }
+
+    .about-buttons {
+        flex-direction: column;
+    }
+
+    .image-wrapper {
+        width: 100%;
+    }
+
+    /* --- Mission/Vision --- */
+    .mission-vision-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .mission-card,
+    .vision-card {
+        text-align: center;
+    }
+
+    .mv-header {
+        justify-content: center;
+    }
+
+    /* --- Services --- */
     .indicators-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1958,6 +2054,12 @@ ul {
         order: -1;
     }
 
+    .service-info {
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    /* --- Collage --- */
     .collage-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1967,51 +2069,33 @@ ul {
         aspect-ratio: 2 / 1;
     }
 
-    .stats-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .about-grid,
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .about-stats {
-        grid-template-columns: 1fr;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .details-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .about-image {
-        order: -1;
-    }
-
-    .about-buttons {
-        flex-direction: column;
-    }
-
-    .image-wrapper {
-        width: 100%;
-    }
-
-    .service-info {
-        min-height: auto;
-        padding: 1rem;
-    }
-
     .collage-overlay {
         padding: 0.75rem;
         transform: translateY(0);
     }
 
     .collage-overlay h4 {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
+
+    /* --- Stats Cards --- */
+    .stats-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* --- Certification --- */
+    .certification-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    /* --- Contact --- */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
     }
 
     .contact-wrapper {
@@ -2027,6 +2111,7 @@ ul {
         word-break: break-word;
     }
 
+    /* --- Footer --- */
     .footer-content {
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-lg);
@@ -2064,14 +2149,11 @@ ul {
 
     .stats-cards-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-md);
     }
 
     .hero {
         min-height: 500px;
-    }
-
-    .stats-cards-grid {
-        gap: var(--spacing-md);
     }
 
     .stat-card-box {
@@ -2097,6 +2179,24 @@ ul {
         width: 45px;
         height: 45px;
     }
+
+    /* Reduce section paddings further */
+    .about,
+    .mission-vision-section,
+    .services,
+    .services-collage,
+    .stats-cards,
+    .certification-section {
+        padding-top: 50px;
+    }
+
+    .contact {
+        padding: 50px 0;
+    }
+
+    .collage-overlay h4 {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2110,7 +2210,7 @@ ul {
     }
 
     .service-card {
-        padding: 1.5rem;
+        padding: 0;
     }
 
     .hero-cta {
@@ -2122,6 +2222,7 @@ ul {
     }
 
     .collage-large {
+        grid-column: span 1;
         aspect-ratio: 4 / 3;
         padding-bottom: 70%;
     }
@@ -2130,8 +2231,27 @@ ul {
         grid-template-columns: 1fr;
     }
 
-    .collage-large {
-        aspect-ratio: 4 / 3;
+    /* About stats: single column on very small screens */
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+
+    /* Reduce section paddings on smallest screens */
+    .about,
+    .mission-vision-section,
+    .services,
+    .services-collage,
+    .stats-cards,
+    .certification-section {
+        padding-top: 40px;
+    }
+
+    .contact {
+        padding: 40px 0;
+    }
+
+    .about-description {
+        font-size: 1rem;
     }
 }
 

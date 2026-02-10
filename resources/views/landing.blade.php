@@ -59,7 +59,7 @@
                         <span class="logo-subtitle">Consultores</span>
                     </div>
                 </div>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -374,14 +374,18 @@
                     <h2>Contáctanos</h2>
                     <form class="contact-form" id="contactForm">
                         <div class="form-row">
-                            <input type="text" placeholder="Tu nombre">
-                            <input type="email" placeholder="Tu correo electrónico">
+                            <label for="contact-name" class="sr-only">Tu nombre</label>
+                            <input type="text" id="contact-name" placeholder="Tu nombre">
+                            <label for="contact-email" class="sr-only">Tu correo electrónico</label>
+                            <input type="email" id="contact-email" placeholder="Tu correo electrónico">
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Asunto">
+                            <label for="contact-subject" class="sr-only">Asunto</label>
+                            <input type="text" id="contact-subject" placeholder="Asunto">
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Tu mensaje (Opcional)" rows="3"></textarea>
+                            <label for="contact-message" class="sr-only">Tu mensaje</label>
+                            <textarea id="contact-message" placeholder="Tu mensaje (Opcional)" rows="3"></textarea>
                         </div>
                         <button type="submit" class="btn-send">Enviar mensaje</button>
                     </form>
@@ -547,8 +551,8 @@
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Volver al inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
