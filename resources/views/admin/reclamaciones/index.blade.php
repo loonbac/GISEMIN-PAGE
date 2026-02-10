@@ -214,8 +214,8 @@
 
     tr:last-child td { border-bottom: none; }
     
-    tr.reclamacion-row[data-status="pendiente"] { background-color: #fffbeb; }
-    tr.reclamacion-row[data-status="resuelto"] { background-color: #f0fdf4; }
+    tr.reclamacion-row[data-status="pendiente"] { background-color: #fef3c7; }
+    tr.reclamacion-row[data-status="resuelto"] { background-color: #d1fae5; }
     tr.reclamacion-row:hover { filter: brightness(0.98); }
 
     tr.reclamacion-row[data-status="pendiente"] td:first-child { box-shadow: inset 3px 0 0 #f59e0b; }
