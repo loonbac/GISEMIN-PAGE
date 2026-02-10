@@ -56,6 +56,41 @@ body {
     padding: 40px;
 }
 
+/* Success Banner */
+.success-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background-color: rgba(16, 185, 129, 0.1);
+    /* Transparent green */
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+    color: #065f46;
+    /* Deep emerald text */
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    animation: fadeInDown 0.4s ease-out;
+}
+
+.success-banner svg {
+    color: #10b981;
+    flex-shrink: 0;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ============================================
    COMPANY INFO ROW
    ============================================ */

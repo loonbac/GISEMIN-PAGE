@@ -30,7 +30,14 @@
             </div>
         </div>
 
-        <form action="{{ route('libro-reclamaciones.store') }}" method="POST" class="complaint-form" autocomplete="off">
+        @if(session('success'))
+            <div class="success-banner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
+
+        <form action="/libro-reclamaciones" method="POST" class="complaint-form" autocomplete="off">
             @csrf
             
             <!-- Section 1: Datos del Reclamante -->
@@ -102,13 +109,4 @@
         </form>
     </div>
 </div>
-@if(session('success'))
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.showAlert) {
-            window.showAlert('¡Enviado!', "{{ session('success') }}", 'success');
-        }
-    });
-</script>
-@endif
 @endsection
