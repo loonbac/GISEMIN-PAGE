@@ -273,6 +273,8 @@
         .reclamaciones-container {
             padding: 16px 12px !important;
             zoom: 1 !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
         }
 
         .page-header {
@@ -344,6 +346,11 @@
         table {
             display: block !important;
             width: 100% !important;
+            table-layout: auto !important;
+        }
+
+        colgroup {
+            display: none !important;
         }
 
         thead {
@@ -499,6 +506,9 @@
             justify-content: center !important;
             padding: 0 !important;
             border: none !important;
+            color: white !important;
+            text-decoration: none !important;
+            text-align: center !important;
         }
 
         /* Orange for pendiente, blue for resuelto */
