@@ -1292,49 +1292,6 @@ ul {
 /* Móviles grandes (768px) */
 @media (max-width: 768px) {
 
-    /* Navbar Mobile */
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 75%;
-        max-width: 300px;
-        background: var(--white);
-        flex-direction: column;
-        padding: 100px 30px 40px;
-        gap: 0;
-        transform: translateX(100%);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
-        transition: transform 0.35s ease;
-        z-index: 999;
-    }
-
-    .nav-menu.active {
-        transform: translateX(0);
-    }
-
-    .nav-menu li {
-        width: 100%;
-        border-bottom: 1px solid var(--gray-100);
-    }
-
-    .nav-menu li a {
-        display: block;
-        padding: 16px 0;
-        color: var(--gray-800) !important;
-        font-size: 1.1rem;
-    }
-
-    .nav-menu li a:hover {
-        color: var(--primary-color) !important;
-    }
-
-    .nav-toggle {
-        display: flex !important;
-        z-index: 1001;
-    }
-
     /* Hero Mobile */
     .hero {
         min-height: auto;
