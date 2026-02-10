@@ -347,7 +347,7 @@
                     <div class="stat-card-box">
                         <div class="stat-card-content">
                             <span class="stat-badge">PROFESIONALES CAPACITADOS</span>
-                            <h3 class="stat-number">1,200+</h3>
+                            <h3 class="stat-number">1,000+</h3>
                             <p class="stat-label">PERSONAS CERTIFICADAS</p>
                             <a href="#nosotros" class="btn-stat">CONOZCA MÁS</a>
                         </div>
