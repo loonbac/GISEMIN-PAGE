@@ -707,6 +707,21 @@
 </div>
 </div>
 
+<!-- Modal de confirmación de eliminación -->
+<div id="deleteConfirmModal" style="display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.3); align-items:center; justify-content:center; backdrop-filter: blur(2px);">
+    <div style="background:#fff; padding:24px; border-radius:16px; width:380px; max-width:90%; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 2px solid #fecaca; text-align:center;">
+        <div style="width:50px; height:50px; border-radius:50%; background:#fee2e2; display:flex; align-items:center; justify-content:center; margin: 0 auto 16px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        </div>
+        <h3 style="font-size:16px; font-weight:800; color:#1e293b; margin:0 0 8px;">¿Eliminar reclamación?</h3>
+        <p style="font-size:13px; color:#64748b; margin:0 0 20px; line-height:1.5;">Esta acción no se puede deshacer. La reclamación será eliminada permanentemente.</p>
+        <div style="display:flex; gap:10px;">
+            <button onclick="closeDeleteModal()" style="flex:1; padding:10px; border-radius:10px; border:1px solid #e2e8f0; background:#f8fafc; color:#64748b; font-weight:700; font-size:13px; cursor:pointer;">Cancelar</button>
+            <button id="confirmDeleteBtn" style="flex:1; padding:10px; border-radius:10px; border:none; background:#ef4444; color:white; font-weight:700; font-size:13px; cursor:pointer;">Eliminar</button>
+        </div>
+    </div>
+</div>
+
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -735,13 +750,27 @@
         });
     }
 
-    async function deleteReclamacion(id, event) {
+    let deleteTargetId = null;
+
+    function deleteReclamacion(id, event) {
         event.preventDefault();
         event.stopPropagation();
-        if (!confirm('¿Estás seguro de que deseas eliminar esta reclamación? Esta acción no se puede deshacer.')) return;
+        deleteTargetId = id;
+        document.getElementById('deleteConfirmModal').style.display = 'flex';
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteConfirmModal').style.display = 'none';
+        deleteTargetId = null;
+    }
+
+    document.getElementById('confirmDeleteBtn').addEventListener('click', async function() {
+        if (!deleteTargetId) return;
+        this.textContent = 'Eliminando...';
+        this.disabled = true;
 
         try {
-            const response = await fetch('/api/reclamaciones/' + id, {
+            const response = await fetch('/api/reclamaciones/' + deleteTargetId, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -753,12 +782,16 @@
                 location.reload();
             } else {
                 alert(data.message || 'Error al eliminar');
+                this.textContent = 'Eliminar';
+                this.disabled = false;
             }
         } catch (error) {
             console.error('Error:', error);
             alert('Error de conexión');
+            this.textContent = 'Eliminar';
+            this.disabled = false;
         }
-    }
+    });
 </script>
 @endpush
 @endsection
