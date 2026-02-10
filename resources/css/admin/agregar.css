@@ -605,23 +605,49 @@
     }
 
     .page-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        justify-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
 
     .left-column,
     .right-column {
+        display: contents;
+        /* Flattens the structure so children are flex items of page-grid */
+    }
+
+    /* Mobile ordering: Search -> Form -> History -> RegisterUser */
+    #main-side-card {
+        order: 1;
+    }
+
+    .right-column>* {
+        order: 2;
+        /* Form or empty state */
+    }
+
+    /* Target history cards specifically to move them below form */
+    #history-vigentes-card {
+        order: 3;
+    }
+
+    #history-vencidas-card {
+        order: 4;
+    }
+
+    #register-user-section {
+        order: 5;
+    }
+
+    #main-side-card,
+    #history-vigentes-card,
+    #history-vencidas-card,
+    #register-user-section,
+    .form-card,
+    .empty-state-right {
         width: 100%;
-    }
-
-    .right-column {
-        display: block;
-    }
-
-    .form-card {
         max-width: 100%;
-        margin: 0 auto;
+        margin: 0;
     }
 
     .empty-state-right {
