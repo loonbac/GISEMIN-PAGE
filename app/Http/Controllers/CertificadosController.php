@@ -927,8 +927,6 @@ class CertificadosController extends Controller
             ]);
         } catch (\Exception $e) {
             return response()->json([
-        } catch (\Exception $e) {
-            return response()->json([
                 'success' => false,
                 'message' => 'Error al actualizar trabajador: ' . $e->getMessage()
             ], 500);
