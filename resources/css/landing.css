@@ -1943,13 +1943,18 @@ ul {
     }
 
     .btn-contact {
-        width: 100%;
+        display: flex !important;
+        width: 100% !important;
         justify-content: center;
-        margin-top: 0.5rem;
+        text-align: center;
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--gray-200);
     }
 
     .btn-whatsapp {
-        width: 100%;
+        display: flex !important;
+        width: 100% !important;
         justify-content: center;
         margin-top: 0.25rem;
     }
