@@ -6,27 +6,46 @@
     left: 0 !important;
     right: 0 !important;
     background-color: #ffffff !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: var(--shadow-lg) !important;
     z-index: 1000 !important;
-    transition: none !important;
+    transition: var(--transition-base) !important;
 }
 
-.navbar.scrolled {
-    background-color: #ffffff !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+.nav-wrapper {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: clamp(0.75rem, 2vw, 1rem) 0 !important;
+    min-height: 60px !important;
+}
+
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: clamp(0.75rem, 1.5vw, 1rem) !important;
+    margin-top: 0.5rem !important;
+}
+
+.logo-image {
+    width: clamp(40px, 5vw, 50px) !important;
+    height: clamp(40px, 5vw, 50px) !important;
+    border-radius: 8px !important;
 }
 
 /* Logo colors - always blue */
 .navbar .logo h1,
 .navbar .logo-text h1 {
     color: #0f5f8c !important;
-    transition: none !important;
+    font-size: clamp(1.5rem, 2.5vw, 1.75rem) !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
 }
 
 .navbar .logo span,
 .navbar .logo-text span {
     color: #0f5f8c !important;
-    transition: none !important;
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem) !important;
+    font-weight: 400 !important;
 }
 
 .navbar.scrolled .logo h1,

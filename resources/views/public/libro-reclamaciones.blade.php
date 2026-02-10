@@ -43,22 +43,26 @@
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label for="nombre_completo">Nombre Completo <span class="required">*</span></label>
-                        <input type="text" id="nombre_completo" name="nombre_completo" required placeholder="Ingrese sus nombres y apellidos completos" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
+                        <input type="text" id="nombre_completo" name="nombre_completo" value="{{ old('nombre_completo') }}" required placeholder="Ingrese sus nombres y apellidos completos" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
+                        @error('nombre_completo') <span class="error-msg" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="dni">DNI <span class="required">*</span></label>
-                        <input type="text" id="dni" name="dni" required placeholder="Ingrese su DNI" maxlength="8" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                        <input type="text" id="dni" name="dni" value="{{ old('dni') }}" required placeholder="Ingrese su DNI" maxlength="8" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8)">
+                        @error('dni') <span class="error-msg" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="telefono">Teléfono <span class="required">*</span></label>
-                        <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 987 654 321" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <input type="tel" id="telefono" name="telefono" value="{{ old('telefono') }}" required placeholder="Ej: 987 654 321" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        @error('telefono') <span class="error-msg" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="email">Correo Electrónico <span class="required">*</span></label>
-                        <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required placeholder="ejemplo@correo.com">
+                        @error('email') <span class="error-msg" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
                 </div>
             </div>
@@ -73,12 +77,14 @@
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label for="detalle_reclamo">Descripción del Problema <span class="required">*</span></label>
-                        <textarea id="detalle_reclamo" name="detalle_reclamo" rows="5" required placeholder="Describa detalladamente el problema: qué ocurrió, cuándo, con qué servicio está relacionado y cualquier otra información relevante..."></textarea>
+                        <textarea id="detalle_reclamo" name="detalle_reclamo" rows="5" required placeholder="Describa detalladamente el problema: qué ocurrió, cuándo, con qué servicio está relacionado y cualquier otra información relevante...">{{ old('detalle_reclamo') }}</textarea>
+                        @error('detalle_reclamo') <span class="error-msg" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="form-group full-width">
                         <label for="pedido">Solución Esperada <span class="required">*</span></label>
-                        <textarea id="pedido" name="pedido" rows="3" required placeholder="Indique la solución que espera recibir de nuestra parte..."></textarea>
+                        <textarea id="pedido" name="pedido" rows="3" required placeholder="Indique la solución que espera recibir de nuestra parte...">{{ old('pedido') }}</textarea>
+                        @error('pedido') <span class="error-msg" style="color: #ef4444; font-size: 12px; margin-top: 4px; display: block;">{{ $message }}</span> @enderror
                     </div>
                 </div>
             </div>
@@ -96,4 +102,13 @@
         </form>
     </div>
 </div>
+@if(session('success'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.showAlert) {
+            window.showAlert('¡Enviado!', "{{ session('success') }}", 'success');
+        }
+    });
+</script>
+@endif
 @endsection

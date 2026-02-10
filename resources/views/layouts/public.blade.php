@@ -154,6 +154,7 @@
         </div>
     </footer>
 
+    @include('partials.modals')
     @stack('scripts')
     @vite(['resources/js/landing.js'])
 </body>
