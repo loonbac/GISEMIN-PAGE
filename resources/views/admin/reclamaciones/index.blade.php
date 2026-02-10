@@ -268,6 +268,29 @@
         font-weight: 500;
         padding: 10px;
     }
+
+    .btn-delete-reclamacion {
+        background: #fee2e2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
+        padding: 5px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .btn-delete-reclamacion:hover {
+        background: #fecaca;
+        transform: scale(1.05);
+    }
+
+    .btn-delete-reclamacion svg {
+        width: 14px;
+        height: 14px;
+    }
     
     @media (max-width: 991px) {
         .reclamaciones-container {
@@ -484,7 +507,7 @@
             border-radius: 20px !important;
         }
 
-        /* TD 6: Actions - full width compact button */
+        /* TD 6: Actions row - side by side on mobile */
         td:last-child {
             order: 7 !important;
             margin-bottom: 0 !important;
@@ -492,12 +515,17 @@
             padding: 10px 0 0 0 !important;
             border-top: 1px solid #f1f5f9 !important;
             border-bottom: none !important;
-            text-align: center !important;
             width: 100% !important;
         }
 
+        .mobile-actions {
+            display: flex !important;
+            gap: 8px !important;
+            align-items: center !important;
+        }
+
         .btn-view {
-            width: 100% !important;
+            flex: 1 !important;
             height: 36px !important;
             border-radius: 8px !important;
             font-size: 13px !important;
@@ -511,6 +539,20 @@
             color: white !important;
             text-decoration: none !important;
             box-sizing: border-box !important;
+        }
+
+        .btn-delete-reclamacion {
+            width: 36px !important;
+            height: 36px !important;
+            min-width: 36px !important;
+            padding: 0 !important;
+            font-size: 0 !important;
+            border-radius: 8px !important;
+        }
+
+        .btn-delete-reclamacion svg {
+            width: 15px !important;
+            height: 15px !important;
         }
 
         /* Orange for pendiente, blue for resuelto */
@@ -635,9 +677,14 @@
                             </div>
                         </td>
                         <td style="text-align: center;">
-                            <a href="{{ route('admin.reclamaciones.show', $reclamacion->id) }}" class="btn-view">
-                                Ver
-                            </a>
+                            <div class="mobile-actions">
+                                <a href="{{ route('admin.reclamaciones.show', $reclamacion->id) }}" class="btn-view">
+                                    Ver
+                                </a>
+                                <button class="btn-delete-reclamacion" onclick="deleteReclamacion({{ $reclamacion->id }}, event)" title="Eliminar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -678,6 +725,31 @@
                 row.style.display = 'none'; 
             }
         });
+    }
+
+    async function deleteReclamacion(id, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!confirm('¿Estás seguro de que deseas eliminar esta reclamación? Esta acción no se puede deshacer.')) return;
+
+        try {
+            const response = await fetch('/api/reclamaciones/' + id, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            });
+            const data = await response.json();
+            if (data.success) {
+                location.reload();
+            } else {
+                alert(data.message || 'Error al eliminar');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Error de conexión');
+        }
     }
 </script>
 @endpush
