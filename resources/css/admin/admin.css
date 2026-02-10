@@ -601,9 +601,11 @@ body {
         gap: 16px;
     }
 
-    .admin-logo {
+    .admin-nav-container .admin-logo {
         margin-right: 0 !important;
-        margin-bottom: 32px;
+        margin-bottom: 32px !important;
+        width: 100%;
+        justify-content: center;
     }
 
     .admin-container {
