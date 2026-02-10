@@ -616,26 +616,26 @@
         /* Flattens the structure so children are flex items of page-grid */
     }
 
-    /* Mobile ordering: Search -> Form -> History -> RegisterUser */
+    /* Mobile ordering: Search -> RegisterUser -> Form -> History */
     #main-side-card {
         order: 1;
     }
 
-    .right-column>* {
+    #register-user-section {
         order: 2;
+    }
+
+    .right-column>* {
+        order: 3;
         /* Form or empty state */
     }
 
     /* Target history cards specifically to move them below form */
     #history-vigentes-card {
-        order: 3;
-    }
-
-    #history-vencidas-card {
         order: 4;
     }
 
-    #register-user-section {
+    #history-vencidas-card {
         order: 5;
     }
 
