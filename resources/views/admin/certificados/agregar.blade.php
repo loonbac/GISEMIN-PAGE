@@ -124,11 +124,10 @@
                             <input type="text" id="new-user-nombre" class="form-input" placeholder="Ej: Juan Pérez" style="border-color: #fcd34d; background: white; color: #92400e; padding: 8px 12px; font-size: 13px;" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                         </div>
                     </div>
-                    <button id="btn-register-user" class="btn-submit-main" style="margin-top: 0; background: #fbbf24; color: #92400e; border: none; padding: 10px; font-size: 12px; box-shadow: 0 2px 8px rgba(251, 191, 36, 0.2);">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="margin-right: 6px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="12" y1="11" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16"/></svg>
-                        REGISTRAR USUARIO
+                    <button id="btn-register-user" class="btn-submit-main" style="margin-top: 0; background: #fbbf24; color: #92400e; border: none; padding: 12px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3); text-transform: uppercase; width: 100%; border-radius: 12px;">
+                        AÑADIR USUARIO
                     </button>
-                    <button id="btn-cancel-register" class="btn-reset" style="margin-top: 8px; width:100%; border-color: #fcd34d; color: #92400e; background: rgba(255, 255, 255, 0.5); padding: 6px; font-size: 11px;">CANCELAR</button>
+                    <button id="btn-cancel-register" class="btn-reset" style="margin-top: 8px; width:100%; border: 2px solid #fee2e2; color: #dc2626; background: #fef2f2; padding: 10px; font-size: 12px; font-weight: 800; border-radius: 12px; text-transform: uppercase;">CANCELAR</button>
                 </div>
             </div>
 

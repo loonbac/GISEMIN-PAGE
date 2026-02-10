@@ -299,25 +299,91 @@
 
     .search-container { margin-bottom: 24px; }
 
+    /* Company Group "Window" Style */
+    .company-group {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .company-header-toggle {
+        padding: 16px 20px;
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.2s;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .company-header-toggle:hover {
+        background: #f1f5f9;
+    }
+
+    .company-header-toggle h2 {
+        font-size: 14px;
+        font-weight: 800;
+        color: #1e293b;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .company-chevron {
+        margin-left: auto;
+        width: 18px;
+        height: 18px;
+        color: #94a3b8;
+        transition: transform 0.3s;
+    }
+
+    .company-group.collapsed .company-chevron {
+        transform: rotate(-90deg);
+    }
+
+    .company-users-container {
+        padding: 16px;
+        transition: max-height 0.3s ease-out;
+    }
+
+    .company-group.collapsed .company-users-container {
+        display: none;
+    }
+
     /* Modal Button Refinements */
-    .modal-footer .btn-secondary,
+    .modal-footer .btn-secondary {
+        background: #fef2f2 !important; /* Light red background */
+        color: #dc2626 !important; /* Red text */
+        border: 2px solid #fee2e2 !important;
+        padding: 8px 20px !important;
+        font-size: 13px !important;
+        height: 38px !important;
+        border-radius: 10px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+    }
+
+    .modal-footer .btn-secondary:hover {
+        background: #fee2e2 !important;
+    }
+
     .modal-footer .btn-submit,
     .modal-footer .btn-danger {
         padding: 8px 20px !important;
         font-size: 13px !important;
         height: 38px !important;
-        border-radius: 8px !important;
-        text-transform: none !important;
-        letter-spacing: normal !important;
-    }
-
-    .modal-footer .btn-secondary {
-        background: #ef4444 !important; /* Red for Cancel */
-        color: white !important;
-    }
-
-    .modal-footer .btn-secondary:hover {
-        background: #dc2626 !important;
+        border-radius: 10px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
     }
 </style>
 @endpush
@@ -392,22 +458,28 @@
                 <!-- Users List Grouped by Company -->
                 <div id="users-list">
                     @forelse($usuariosPorEmpresa as $empresa => $grupo)
-                    <div class="company-group" style="margin-bottom: 24px;">
-                        <h2 style="font-size: 13px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
-                                <path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7M4 17h16V4H4v13z"/>
-                            </svg>
-                            {{ $empresa }}
-                            <span style="background: #f1f5f9; color: #64748b; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
+                    <div class="company-group" id="group-{{ Str::slug($empresa) }}">
+                        <div class="company-header-toggle" onclick="toggleCompanyGroup('{{ Str::slug($empresa) }}')">
+                            <h2>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #64748b;">
+                                    <path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7M4 17h16V4H4v13z"/>
+                                </svg>
+                                {{ $empresa }}
+                                <span style="background: #f1f5f9; color: #64748b; font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 700;">{{ $grupo->count() }}</span>
+                            </h2>
                             @if($empresa !== 'INDEPENDIENTE')
                             <button onclick="openBulkEditModal('{{ addslashes($empresa) }}', event)" style="margin-left: auto; background: none; border: none; color: #3b82f6; cursor: pointer; padding: 4px; display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; text-transform: none;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                 Editar Empresa
                             </button>
                             @endif
-                        </h2>
+                            <svg class="company-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
                         
-                        @foreach($grupo as $usuario)
+                        <div class="company-users-container">
+                            @foreach($grupo as $usuario)
                         <div class="user-card" data-nombre="{{ strtolower($usuario['nombre']) }}" data-dni="{{ $usuario['dni'] }}" data-empresa="{{ strtolower($usuario['empresa'] ?? 'independiente') }}">
                             <div class="user-header" onclick="toggleUser(this)">
                                 
@@ -525,7 +597,8 @@
                                 </table>
                             </div>
                         </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                     @empty
                     <div class="empty-state" style="text-align: center; padding: 40px; color: #64748b;">
@@ -614,6 +687,13 @@
 </div>
 
 <script>
+function toggleCompanyGroup(slug) {
+    const group = document.getElementById(`group-${slug}`);
+    if (group) {
+        group.classList.toggle('collapsed');
+    }
+}
+
 function toggleUser(header) {
     const card = header.closest('.user-card');
     card.classList.toggle('expanded');
@@ -1111,7 +1191,7 @@ document.getElementById('bulkCompanyEditForm').addEventListener('submit', async 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h2 style="font-size: 18px; font-weight: 800; color: #1e293b; margin: 0; display: flex; align-items: center; gap: 10px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #3b82f6;"><path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7M4 17h16V4H4v13z"/></svg>
-                Editar Empresa (Masivo)
+                Editar Empresa
             </h2>
             <button onclick="closeBulkEditModal()" style="background:none; border:none; color:#64748b; cursor:pointer; padding:4px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -1133,7 +1213,7 @@ document.getElementById('bulkCompanyEditForm').addEventListener('submit', async 
             </div>
             
             <div style="display: flex; gap: 12px;">
-                <button type="button" class="btn-secondary" onclick="closeBulkEditModal()" style="flex:1; border: 2px solid #e2e8f0; background: #f8fafc; color: #64748b; padding:12px; border-radius:10px; cursor:pointer; font-weight: 700;">Cancelar</button>
+                <button type="button" class="btn-secondary" onclick="closeBulkEditModal()" style="flex:1;">Cancelar</button>
                 <button type="submit" class="btn-primary" style="flex:2; background: #3b82f6; color: white; border: none; font-weight: 700; padding:12px; border-radius:10px; cursor:pointer;">Actualizar Todo</button>
             </div>
         </form>

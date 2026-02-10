@@ -503,6 +503,9 @@ function mostrarRegistroUsuario(dni) {
     document.getElementById('right-empty-state').classList.remove('hidden');
     document.getElementById('certificate-form-card').classList.add('hidden');
 
+    const nameInput = document.getElementById('new-user-nombre');
+    if (nameInput) nameInput.value = '';
+
     document.getElementById('register-user-section').classList.remove('hidden');
     document.getElementById('new-user-nombre').focus();
 }

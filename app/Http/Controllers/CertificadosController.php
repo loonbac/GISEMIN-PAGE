@@ -384,6 +384,12 @@ class CertificadosController extends Controller
             return strtoupper($u['empresa'] ?: 'Independiente');
         })->sortKeys();
 
+        // Asegurar que INDEPENDIENTE esté al final
+        if ($usuariosPorEmpresa->has('INDEPENDIENTE')) {
+            $independientes = $usuariosPorEmpresa->pull('INDEPENDIENTE');
+            $usuariosPorEmpresa->put('INDEPENDIENTE', $independientes);
+        }
+
         return view('admin.certificados.lista', [
             'usuariosPorEmpresa' => $usuariosPorEmpresa,
             'cursos' => $cursos
