@@ -323,20 +323,21 @@
             font-size: 12px !important;
         }
 
-        /* Stats: vertical stack, full width, compact */
+        /* Stats: horizontal 3-col grid, compact */
         .stats-grid {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 10px !important;
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px !important;
         }
 
         .stat-card {
             min-width: 0 !important;
             width: 100% !important;
-            padding: 0 16px !important;
-            height: 56px !important;
-            border-radius: 12px !important;
+            padding: 0 10px !important;
+            height: 48px !important;
+            border-radius: 10px !important;
             border: 1.5px solid #e2e8f0 !important;
+            flex-direction: row !important;
         }
 
         .stat-card.total { border-color: #bfdbfe !important; }
@@ -344,11 +345,11 @@
         .stat-card.resuelto { border-color: #a7f3d0 !important; }
 
         .stat-num-box {
-            font-size: 26px !important;
+            font-size: 20px !important;
         }
 
         .stat-label {
-            font-size: 14px !important;
+            font-size: 11px !important;
         }
 
         /* Tabs full width */
