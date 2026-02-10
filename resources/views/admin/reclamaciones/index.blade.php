@@ -485,28 +485,27 @@
         td:last-child {
             order: 6 !important;
             margin-bottom: 0 !important;
-            margin-top: 12px !important;
-            padding: 0 !important;
-            border-top: none !important;
+            margin-top: 10px !important;
+            padding: 10px 0 0 0 !important;
+            border-top: 1px solid #f1f5f9 !important;
             border-bottom: none !important;
-            text-align: center !important;
+            text-align: right !important;
         }
 
         .btn-view {
-            width: 100% !important;
-            height: 44px !important;
-            border-radius: 12px !important;
-            font-size: 15px !important;
+            width: auto !important;
+            height: 34px !important;
+            border-radius: 8px !important;
+            font-size: 13px !important;
             font-weight: 700 !important;
-            letter-spacing: 0.5px !important;
-            display: flex !important;
+            letter-spacing: 0.3px !important;
+            display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
-            padding: 0 !important;
+            padding: 0 24px !important;
             border: none !important;
             color: white !important;
             text-decoration: none !important;
-            text-align: center !important;
         }
 
         /* Orange for pendiente, blue for resuelto */
