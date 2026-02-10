@@ -19,8 +19,8 @@ if (mobileMenuToggle && navMenu) {
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
+        if (navMenu) navMenu.classList.remove('active');
+        if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
     });
 });
 
@@ -33,6 +33,7 @@ let lastScroll = 0;
 
 // Function to update navbar state based on scroll position
 function updateNavbarState() {
+    if (!navbar) return;
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
     // Cambiar a blanco cuando se hace scroll
@@ -106,6 +107,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const scrollToTopBtn = document.getElementById('scrollToTop');
 
 window.addEventListener('scroll', () => {
+    if (!scrollToTopBtn) return;
     if (window.pageYOffset > 300) {
         scrollToTopBtn.classList.add('visible');
     } else {
