@@ -118,6 +118,7 @@ Route::domain($adminDomain)->name('admin.')->group(function () {
             Route::post('/trabajadores/registrar', [CertificadosController::class, 'registrarTrabajador']);
             Route::put('/trabajadores/actualizar', [CertificadosController::class, 'actualizarTrabajador']);
             Route::put('/empresas/actualizar', [CertificadosController::class, 'actualizarEmpresaMasivo']);
+            Route::post('/trabajadores/asignar-empresa', [CertificadosController::class, 'asignarEmpresa']);
             Route::delete('/trabajadores/{dni}', [CertificadosController::class, 'eliminarTrabajador']);
 
             // API para reclamaciones

@@ -58,6 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (certForm) {
         certForm.addEventListener('submit', handleCertificateSubmit);
     }
+
+    // Handle Direct Company Assignment
+    const btnAssignCompany = document.getElementById('btn-assign-company');
+    if (btnAssignCompany) {
+        btnAssignCompany.addEventListener('click', handleAssignCompany);
+    }
 });
 
 function validateCourseSelection() {
@@ -265,6 +271,7 @@ function mostrarTrabajador(trabajador) {
         profileEmpresa.textContent = trabajador.empresa || 'Independiente';
     }
 
+    const btnAssignCompany = document.getElementById('btn-assign-company');
     if (formEmpresa) {
         const isIndependiente = !trabajador.empresa || trabajador.empresa === 'Independiente';
         formEmpresa.value = trabajador.empresa || '';
@@ -274,11 +281,13 @@ function mostrarTrabajador(trabajador) {
             formEmpresa.style.background = 'white';
             formEmpresa.style.cursor = 'text';
             formEmpresa.placeholder = 'Agregar Empresa (Opcional)';
+            if (btnAssignCompany) btnAssignCompany.style.display = 'block';
         } else {
             formEmpresa.readOnly = true;
             formEmpresa.style.background = '#f1f5f9';
             formEmpresa.style.cursor = 'not-allowed';
             formEmpresa.placeholder = 'Ej: GISEMIN S.A.C.';
+            if (btnAssignCompany) btnAssignCompany.style.display = 'none';
         }
     }
 
@@ -555,6 +564,61 @@ async function registrarNuevoUsuario() {
         alert('Error de conexión al servidor');
         btnRegister.disabled = false;
         btnRegister.innerHTML = originalContent;
+    }
+}
+
+async function handleAssignCompany() {
+    const btn = document.getElementById('btn-assign-company');
+    const input = document.getElementById('form-empresa');
+    const dniInput = document.getElementById('hidden-dni');
+
+    if (!dniInput) return;
+    const dni = dniInput.value;
+    const empresa = input.value.trim();
+
+    if (!empresa) {
+        alert('Por favor, ingresa un nombre de empresa');
+        return;
+    }
+
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    try {
+        const response = await fetch('/api/trabajadores/asignar-empresa', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ dni, empresa })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Success! Block field and hide button
+            input.readOnly = true;
+            input.style.background = '#f1f5f9';
+            input.style.cursor = 'not-allowed';
+            btn.style.display = 'none';
+
+            // Update profile label
+            const profileEmpresa = document.getElementById('profile-empresa');
+            if (profileEmpresa) profileEmpresa.textContent = empresa.toUpperCase();
+
+            console.log('Empresa asignada correctamente');
+        } else {
+            alert(data.message || 'Error al asignar empresa');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error de conexión');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
     }
 }
 

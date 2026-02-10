@@ -963,5 +963,27 @@ class CertificadosController extends Controller
                 'message' => 'Error al actualizar empresa: ' . $e->getMessage()
             ], 500);
         }
+        /**
+     * Asignar empresa a un trabajador de forma inmediata
+     */
+    public function asignarEmpresa(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'dni' => 'required|string|exists:trabajadores,dni',
+                'empresa' => 'required|string|max:255',
+            ]);
+
+            $trabajador = Trabajador::where('dni', $validated['dni'])->firstOrFail();
+            $trabajador->update(['empresa' => strtoupper($validated['empresa'])]);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al asignar empresa: ' . $e->getMessage()
+            ], 500);
+        }
     }
+}
 }

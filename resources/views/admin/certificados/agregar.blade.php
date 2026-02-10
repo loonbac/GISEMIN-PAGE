@@ -174,7 +174,10 @@
 
                                     <div class="form-group" style="margin-bottom: 12px;">
                                         <label>Empresa (Se edita en la lista)</label>
-                                        <input type="text" name="empresa" id="form-empresa" class="form-input reg-empresa-sync" placeholder="Ej: GISEMIN S.A.C." readonly style="background: #f1f5f9; cursor: not-allowed;">
+                                        <div style="display: flex; gap: 8px; align-items: center;">
+                                            <input type="text" name="empresa" id="form-empresa" class="form-input reg-empresa-sync" placeholder="Ej: GISEMIN S.A.C." readonly style="background: #f1f5f9; cursor: not-allowed; flex: 1;">
+                                            <button type="button" id="btn-assign-company" class="btn-primary" style="display: none; padding: 10px 14px; border-radius: 10px; font-size: 11px; font-weight: 800; white-space: nowrap; background: #0f5f8c; color: white; border: none; cursor: pointer;">ASIGNAR</button>
+                                        </div>
                                     </div>
 
                                     <div class="form-row" style="margin-bottom: 12px;">
