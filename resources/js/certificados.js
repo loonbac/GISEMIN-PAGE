@@ -128,7 +128,7 @@ function displayResults(results) {
                         </div>
                         <div class="user-main-info">
                             <h3 class="user-name">${user.nombre}</h3>
-                            <p class="user-dni">DNI: ${user.dni} | <span class="user-company-label">${user.empresa}</span></p>
+                            <p class="user-dni">DNI: ${user.dni} ${user.empresa && user.empresa.toUpperCase() !== 'INDEPENDIENTE' ? `| <span class="user-company-label">${user.empresa}</span>` : ''}</p>
                         </div>
                         <div class="user-badge">
                             ${user.certificados.length} Certificado${user.certificados.length > 1 ? 's' : ''} Válido${user.certificados.length > 1 ? 's' : ''}
