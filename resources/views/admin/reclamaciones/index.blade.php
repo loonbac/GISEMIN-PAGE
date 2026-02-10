@@ -269,15 +269,10 @@
         padding: 10px;
     }
     
-    @media (max-width: 1024px) {
-        .stats-grid { flex-wrap: wrap; }
-        .stat-card { min-width: 45%; }
-    }
-
     @media (max-width: 991px) {
         .reclamaciones-container {
-            padding: 12px 8px !important;
-            zoom: 1 !important; /* Reset zoom on mobile */
+            padding: 16px 12px !important;
+            zoom: 1 !important;
         }
 
         .page-header {
@@ -295,31 +290,35 @@
             font-size: 12px !important;
         }
 
+        /* Stats: vertical stack, full width, compact */
         .stats-grid {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
+            display: flex !important;
+            flex-direction: column !important;
             gap: 10px !important;
         }
 
         .stat-card {
             min-width: 0 !important;
             width: 100% !important;
-            padding: 0 10px !important;
-            height: 44px !important;
+            padding: 0 16px !important;
+            height: 56px !important;
+            border-radius: 12px !important;
+            border: 1.5px solid #e2e8f0 !important;
         }
 
+        .stat-card.total { border-color: #bfdbfe !important; }
+        .stat-card.pendiente { border-color: #fde68a !important; }
+        .stat-card.resuelto { border-color: #a7f3d0 !important; }
+
         .stat-num-box {
-            font-size: 24px !important;
+            font-size: 26px !important;
         }
 
         .stat-label {
-            font-size: 13px !important;
+            font-size: 14px !important;
         }
 
-        .stat-card.total {
-            grid-column: 1 / -1;
-        }
-
+        /* Tabs full width */
         .tabs-container {
             display: flex !important;
             width: 100% !important;
@@ -330,9 +329,9 @@
 
         .tab-btn {
             flex: 1 !important;
-            min-width: 100px !important;
+            min-width: 90px !important;
             font-size: 14px !important;
-            height: 32px !important;
+            height: 34px !important;
         }
 
         /* Card Layout for Table */
@@ -354,165 +353,179 @@
         tbody {
             display: flex !important;
             flex-direction: column !important;
-            gap: 12px !important;
+            gap: 0 !important;
         }
 
+        /* === MOBILE CARD DESIGN === */
         .reclamacion-row {
-            display: block !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
             height: auto !important;
             background: white !important;
-            border: 1px solid #f1f5f9 !important;
+            border: 1px solid #e8ecf1 !important;
             border-radius: 16px !important;
-            padding: 18px !important;
+            padding: 16px 18px !important;
             position: relative !important;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02), 0 2px 4px -1px rgba(0,0,0,0.02) !important;
-            margin-bottom: 16px !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+            margin-bottom: 14px !important;
         }
 
+        /* Reset all td styles */
         td {
             display: block !important;
             padding: 0 !important;
             border: none !important;
-            margin-bottom: 10px !important;
+            margin-bottom: 0 !important;
             white-space: normal !important;
             width: 100% !important;
             height: auto !important;
-        }
-
-        td:first-child {
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            margin-bottom: 14px !important;
-            padding-bottom: 12px !important;
-            border-bottom: 1px dashed #e2e8f0 !important;
             box-shadow: none !important;
         }
 
-        /* Move Date to top right near ID */
-        td:nth-child(2) {
-            position: absolute !important;
-            top: 18px !important;
-            right: 18px !important;
+        /* TD 1: ID - pill badge top left  */
+        td:first-child {
+            order: 1 !important;
             width: auto !important;
-            margin-bottom: 0 !important;
-            font-size: 11px !important;
-            color: #94a3b8 !important;
-            font-weight: 500 !important;
-        }
-
-        td:nth-child(2)::before {
-            content: "";
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' /%3E%3C/svg%3E");
-            background-size: contain;
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            vertical-align: middle;
-            margin-right: 4px;
-            margin-top: -2px;
+            margin-bottom: 10px !important;
+            padding-left: 0 !important;
         }
 
         .id-cell {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 2px 10px;
-            border-radius: 6px;
+            background: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+            padding: 3px 12px !important;
+            border-radius: 6px !important;
+            display: inline-block !important;
         }
 
         .reclamacion-id {
-            font-weight: 800;
-            color: #475569;
-            font-size: 12px;
+            font-weight: 800 !important;
+            color: #475569 !important;
+            font-size: 13px !important;
         }
 
-        /* Name Styling */
+        /* TD 2: Fecha - below ID with clock icon */
+        td:nth-child(2) {
+            order: 3 !important;
+            width: 100% !important;
+            font-size: 12px !important;
+            color: #94a3b8 !important;
+            font-weight: 500 !important;
+            margin-bottom: 8px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        td:nth-child(2)::before {
+            content: "" !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' /%3E%3C/svg%3E") !important;
+            background-size: contain !important;
+            display: inline-block !important;
+            width: 14px !important;
+            height: 14px !important;
+            vertical-align: middle !important;
+            margin-right: 5px !important;
+            flex-shrink: 0 !important;
+        }
+
+        /* TD 3: Nombre - big bold */
         td:nth-child(3) {
+            order: 4 !important;
             font-size: 17px !important;
             font-weight: 800 !important;
             color: #0f172a !important;
-            margin-bottom: 6px !important;
+            margin-bottom: 4px !important;
             letter-spacing: -0.3px !important;
-            padding-right: 120px !important; /* Avoid overlap with date */
         }
 
-        /* DNI Styling */
+        /* TD 4: DNI - with clipboard icon */
         td:nth-child(4) {
+            order: 5 !important;
             font-size: 13px !important;
             color: #64748b !important;
             display: flex !important;
             align-items: center !important;
             gap: 6px !important;
-            margin-bottom: 12px !important;
+            margin-bottom: 10px !important;
         }
 
         td:nth-child(4)::before {
-            content: "";
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-4 0a1 1 0 011-1h2a1 1 0 011 1v1m-4 0h4' /%3E%3C/svg%3E");
-            background-size: contain;
-            width: 14px;
-            height: 14px;
-            display: inline-block;
+            content: "" !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-4 0a1 1 0 011-1h2a1 1 0 011 1v1m-4 0h4' /%3E%3C/svg%3E") !important;
+            background-size: contain !important;
+            width: 14px !important;
+            height: 14px !important;
+            display: inline-block !important;
+            flex-shrink: 0 !important;
         }
 
-        /* Status Badge */
+        /* TD 5: Status badge */
         td:nth-child(5) {
-            margin-bottom: 4px !important;
+            order: 2 !important;
+            width: auto !important;
+            position: absolute !important;
+            top: 16px !important;
+            right: 18px !important;
+            margin-bottom: 0 !important;
         }
 
         .status-badge {
-            height: 24px !important;
+            height: 26px !important;
             padding: 0 12px !important;
             font-size: 12px !important;
             border-radius: 20px !important;
         }
 
-        /* Actions - Fluid Button centered with borders */
+        /* TD 6: Actions - full width orange/blue button */
         td:last-child {
+            order: 6 !important;
             margin-bottom: 0 !important;
-            margin-top: 18px !important;
-            padding: 16px 0 0 0 !important;
-            border-top: 1px solid #f1f5f9 !important;
+            margin-top: 12px !important;
+            padding: 0 !important;
+            border-top: none !important;
             border-bottom: none !important;
             text-align: center !important;
         }
 
         .btn-view {
             width: 100% !important;
-            height: 46px !important;
+            height: 44px !important;
             border-radius: 12px !important;
-            background: #2563eb !important;
-            font-size: 16px !important;
+            font-size: 15px !important;
             font-weight: 700 !important;
             letter-spacing: 0.5px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             padding: 0 !important;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15) !important;
-            border: 1px solid rgba(255,255,255,0.1) !important;
+            border: none !important;
+        }
+
+        /* Orange for pendiente, blue for resuelto */
+        .reclamacion-row[data-status="pendiente"] .btn-view {
+            background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25) !important;
+        }
+
+        .reclamacion-row[data-status="resuelto"] .btn-view {
+            background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2) !important;
+        }
+
+        /* Remove colored bg from rows on mobile */
+        tr.reclamacion-row[data-status="pendiente"],
+        tr.reclamacion-row[data-status="resuelto"] {
+            background-color: white !important;
+        }
+        tr.reclamacion-row[data-status="pendiente"] td:first-child,
+        tr.reclamacion-row[data-status="resuelto"] td:first-child {
+            box-shadow: none !important;
         }
     }
 
     @media (max-width: 480px) {
-        .stats-grid {
-            grid-template-columns: 1fr !important;
-        }
-        .stat-card.total {
-            grid-column: auto;
-        }
-        
-        td:nth-child(3) {
-            padding-right: 0 !important;
-        }
-        
-        td:nth-child(2) {
-            position: static !important;
-            margin-bottom: 8px !important;
-            background: #fdf2f2; /* Subtle bg if forced to stack */
-            padding: 2px 8px !important;
-            border-radius: 4px !important;
-            display: inline-block !important;
+        .reclamaciones-container {
+            padding: 12px 8px !important;
         }
     }
 </style>
