@@ -963,7 +963,9 @@ class CertificadosController extends Controller
                 'message' => 'Error al actualizar empresa: ' . $e->getMessage()
             ], 500);
         }
-        /**
+    }
+
+    /**
      * Asignar empresa a un trabajador de forma inmediata
      */
     public function asignarEmpresa(Request $request)
@@ -985,5 +987,26 @@ class CertificadosController extends Controller
             ], 500);
         }
     }
-}
+
+    /**
+     * Quitar a un trabajador de su empresa (volver a independiente)
+     */
+    public function removerEmpresa(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'dni' => 'required|string|exists:trabajadores,dni',
+            ]);
+
+            $trabajador = Trabajador::where('dni', $validated['dni'])->firstOrFail();
+            $trabajador->update(['empresa' => null]);
+
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al remover empresa: ' . $e->getMessage()
+            ], 500);
+        }
+    }
 }

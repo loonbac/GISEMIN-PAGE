@@ -64,6 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnAssignCompany) {
         btnAssignCompany.addEventListener('click', handleAssignCompany);
     }
+
+    const btnRemoveCompany = document.getElementById('btn-remove-company');
+    if (btnRemoveCompany) {
+        btnRemoveCompany.addEventListener('click', handleRemoveCompany);
+    }
 });
 
 function validateCourseSelection() {
@@ -272,6 +277,8 @@ function mostrarTrabajador(trabajador) {
     }
 
     const btnAssignCompany = document.getElementById('btn-assign-company');
+    const btnRemoveCompany = document.getElementById('btn-remove-company');
+
     if (formEmpresa) {
         const isIndependiente = !trabajador.empresa || trabajador.empresa === 'Independiente';
         formEmpresa.value = trabajador.empresa || '';
@@ -282,12 +289,14 @@ function mostrarTrabajador(trabajador) {
             formEmpresa.style.cursor = 'text';
             formEmpresa.placeholder = 'Agregar Empresa (Opcional)';
             if (btnAssignCompany) btnAssignCompany.style.display = 'block';
+            if (btnRemoveCompany) btnRemoveCompany.style.display = 'none';
         } else {
             formEmpresa.readOnly = true;
             formEmpresa.style.background = '#f1f5f9';
             formEmpresa.style.cursor = 'not-allowed';
             formEmpresa.placeholder = 'Ej: GISEMIN S.A.C.';
             if (btnAssignCompany) btnAssignCompany.style.display = 'none';
+            if (btnRemoveCompany) btnRemoveCompany.style.display = 'block';
         }
     }
 
@@ -623,3 +632,60 @@ async function handleAssignCompany() {
 }
 
 
+async function handleRemoveCompany() {
+    const btn = document.getElementById('btn-remove-company');
+    const btnAssign = document.getElementById('btn-assign-company');
+    const input = document.getElementById('form-empresa');
+    const dniInput = document.getElementById('hidden-dni');
+
+    if (!dniInput) return;
+    const dni = dniInput.value;
+
+    if (!confirm('¿Estás seguro de sacar a este usuario del grupo de la empresa? El usuario volverá a ser Independiente.')) {
+        return;
+    }
+
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = '...';
+
+    try {
+        const response = await fetch('/api/trabajadores/remover-empresa', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ dni })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Re-enable field and show ASIGNAR, hide REMOVER
+            input.value = '';
+            input.readOnly = false;
+            input.style.background = 'white';
+            input.style.cursor = 'text';
+            input.placeholder = 'Agregar Empresa (Opcional)';
+
+            btn.style.display = 'none';
+            if (btnAssign) btnAssign.style.display = 'block';
+
+            // Update profile label
+            const profileEmpresa = document.getElementById('profile-empresa');
+            if (profileEmpresa) profileEmpresa.textContent = 'Independiente';
+
+            console.log('Empresa removida correctamente');
+        } else {
+            alert(data.message || 'Error al remover empresa');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Error de conexión');
+    } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+    }
+}
