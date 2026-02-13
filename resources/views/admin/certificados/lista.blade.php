@@ -1225,7 +1225,6 @@ async function executeDelete() {
     const originalText = btn.innerText;
     
     btn.disabled = true;
-    btn.innerText = 'Eliminando...';
 
     try {
         const response = await fetch(`/api/certificados/${certToDelete}`, {
@@ -1277,7 +1276,6 @@ async function executeDelete() {
         alert('Error de red');
     } finally {
         btn.disabled = false;
-        btn.innerText = originalText;
     }
 }
 
@@ -1315,7 +1313,6 @@ async function executeUserDelete() {
     const originalText = btn.innerText;
     
     btn.disabled = true;
-    btn.innerText = 'Eliminando Usuario...';
 
     try {
         const response = await fetch(`/api/trabajadores/${userDniToDelete}`, {
@@ -1350,7 +1347,6 @@ async function executeUserDelete() {
         alert('Error de red al intentar eliminar el usuario');
     } finally {
         btn.disabled = false;
-        btn.innerText = originalText;
     }
 }
 
@@ -1376,10 +1372,9 @@ async function executeCompanyDelete() {
     const originalText = btn.innerText;
     
     btn.disabled = true;
-    btn.innerText = 'Eliminando Empresa...';
 
     try {
-        const response = await fetch(`{{ config('app.url') }}/admin/api/empresas/eliminar`, {
+        const response = await fetch(`/api/empresas/eliminar`, {
             method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -1420,7 +1415,6 @@ async function executeCompanyDelete() {
         alert('Error de red al intentar eliminar la empresa');
     } finally {
         btn.disabled = false;
-        btn.innerText = originalText;
     }
 }
 
