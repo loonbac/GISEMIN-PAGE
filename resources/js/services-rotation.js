@@ -3,17 +3,17 @@ const servicesContent = [
     // Tarjeta 1 - 3 servicios
     [
         {
-            image: "/images/servicios/implementacion_de_sistemas_de_gestion.png",
+            image: "/images/servicios/implementacion_de_sistemas_de_gestion.webp",
             title: "IMPLEMENTACIÓN DE SISTEMAS DE GESTIÓN",
             description: ""
         },
         {
-            image: "/images/servicios/monitoreo_de_higiene_ocupacional.png",
+            image: "/images/servicios/monitoreo_de_higiene_ocupacional.webp",
             title: "MONITOREO DE HIGIENE OCUPACIONAL",
             description: ""
         },
         {
-            image: "/images/servicios/auditoria_de_cumplimiento_y_mejora.png",
+            image: "/images/servicios/auditoria_de_cumplimiento_y_mejora.webp",
             title: "AUDITORÍA DE CUMPLIMIENTO Y MEJORA",
             description: ""
         }
@@ -21,12 +21,12 @@ const servicesContent = [
     // Tarjeta 2 - 2 servicios
     [
         {
-            image: "/images/servicios/consultoria_senior_especializada.png",
+            image: "/images/servicios/consultoria_senior_especializada.webp",
             title: "CONSULTORÍA SENIOR ESPECIALIZADA",
             description: ""
         },
         {
-            image: "/images/servicios/gestion_de_expedientes_indeci_itse.png",
+            image: "/images/servicios/gestion_de_expedientes_indeci_itse.webp",
             title: "GESTIÓN DE EXPEDIENTES INDECI (ITSE)",
             description: ""
         }
@@ -34,12 +34,12 @@ const servicesContent = [
     // Tarjeta 3 - 2 servicios
     [
         {
-            image: "/images/servicios/formacion_entrenamiento_de_alto_impacto.png",
+            image: "/images/servicios/formacion_entrenamiento_de_alto_impacto.webp",
             title: "FORMACIÓN/ENTRENO DE ALTO IMPACTO",
             description: ""
         },
         {
-            image: "/images/servicios/suministro_de_epp_y_equipamiento_tecnico.png",
+            image: "/images/servicios/suministro_de_epp_y_equipamiento_tecnico.webp",
             title: "SUMINISTRO DE EPP Y EQUIPAMIENTO TÉCNICO",
             description: ""
         }
@@ -47,12 +47,12 @@ const servicesContent = [
     // Tarjeta 4 - 2 servicios
     [
         {
-            image: "/images/servicios/outsourcing_estrategico_de_personal.png",
+            image: "/images/servicios/outsourcing_estrategico_de_personal.webp",
             title: "OUTSOURCING ESTRATÉGICO DE PERSONAL",
             description: ""
         },
         {
-            image: "/images/servicios/implementacion_de_sistemas_de_gestion.png",
+            image: "/images/servicios/implementacion_de_sistemas_de_gestion.webp",
             title: "IMPLEMENTACIÓN DE SISTEMAS DE GESTIÓN",
             description: ""
         }

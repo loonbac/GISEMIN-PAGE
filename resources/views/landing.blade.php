@@ -94,11 +94,11 @@
     <section class="hero" id="inicio">
         <!-- Background Slider -->
         <div class="hero-slider">
-            <div class="hero-slide active" style="background-image: url('{{ asset('images/hero/sostenibilidad_y_medio_ambiente.png') }}');" aria-label="Sostenibilidad y Medio Ambiente"></div>
-            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/seguridad_en_construccion.png') }}');" aria-label="Seguridad en Construcción"></div>
-            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/industria_y_mineria.png') }}');" aria-label="Industria y Minería"></div>
-            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/capacitacion_y_equipo.png') }}');" aria-label="Capacitación y Equipo"></div>
-            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/consultoria_y_gestion.png') }}');" aria-label="Consultoría y Gestión"></div>
+            <div class="hero-slide active" style="background-image: url('{{ asset('images/hero/sostenibilidad_y_medio_ambiente.webp') }}');" aria-label="Sostenibilidad y Medio Ambiente"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/seguridad_en_construccion.webp') }}');" aria-label="Seguridad en Construcción"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/industria_y_mineria.webp') }}');" aria-label="Industria y Minería"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/capacitacion_y_equipo.webp') }}');" aria-label="Capacitación y Equipo"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/consultoria_y_gestion.webp') }}');" aria-label="Consultoría y Gestión"></div>
         </div>
         
         <div class="hero-overlay"></div>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="about-image">
                         <div class="image-wrapper">
-                            <img src="{{ asset('images/about/sistema_integrado_de_gestion.png') }}" alt="Sistema Integrado de Gestión">
+                            <img src="{{ asset('images/about/sistema_integrado_de_gestion.webp') }}" alt="Sistema Integrado de Gestión">
                             <div class="image-overlay"></div>
                         </div>
                     </div>
@@ -246,7 +246,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="{{ asset('images/servicios/implementacion_de_sistemas_de_gestion.png') }}" alt="Implementación de Sistemas de Gestión">
+                        <img src="{{ asset('images/servicios/implementacion_de_sistemas_de_gestion.webp') }}" alt="Implementación de Sistemas de Gestión">
                     </div>
                     <div class="service-info">
                         <h3>IMPLEMENTACIÓN DE SISTEMAS DE GESTIÓN</h3>
@@ -256,7 +256,7 @@
 
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="{{ asset('images/servicios/consultoria_senior_especializada.png') }}" alt="Consultoría Senior Especializada">
+                        <img src="{{ asset('images/servicios/consultoria_senior_especializada.webp') }}" alt="Consultoría Senior Especializada">
                     </div>
                     <div class="service-info">
                         <h3>CONSULTORÍA SENIOR ESPECIALIZADA</h3>
@@ -266,7 +266,7 @@
 
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="{{ asset('images/servicios/formacion_entrenamiento_de_alto_impacto.png') }}" alt="Formación y Entreno">
+                        <img src="{{ asset('images/servicios/formacion_entrenamiento_de_alto_impacto.webp') }}" alt="Formación y Entreno">
                     </div>
                     <div class="service-info">
                         <h3>FORMACIÓN/ENTRENO DE ALTO IMPACTO</h3>
@@ -276,7 +276,7 @@
 
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="{{ asset('images/servicios/outsourcing_estrategico_de_personal.png') }}" alt="Outsourcing Estratégico">
+                        <img src="{{ asset('images/servicios/outsourcing_estrategico_de_personal.webp') }}" alt="Outsourcing Estratégico">
                     </div>
                     <div class="service-info">
                         <h3>OUTSOURCING ESTRATÉGICO DE PERSONAL</h3>
@@ -293,37 +293,37 @@
             <div class="container">
                 <div class="collage-grid">
                     <div class="collage-item">
-                        <img src="{{ asset('images/servicios/capacitaciones_obligatorias_normativas_sst.png') }}" alt="Capacitaciones SST">
+                        <img src="{{ asset('images/servicios/capacitaciones_obligatorias_normativas_sst.webp') }}" alt="Capacitaciones SST">
                         <div class="collage-overlay">
                             <h4>CAPACITACIONES OBLIGATORIAS / NORMATIVAS (SST)</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="{{ asset('images/servicios/identificacion_de_peligros_evaluacion_de_riesgos_y_controles_iperc.png') }}" alt="IPERC">
+                        <img src="{{ asset('images/servicios/identificacion_de_peligros_evaluacion_de_riesgos_y_controles_iperc.webp') }}" alt="IPERC">
                         <div class="collage-overlay">
                             <h4>IDENTIFICACIÓN DE PELIGROS, EVALUACIÓN DE RIESGOS Y CONTROLES (IPERC)</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="{{ asset('images/servicios/trabajos_de_alto_riesgo_tar_trabajo_en_altura.png') }}" alt="Trabajo en Altura">
+                        <img src="{{ asset('images/servicios/trabajos_de_alto_riesgo_tar_trabajo_en_altura.webp') }}" alt="Trabajo en Altura">
                         <div class="collage-overlay">
                             <h4>TRABAJOS DE ALTO RIESGO (TAR) - TRABAJO EN ALTURA</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="{{ asset('images/servicios/sst_en_mineria.png') }}" alt="SST en Minería">
+                        <img src="{{ asset('images/servicios/sst_en_mineria.webp') }}" alt="SST en Minería">
                         <div class="collage-overlay">
                             <h4>SST EN MINERÍA</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="{{ asset('images/servicios/bioseguridad.png') }}" alt="Bioseguridad">
+                        <img src="{{ asset('images/servicios/bioseguridad.webp') }}" alt="Bioseguridad">
                         <div class="collage-overlay">
                             <h4>BIOSEGURIDAD</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="{{ asset('images/servicios/emergencias_y_primeros_auxilios.png') }}" alt="Primeros Auxilios">
+                        <img src="{{ asset('images/servicios/emergencias_y_primeros_auxilios.webp') }}" alt="Primeros Auxilios">
                         <div class="collage-overlay">
                             <h4>EMERGENCIAS Y PRIMEROS AUXILIOS</h4>
                         </div>
