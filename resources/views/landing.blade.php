@@ -246,7 +246,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80" alt="Implementación de Sistemas de Gestión">
+                        <img src="{{ asset('images/servicios/implementacion_de_sistemas_de_gestion.png') }}" alt="Implementación de Sistemas de Gestión">
                     </div>
                     <div class="service-info">
                         <h3>IMPLEMENTACIÓN DE SISTEMAS DE GESTIÓN</h3>
@@ -256,7 +256,7 @@
 
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=600&q=80" alt="Consultoría Senior Especializada">
+                        <img src="{{ asset('images/servicios/consultoria_senior_especializada.png') }}" alt="Consultoría Senior Especializada">
                     </div>
                     <div class="service-info">
                         <h3>CONSULTORÍA SENIOR ESPECIALIZADA</h3>
@@ -266,17 +266,17 @@
 
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" alt="Formación y Entrenamiento">
+                        <img src="{{ asset('images/servicios/implementacion_de_sistemas_de_gestion.png') }}" alt="Formación y Entreno">
                     </div>
                     <div class="service-info">
-                        <h3>FORMACIÓN/ENTRENAMIENTO DE ALTO IMPACTO</h3>
+                        <h3>FORMACIÓN/ENTRENO DE ALTO IMPACTO</h3>
                         <a href="#contacto" class="btn-service">Más información</a>
                     </div>
                 </div>
 
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80" alt="Outsourcing Estratégico">
+                        <img src="{{ asset('images/servicios/outsourcing_estrategico_de_personal.png') }}" alt="Outsourcing Estratégico">
                     </div>
                     <div class="service-info">
                         <h3>OUTSOURCING ESTRATÉGICO DE PERSONAL</h3>
@@ -293,37 +293,37 @@
             <div class="container">
                 <div class="collage-grid">
                     <div class="collage-item">
-                        <img src="https://safety-construction.com/wp-content/uploads/2024/06/capacitaciones-de-seguridad-y-salud-en-el-trabajo-Ley-29783.jpg" alt="Capacitaciones SST">
+                        <img src="{{ asset('images/servicios/capacitaciones_obligatorias_normativas_sst.png') }}" alt="Capacitaciones SST">
                         <div class="collage-overlay">
                             <h4>CAPACITACIONES OBLIGATORIAS / NORMATIVAS (SST)</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://cfcgroup.org/web/wp-content/uploads/2023/04/iperc2.jpg" alt="IPERC">
+                        <img src="{{ asset('images/servicios/identificacion_de_peligros_evaluacion_de_riesgos_y_controles_iperc.png') }}" alt="IPERC">
                         <div class="collage-overlay">
                             <h4>IDENTIFICACIÓN DE PELIGROS, EVALUACIÓN DE RIESGOS Y CONTROLES (IPERC)</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://i0.wp.com/www.segusa.com.mx/wp-content/uploads/2023/07/arnes-proteccion.png?resize=980%2C641&ssl=1" alt="Trabajo en Altura">
+                        <img src="{{ asset('images/servicios/trabajos_de_alto_riesgo_tar_trabajo_en_altura.png') }}" alt="Trabajo en Altura">
                         <div class="collage-overlay">
                             <h4>TRABAJOS DE ALTO RIESGO (TAR) - TRABAJO EN ALTURA</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://www.kpnsafety.com/wp-content/uploads/2025/01/Diseno-sin-titulo-4.jpg" alt="SST en Minería">
+                        <img src="{{ asset('images/servicios/sst_en_mineria.png') }}" alt="SST en Minería">
                         <div class="collage-overlay">
                             <h4>SST EN MINERÍA</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://montanaweb-bucket.s3.amazonaws.com/web/blog/285/Bioseguridad-MONTANA.jpg" alt="Bioseguridad">
+                        <img src="{{ asset('images/servicios/bioseguridad.png') }}" alt="Bioseguridad">
                         <div class="collage-overlay">
                             <h4>BIOSEGURIDAD</h4>
                         </div>
                     </div>
                     <div class="collage-item">
-                        <img src="https://www.spmas.es/wp-content/uploads/2024/02/Primeros-Auxilios_MAS-Prevencion.jpg" alt="Primeros Auxilios">
+                        <img src="{{ asset('images/servicios/emergencias_y_primeros_auxilios.png') }}" alt="Primeros Auxilios">
                         <div class="collage-overlay">
                             <h4>EMERGENCIAS Y PRIMEROS AUXILIOS</h4>
                         </div>
