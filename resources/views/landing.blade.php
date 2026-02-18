@@ -94,11 +94,11 @@
     <section class="hero" id="inicio">
         <!-- Background Slider -->
         <div class="hero-slider">
-            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1600&q=80');" aria-label="Sostenibilidad y Medio Ambiente"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80');" aria-label="Seguridad en Construcción"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&q=80');" aria-label="Industria y Minería"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80');" aria-label="Capacitación y Equipo"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80');" aria-label="Consultoría y Gestión"></div>
+            <div class="hero-slide active" style="background-image: url('{{ asset('images/hero/sostenibilidad_y_medio_ambiente.png') }}');" aria-label="Sostenibilidad y Medio Ambiente"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/seguridad_en_construccion.png') }}');" aria-label="Seguridad en Construcción"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/industria_y_mineria.png') }}');" aria-label="Industria y Minería"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/capacitacion_y_equipo.png') }}');" aria-label="Capacitación y Equipo"></div>
+            <div class="hero-slide" style="background-image: url('{{ asset('images/hero/consultoria_y_gestion.png') }}');" aria-label="Consultoría y Gestión"></div>
         </div>
         
         <div class="hero-overlay"></div>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="about-image">
                         <div class="image-wrapper">
-                            <img src="https://peru.unir.net/wp-content/uploads/sites/2/2024/12/Que-es-un-Sistema-Integrado-de-Gestion-Definicion-y-Fundamentos1.jpg" alt="Sistema Integrado de Gestión">
+                            <img src="{{ asset('images/about/sistema_integrado_de_gestion.png') }}" alt="Sistema Integrado de Gestión">
                             <div class="image-overlay"></div>
                         </div>
                     </div>
@@ -266,7 +266,7 @@
 
                 <div class="service-card">
                     <div class="service-image">
-                        <img src="{{ asset('images/servicios/implementacion_de_sistemas_de_gestion.png') }}" alt="Formación y Entreno">
+                        <img src="{{ asset('images/servicios/formacion_entrenamiento_de_alto_impacto.png') }}" alt="Formación y Entreno">
                     </div>
                     <div class="service-info">
                         <h3>FORMACIÓN/ENTRENO DE ALTO IMPACTO</h3>

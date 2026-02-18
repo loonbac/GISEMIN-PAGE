@@ -1,19 +1,19 @@
 // Contenido rotativo para cada tarjeta de servicio - 8 servicios (distribuidos en 4 tarjetas)
 const servicesContent = [
-    // Tarjeta 1 - 2 servicios
+    // Tarjeta 1 - 3 servicios
     [
         {
-            image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80",
+            image: "/images/servicios/implementacion_de_sistemas_de_gestion.png",
             title: "IMPLEMENTACIÓN DE SISTEMAS DE GESTIÓN",
             description: ""
         },
         {
-            image: "https://meiningenieros.pe/wp-content/uploads/2025/05/monitoreo-de-agentes-fisicos-quimicos-biologicos-y-ergonomicos.webp",
+            image: "/images/servicios/monitoreo_de_higiene_ocupacional.png",
             title: "MONITOREO DE HIGIENE OCUPACIONAL",
             description: ""
         },
         {
-            image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80",
+            image: "/images/servicios/auditoria_de_cumplimiento_y_mejora.png",
             title: "AUDITORÍA DE CUMPLIMIENTO Y MEJORA",
             description: ""
         }
@@ -21,12 +21,12 @@ const servicesContent = [
     // Tarjeta 2 - 2 servicios
     [
         {
-            image: "https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=600&q=80",
+            image: "/images/servicios/consultoria_senior_especializada.png",
             title: "CONSULTORÍA SENIOR ESPECIALIZADA",
             description: ""
         },
         {
-            image: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=600&q=80",
+            image: "/images/servicios/gestion_de_expedientes_indeci_itse.png",
             title: "GESTIÓN DE EXPEDIENTES INDECI (ITSE)",
             description: ""
         }
@@ -34,12 +34,12 @@ const servicesContent = [
     // Tarjeta 3 - 2 servicios
     [
         {
-            image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80",
+            image: "/images/servicios/formacion_entrenamiento_de_alto_impacto.png",
             title: "FORMACIÓN Y ENTRENAMIENTO DE ALTO IMPACTO",
             description: ""
         },
         {
-            image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+            image: "/images/servicios/suministro_de_epp_y_equipamiento_tecnico.png",
             title: "SUMINISTRO DE EPP Y EQUIPAMIENTO TÉCNICO",
             description: ""
         }
@@ -47,12 +47,12 @@ const servicesContent = [
     // Tarjeta 4 - 2 servicios
     [
         {
-            image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80",
+            image: "/images/servicios/outsourcing_estrategico_de_personal.png",
             title: "OUTSOURCING ESTRATÉGICO DE PERSONAL",
             description: ""
         },
         {
-            image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80",
+            image: "/images/servicios/implementacion_de_sistemas_de_gestion.png",
             title: "IMPLEMENTACIÓN DE SISTEMAS DE GESTIÓN",
             description: ""
         }
