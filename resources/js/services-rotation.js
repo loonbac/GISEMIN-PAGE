@@ -35,7 +35,7 @@ const servicesContent = [
     [
         {
             image: "/images/servicios/formacion_entrenamiento_de_alto_impacto.png",
-            title: "FORMACIÓN Y ENTRENAMIENTO DE ALTO IMPACTO",
+            title: "FORMACIÓN/ENTRENO DE ALTO IMPACTO",
             description: ""
         },
         {
