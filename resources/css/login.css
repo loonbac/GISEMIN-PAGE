@@ -40,8 +40,6 @@ body {
 .login-image-side {
     flex: 1;
     position: relative;
-    background: url('/images/woman.svg') no-repeat center center;
-    background-size: cover;
 }
 
 .login-image-side::before {
